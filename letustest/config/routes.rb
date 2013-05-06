@@ -1,6 +1,7 @@
 Letustest::Application.routes.draw do
-  get "users/new"
-
+  #get "users/new" ;was removed and added next line
+  resources :users # it endows our sample application with all the actions needed for a RESTful Users resource
+  
   get "home/index"
   match '/signup',  to: 'users#new'
 
