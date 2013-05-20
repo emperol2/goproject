@@ -1,4 +1,7 @@
 Letustest::Application.routes.draw do
+  resources :playgrounds
+
+
   #get "users/new" ;was removed and added next line
   resources :users # it endows our sample application with all the actions needed for a RESTful Users resource
   
