@@ -1,17 +1,16 @@
 <%= form_for(@playground) do |f| %>
-  <% if @playground.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@playground.errors.count, "error") %> prohibited this playground from being saved:</h2>
+	<% if @playground.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= pluralize(@playground.errors.count, "error") %> prohibited this playground from being saved:</h2>
 
-      <ul>
-      <% @playground.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+		<ul>
+		<% @playground.errors.full_messages.each do |msg| %>
+		<li><%= msg %></li>
+		<% end %>
+		</ul>
+	</div>
+<% end %>
 
-<div class="row">
 
   <div class="field">
     <%= f.label :name %><br />
@@ -37,9 +36,8 @@
     <%= f.label :reproduce %><br />
     <%= f.text_area :reproduce %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="actions">	
+    <%= f.submit "Create Playground", class: "btn btn-large btn-primary" %>
   </div>
-
-</div>	
+	
 <% end %>
