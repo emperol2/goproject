@@ -1,4 +1,7 @@
 Letustest::Application.routes.draw do
+  resources :feedbacks
+
+
   resources :playgrounds
 
 

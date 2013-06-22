@@ -11,7 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130520143054) do
+ActiveRecord::Schema.define(:version => 20130622111726) do
+
+  create_table "feedbacks", :force => true do |t|
+    t.string   "url"
+    t.text     "questions"
+    t.string   "email"
+    t.string   "numofbugs"
+    t.datetime "duedate"
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "telephone"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "playgrounds", :force => true do |t|
     t.string   "name"

@@ -1,0 +1,61 @@
+<p id="notice"><%= notice %></p>
+<div id=verify-request>
+	<h2>Verify Request</h2>
+	<p>Please verify this information is correct. Click edit to make changes before purchasing the feedback.</p>
+</div>
+<p class=url>
+  <b>URL:</b>
+  <%= @feedback.url %>
+</p>
+
+<p>
+  <b>Questions:</b>
+  <%= @feedback.questions %>
+</p>
+
+<p>
+  <b>Email Address:</b>
+  <%= @feedback.email %>
+</p>
+
+<p>
+  <b>Number of Bugs:</b>
+  <%= @feedback.numofbugs %>
+</p>
+
+<p>
+  <b>Due date:</b>
+  <%= @feedback.duedate %>
+</p>
+
+<p>
+  <b>First name:</b>
+  <%= @feedback.firstname %>
+</p>
+
+<p>
+  <b>Last name:</b>
+  <%= @feedback.lastname %>
+</p>
+
+<p>
+  <b>Telephone numnber:</b>
+  <%= @feedback.telephone %>
+</p>
+
+<p class=reivew-detail>
+	*Please review your detail before making a payment
+</p>
+
+<%= link_to 'Edit', edit_feedback_path(@feedback) %> |
+<%= link_to 'Back', feedbacks_path %>
+
+<div id=purchase>
+	<h3>Purchase feedback</h3>
+	<ul>
+		<li>The cost is $20 for 10 responses. A refund is available if you're not satisfied.</li>
+		<li>PayPal will show the payee as <%= mail_to "paypal@feedbackarmy.com" %></li>
+		<li>After paying, click return to merchant to complete your order.</li>
+	</ul>
+</div>
+<%= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif") %>
