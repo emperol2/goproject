@@ -15,3 +15,30 @@ textarea {
 .test select {
   width: 108px !important
 }
+
+footer#footer{
+  width: 960px;
+}
+
+div.footer-holder{
+  position: relative;
+}
+
+div.footer-col{
+  float:right;
+  width: 580px;
+  
+}
+div.col{
+  float:left;
+  width: 190px; 
+}
+div.social-col{
+  float:left;
+  width: 190px; 
+}
+div.copyright-box{
+  float:left;
+  width: 360px; 
+}
+
