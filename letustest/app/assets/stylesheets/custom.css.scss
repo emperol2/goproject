@@ -41,4 +41,15 @@ div.copyright-box{
   float:left;
   width: 360px; 
 }
-
+footer#footer .clock{
+  width: 960px;
+  height: 70px;
+  padding-top: 20px;
+}
+footer#footer .clock .outer{
+  float: left;
+  width: 192px;
+}
+footer#footer .clock .outer .inner{
+  float: left;
+}

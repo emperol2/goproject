@@ -13,3 +13,36 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$(function($) {
+  var optionsEST = {
+    utc: true,
+    utc_offset: -7
+  }
+  $('#jclock1').jclock(optionsEST);
+
+  var optionsCST = {
+    utc: true,
+    utc_offset: 2
+  }
+  $('#jclock2').jclock(optionsCST);
+
+  var optionsIndia = {
+    utc: true,
+    utc_offset: 7
+  }
+  $('#jclock3').jclock(optionsIndia);
+
+  var optionsIndia = {
+    utc: true,
+    utc_offset: -4
+  }
+  $('#jclock4').jclock(optionsIndia);
+
+  var optionsIndia = {
+    utc: true,
+    utc_offset: 2
+  }
+  $('#jclock5').jclock(optionsIndia);
+
+});
