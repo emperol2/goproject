@@ -1,14 +1,13 @@
 class Feedback < ActiveRecord::Base
   attr_accessible :duedate, :email, :firstname, :lastname, :numofbugs, :questions, :telephone, :url
   
-  def paypal_url(return_url, notify_url)
+  def paypal_url(return_url)
     values = {
       :business => 'seller@letustest.com',
       :cmd => '_cart',
       :upload => 1,
       :return => return_url,
       :invoice => id,
-      :notify_url => notify_url
       }
       values.merge!({
         # test amount
