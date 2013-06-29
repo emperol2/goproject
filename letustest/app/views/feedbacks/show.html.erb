@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<!-- <p id="notice"><%= notice %></p> -->
 <div id=verify-request>
 	<h2>Verify Request</h2>
 	<p>Please verify this information is correct. Click edit to make changes before purchasing the feedback.</p>
@@ -50,12 +50,13 @@
 <%= link_to 'Edit', edit_feedback_path(@feedback) %> |
 <%= link_to 'Back', feedbacks_path %>
 
-<div id=purchase>
+<div class="purchase newfeedback">
 	<h3>Purchase feedback</h3>
 	<ul>
-		<li>The cost is $20 for 10 responses. A refund is available if you're not satisfied.</li>
-		<li>PayPal will show the payee as <%= mail_to "paypal@feedbackarmy.com" %></li>
+		<li>The cost is <%= @feedback.numofbugs %>. A refund is available if you're not satisfied.</li>
+		<li>PayPal will show the payee as <%= mail_to "paypal@letustest.com" %></li>
 		<li>After paying, click return to merchant to complete your order.</li>
 	</ul>
+	<br/>
+	<%= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif") %>
 </div>
-<%= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif") %>

@@ -41,7 +41,7 @@ $(function($) {
 
   var optionsIndia = {
     utc: true,
-    utc_offset: 2
+    utc_offset: 1
   }
   $('#jclock5').jclock(optionsIndia);
 

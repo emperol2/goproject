@@ -1,5 +1,20 @@
 @import "bootstrap";
 
+body {
+  padding-top: 40px; 
+}
+
+@media screen and (max-width: 768px) {
+  body { 
+    padding-top: 0px; 
+  }
+}
+
+.theTitle h2{
+  font: 35px/50px "robotobold",Arial,Helvetica,sans-serif !important;
+  text-align: center;
+}
+
 #error_explanation {
   color: #f00;
   ul {
@@ -16,6 +31,7 @@ textarea {
   width: 108px !important
 }
 
+/* footer */
 footer#footer{
   width: 960px;
 }
@@ -29,45 +45,50 @@ div.footer-col{
   width: 580px;
   
 }
+
 div.col{
   float:left;
   width: 190px; 
 }
+
 div.social-col{
   float:left;
   width: 190px; 
 }
+
 div.copyright-box{
   float:left;
   width: 360px; 
 }
+
 footer#footer .clock{
   width: 960px;
   height: 70px;
   padding-top: 20px;
 }
+
 footer#footer .clock .outer{
   float: left;
   width: 192px;
 }
+
 footer#footer .clock .outer .inner{
   float: left;
 }
-/*
-.nav{
-	float:left;
-	width:960px;
-	height: 40px;
-	padding:6px 0;
+
+.btn-bottom{
+  float: right;
 }
-.nav ul{
-	float:left;
-	margin:0;
-	padding:0 20px 0 0;
-	list-style:none;
-	overflow:hidden;
+
+/* header nav */
+.navbar-inverse .brand, .navbar-inverse .nav > li{
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  border-right: 1px solid;
+  line-height: 2px;
 }
-.nav ul li{
-	float:left;
-	padding:0 0 0 23px;
-} */
+
+.newfeedback{
+  border-bottom: 2px solid;
+  padding-bottom: 20px;
+}

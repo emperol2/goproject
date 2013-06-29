@@ -2,27 +2,27 @@
 <html>
 <head>
 	<title>Letustest</title>
-
 	<%= stylesheet_link_tag    "application", :media => "all" %>
 	<%= javascript_include_tag "application" %>
 	<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" %>
 	<%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js" %>
 	<%= javascript_include_tag "jquery.jclock.js" %>
 	<%= csrf_meta_tags %>
-	
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
 </head>
 <body>
+	<!--Container DIV -->
 	<div class="container">
-		<%# flash messages %>
-		<% flash.each do |key, value| %>
-		<div class="alert alert-<%= key %>"><%= value %></div>	
-	
+	<%= render "layouts/header" %>
+	<%# flash messages %>
+	<% flash.each do |key, value| %>
+	<div class="alert alert-<%= key %>"><%= value %></div>	
 	<% end %>
-	<div class="row">
-	
 	<%= yield %>
-	</div>
-	</div>
+	<%= render "layouts/footer"%>
+	</div><!--END Container DIV -->
 	<%= debug(params) if Rails.env.development? %>
 </body>
 </html>
