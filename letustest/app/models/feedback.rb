@@ -12,7 +12,7 @@ class Feedback < ActiveRecord::Base
       values.merge!({
         # test amount
       "amount_1" => 20.00, #amount
-      "item_name_1" => 'test', #name of item
+      "item_name_1" => numofbugs, #name of item
       "item_number_1" => 1, 
       "quantity_1" => '1'
       })
