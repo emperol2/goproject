@@ -1,7 +1,4 @@
 Letustest::Application.routes.draw do
-  resources :payment_notifications
-
-
   resources :feedbacks
 
 

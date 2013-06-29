@@ -7,8 +7,7 @@ class Feedback < ActiveRecord::Base
       :cmd => '_cart',
       :upload => 1,
       :return => return_url,
-      :invoice => id,
-      :notify_url => notify_url
+      :invoice => id
       }
       values.merge!({
         # test amount
