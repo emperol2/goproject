@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130629122120) do
+ActiveRecord::Schema.define(:version => 20130622111726) do
 
   create_table "feedbacks", :force => true do |t|
     t.string   "url"
@@ -24,16 +24,6 @@ ActiveRecord::Schema.define(:version => 20130629122120) do
     t.string   "telephone"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "payment_notifications", :force => true do |t|
-    t.text     "params"
-    t.integer  "feedback_id"
-    t.string   "status"
-    t.string   "transaction_id"
-    t.string   "create"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
   end
 
   create_table "playgrounds", :force => true do |t|
