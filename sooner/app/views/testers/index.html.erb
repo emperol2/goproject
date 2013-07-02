@@ -1,0 +1,21 @@
+<% title "Testers" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Bio</th>
+  </tr>
+  <% for tester in @testers %>
+    <tr>
+      <td><%= tester.name %></td>
+      <td><%= tester.email %></td>
+      <td><%= tester.bio %></td>
+      <td><%= link_to "Show", tester %></td>
+      <td><%= link_to "Edit", edit_tester_path(tester) %></td>
+      <td><%= link_to "Destroy", tester, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Tester", new_tester_path %></p>

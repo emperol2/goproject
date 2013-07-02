@@ -1,0 +1,28 @@
+<% title "Project" %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @project.name %>
+</p>
+<p>
+  <strong>Website:</strong>
+  <%= @project.website %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%= @project.description %>
+</p>
+<p>
+  <strong>Duedate:</strong>
+  <%= @project.duedate %>
+</p>
+ <% for tester in @project.testers %>  
+
+<%= tester.name %>
+
+  <%= link_to "Edit", edit_project_path(@project) %> |
+  <%= link_to "Destroy", @project, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", projects_path %>
+<% end %>
+
+<p><%= link_to "New Topic", "/testers/new?project=#{@project.id}" %></p>  

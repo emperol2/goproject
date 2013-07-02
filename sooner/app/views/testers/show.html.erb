@@ -1,0 +1,20 @@
+<% title "Tester" %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @tester.name %>
+</p>
+<p>
+  <strong>Email:</strong>
+  <%= @tester.email %>
+</p>
+<p>
+  <strong>Bio:</strong>
+  <%= @tester.bio %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_tester_path(@tester) %> |
+  <%= link_to "Destroy", @tester, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", testers_path %>
+</p>
