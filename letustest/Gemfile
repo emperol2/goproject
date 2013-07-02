@@ -32,6 +32,8 @@ gem 'jquery-rails'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'bootstrap-wysihtml5-rails'
 
+gem "nifty-generators", :group => :development
+
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
