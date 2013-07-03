@@ -5,6 +5,7 @@ class TestersController < ApplicationController
 
   def show
     @tester = Tester.find(params[:id])
+    @project = Project.all
   end
 
   def new

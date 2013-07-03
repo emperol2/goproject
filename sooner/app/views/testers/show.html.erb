@@ -13,6 +13,13 @@
   <%= @tester.bio %>
 </p>
 
+<% for project in @project %>
+
+
+<p>Project name: <%= link_to project.name, :controller =>'projects', :action => 'show', :id =>project.id  %> <br/></p>
+
+<% end %>
+
 <p>
   <%= link_to "Edit", edit_tester_path(@tester) %> |
   <%= link_to "Destroy", @tester, :confirm => 'Are you sure?', :method => :delete %> |

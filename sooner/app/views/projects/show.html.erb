@@ -18,11 +18,13 @@
 </p>
  <% for tester in @project.testers %>  
 
-<%= tester.name %>
+<p>tester name: <%= tester.name %> <br/></p>
+
+<% end %>
 
   <%= link_to "Edit", edit_project_path(@project) %> |
   <%= link_to "Destroy", @project, :confirm => 'Are you sure?', :method => :delete %> |
   <%= link_to "View All", projects_path %>
-<% end %>
+
 
 <p><%= link_to "New Topic", "/testers/new?project=#{@project.id}" %></p>  
