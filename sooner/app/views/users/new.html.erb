@@ -1,5 +1,7 @@
 <% title "Sign up" %>
-
+<% if current_user %>
+<%= link_to "Log out", logout_path %>
+<% else %>
 <p>Already have an account? <%= link_to "Log in", login_path %>.</p>
-
 <%= render 'form' %>
+<% end %>

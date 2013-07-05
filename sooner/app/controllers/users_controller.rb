@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_url, :notice => "Thank you for signing up! You are now logged in."
+      redirect_to @user, :notice => "Thank you for signing up! You are now logged in."
     else
       render :action => 'new'
     end
@@ -26,5 +26,9 @@ class UsersController < ApplicationController
     else
       render :action => 'edit'
     end
+  end
+  
+  def show
+      @user = User.find(current_user)
   end
 end

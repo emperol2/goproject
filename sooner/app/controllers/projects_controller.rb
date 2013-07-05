@@ -1,13 +1,21 @@
 class ProjectsController < ApplicationController
-
-  #after_filter :require_login, except: [:edit]
-
+    
+    before_filter :not_tester, :only => :edit
+    before_filter :correct_user, :only => :show
+    
   def index
     @projects = Project.all
   end
 
   def show
-    @project = Project.find(params[:id])
+    
+    #@project = Project.find(params[:id])
+    @project = current_user.projects.find_by_id(params[:id])
+    #redirect_to(current_user, :notice => 'Record not found') unless @project   
+    #rescue ActiveRecord::RecordNotFound
+    
+    #redirect_to current_user
+    #end
   end
 
   def new
@@ -16,8 +24,9 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(params[:project])
+    @project.user_id = current_user.id
     if @project.save
-      redirect_to @project, :notice => "Successfully created project."
+      redirect_to current_user, :notice => "Successfully created project."
     else
       render :action => 'new'
     end
@@ -40,5 +49,10 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @project.destroy
     redirect_to projects_url, :notice => "Successfully destroyed project."
+  end
+  
+  def correct_user
+      @project = current_user.projects.find_by_id(params[:id])
+      redirect_to(current_user, :notice => 'You are not able to access requested project') if @project.nil?
   end
 end

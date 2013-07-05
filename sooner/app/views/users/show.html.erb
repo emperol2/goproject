@@ -1,0 +1,21 @@
+<% title "User" %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.username %>
+</p>
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+Your project: <br/>
+
+<% for project in @user.projects %>
+
+<p>Project name: <%= link_to project.name, :controller =>'projects', :action => 'show', :id =>project.id  %> <br/></p>
+<p>Project descriptiom: <%= project.description %></p>
+
+<% end %>
+
+<p><%= link_to "Lunch new project ", "/projects/new?user=#{@user.id}" %></p>  
