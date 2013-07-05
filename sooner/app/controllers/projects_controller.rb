@@ -1,4 +1,7 @@
 class ProjectsController < ApplicationController
+
+  #after_filter :require_login, except: [:edit]
+
   def index
     @projects = Project.all
   end
