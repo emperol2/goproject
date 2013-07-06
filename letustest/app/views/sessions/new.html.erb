@@ -1,0 +1,22 @@
+<% provide(:title, 'Sign in') %>
+
+<!-- <p>Find me in app/views/users/new.html.erb</p> -->
+
+<div class="container">
+
+	<div id="signin">
+		<h1>Sign in</h1>
+		<%= form_for(:session, url: sessions_path) do |f| %>
+
+		<%= f.label :name %>
+		<%= f.text_field :name %>
+
+		<%= f.label :password %>
+		<%= f.password_field :password %>
+
+		<br/>
+
+		<%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
+		<% end %>
+	</div>
+</div>

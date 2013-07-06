@@ -4,13 +4,22 @@
 			<%= link_to "Letustest", root_path, id: "logo" %>
 			<nav>
 				<ul class="nav pull-right">
+					<% if current_user %>
+					<li><%= link_to "Home", root_path %></li>
+					<li><%= link_to "Help", '#' %></li>
+					<li><%= link_to "Contact us", '#' %></li>
+					<li><%= link_to "My profile", current_user %></li>
+					<li><%= link_to "Sign out", signout_path %></li>
+					<li><%= link_to "Access Bug Tracking", '#' %></li>			
+					<% else %>
 					<li><%= link_to "Home", root_path %></li>
 					<li><%= link_to "Request a Test", feedbacks_path %></li>
 					<li><%= link_to "Help", '#' %></li>
 					<li><%= link_to "Contact us", '#' %></li>
 					<li><%= link_to "Blog", '#' %></li>
-					<li><%= link_to "Sign in", '#' %></li>
+					<li><%= link_to "Sign in", signin_path %></li>					
 					<li><%= link_to "Access Bug Tracking", '#' %></li>
+					<% end %>
 				</ul>
 			</nav>
 		</div>

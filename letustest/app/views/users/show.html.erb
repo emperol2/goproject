@@ -1,6 +1,100 @@
 <% provide(:title, @user.name) %>
 
-<h1>
-<%= gravatar_for @user %>
-<%= @user.name %>
-</h1>
+<div class="container">
+	<div id="user-left">
+		<h1>
+			<%= gravatar_for @user %> <br/>
+			Welcome, <%= @user.name %> <br/>
+		</h1>
+		<%= @user.email %> <br/>
+		<%= link_to "EDIT PROFILE", edit_user_path, class: "profile-btn" %> <br/>
+		<%= link_to "NEW TEST REQUEST", "#", class: "project-btn" %> <br/>
+	</div>
+
+	<div id="user-right">
+		<div id="content">
+			<!-- In progress tests -->
+			<section id="inprogress" class="client-version-box">
+				<div class="client-version-section">
+					<!-- earn-title -->
+					<div class="client-version-title">
+						<div class="title">
+							<h2>In Progress Tests</h2>
+						</div>
+					</div>
+					<!-- table-box -->
+					<div class="table-box">
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th class="col1">Project name</th>
+									<th class="col2">Version</th>
+									<th class="col3">Test Start</th>
+									<th class="col4">Test End</th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</section>
+			<!-- Draft requests -->
+			<section id="draft" class="client-request-box">
+				<div class="client-request-section">
+					<!-- earn-title -->
+					<div class="client-request-title">
+						<a href="http://crowdsourcedtesting.com/en/software-testing-help" class="button">Need help?</a>
+
+						<div class="title">
+							<h2>Draft Requests</h2>
+						</div>
+					</div>
+					<!-- table-box -->
+					<div class="table-box">
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th class="col1">Project name</th>
+									<th class="col2">Version</th>
+									<th class="col3">Last modified</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="col1">Untitled #1373033736</td>
+									<td class="col2"></td>
+									<td class="col3">2013-07-05 10:16:39</td>
+									<td class="col4"><a href="#">Complete Request</a></td>
+									<td class="col5">
+										<a class="button erase-draft-button" href="#" id="yt0">Erase this draft</a>                       
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</section>
+			<!-- Completed requests -->
+			<section id="completed" class="client-request-box">
+				<div class="client-request-section">
+					<!-- earn-title -->
+					<div class="client-request-title">
+						<a href="http://crowdsourcedtesting.com/en/software-testing-help" class="button">Need help?</a>
+
+						<div class="title">
+							<h2>Completed Requests</h2>
+						</div>
+					</div>
+					<!-- table-box -->
+					<div class="table-box">
+						<div style="height: 250px; text-align: center; vertical-align: middle; display: table-cell;">
+							<p style="margin-left: 234px;width: 170px;margin-top: 36px;">No available projects</p>
+						</div>
+					</div>
+				</div>
+			</section>                
+		</div>
+	</div>
+
+</div>

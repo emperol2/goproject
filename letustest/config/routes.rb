@@ -1,6 +1,6 @@
 Letustest::Application.routes.draw do
   resources :feedbacks
-
+  resources :sessions, only: [:new, :create, :destroy]
 
   resources :playgrounds
 
@@ -9,7 +9,9 @@ Letustest::Application.routes.draw do
   resources :users # it endows our sample application with all the actions needed for a RESTful Users resource
   
   get "home/index"
-  match '/signup',  to: 'users#new'
+  match '/signup', to: 'users#new'
+  match '/signin', to: 'sessions#new'
+  match '/signout', to: 'sessions#destroy'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
