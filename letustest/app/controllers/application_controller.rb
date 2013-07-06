@@ -13,13 +13,13 @@ class ApplicationController < ActionController::Base
 
   def login_required
     unless logged_in?
-      store_target_location
+      #store_target_location
       redirect_to root_url, :alert => "You must first log in or sign up before accessing this page."
     end
   end
 
   def you_are_current_user
-    if current_user
+    if current_user != nil
       store_target_location
       redirect_to root_url, :alert => "You are not allow to access this page after logged in."
     end

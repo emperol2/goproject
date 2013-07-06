@@ -7,14 +7,19 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(current_user)
+    @user = User.find(params[:id])
+    if @user != current_user
+      redirect_to current_user, notice: 'You are not allow to see other profiles.'
+    end
   end
 
   def create
     @user = User.new(params[:user])
     if @user.save
       # Handle a successful save
-      flash[:success] = "Welcome to the Sample App!"
+      user = @user
+      session[:user_id] = user.id
+      flash[:success] = "Welcome to the your dashboard !"
       redirect_to @user
     else
       render 'new'
@@ -22,13 +27,22 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(current_user)
+    
+    @user = User.find(params[:id])
+    if @user != current_user
+      redirect_to current_user, notice: 'You are not allow to see other profiles.'
+    end
   end
 
   def update
+
     @user = User.find(current_user)
 
     respond_to do |format|
+      if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
+        params[:user].delete(:password)
+        params[:user].delete(:password_confirmation)
+      end
       if @user.update_attributes(params[:user])
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :no_content }
