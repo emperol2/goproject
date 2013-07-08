@@ -1,62 +1,93 @@
-<!-- <p id="notice"><%= notice %></p> -->
-<div id=verify-request>
-	<h2>Verify Request</h2>
-	<p>Please verify this information is correct. Click edit to make changes before purchasing the feedback.</p>
-</div>
-<p class=url>
-  <b>URL:</b>
-  <%= @feedback.url %>
-</p>
+<% provide(:title, 'Verify your request') %>
+<div class="container">
+	<div id="user-left">
+		<h1>
+			<%= gravatar_for @user %> <br/>
+			Welcome, <%= @user.name %> <br/>
+		</h1>
+		<%= @user.email %> <br/>
+		<%= link_to "DASHBOARD", current_user, class: "profile-btn" %> <br/>
 
-<p>
-  <b>Questions:</b>
-  <%= @feedback.questions %>
-</p>
+	</div>
+	<div id="user-right">
+		<div id="content">
+			<div id=verify-request>
+				<h2>Verify Request</h2>
+				<p>Please verify this information is correct. Click edit to make changes before purchasing the feedback.</p>
+			</div>
+			<p class="url">
+			<p>
+				<b>Your project name:</b>
+				<%= @feedback.name %>
+			</p>
+			<p>
+				<b>Your type of project is:</b>
+				<%= @feedback.typeofbugs %>
+			</p>
+				<b>URL:</b>
+				<%= @feedback.url %>
+			</p>
+			<p>
+				<b>Questions:</b>
+				<%= @feedback.questions %>
+			</p>
+			<p>
+				<b>Your Bug Tracking system:</b>
+				<%= @feedback.bugsystem %>
+			</p>
+			<p>
+				<b>Email Address:</b>
+				<%= @feedback.email %>
+			</p>
+			<p>
+				<b>Number of Bugs:</b>
+				<%= @feedback.numofbugs %>
+			</p>
+			<p>
+				<b>Due date:</b>
+				<%= @feedback.duedate %>
+			</p>
+			<p>
+				<b>Number of testers:</b>
+				<%= @feedback.numberoftesters %>
+			</p>
+			<p>
+				<b>Version:</b>
+				<%= @feedback.version %>
+			</p>
+			<p>
+				<b>Testing instructions:</b>
+				<%= @feedback.testinginstr %>
+			</p>
+			<p>
+				<b>First name:</b>
+				<%= @feedback.firstname %>
+			</p>
+			<p>
+				<b>Last name:</b>
+				<%= @feedback.lastname %>
+			</p>
+			<p>
+				<b>Telephone numnber:</b>
+				<%= @feedback.telephone %>
+			</p>
+			<p class=reivew-detail>
+				*Please review your detail before making a payment
+			</p>
+		</div>
 
-<p>
-  <b>Email Address:</b>
-  <%= @feedback.email %>
-</p>
+		<%= link_to 'Edit', edit_feedback_path(@feedback) %> |
+		<%= link_to 'Back', current_user %>
 
-<p>
-  <b>Number of Bugs:</b>
-  <%= @feedback.numofbugs %>
-</p>
-
-<p>
-  <b>Due date:</b>
-  <%= @feedback.duedate %>
-</p>
-
-<p>
-  <b>First name:</b>
-  <%= @feedback.firstname %>
-</p>
-
-<p>
-  <b>Last name:</b>
-  <%= @feedback.lastname %>
-</p>
-
-<p>
-  <b>Telephone numnber:</b>
-  <%= @feedback.telephone %>
-</p>
-
-<p class=reivew-detail>
-	*Please review your detail before making a payment
-</p>
-
-<%= link_to 'Edit', edit_feedback_path(@feedback) %> |
-<%= link_to 'Back', feedbacks_path %>
-
-<div class="purchase newfeedback">
-	<h3>Purchase feedback</h3>
-	<ul>
-		<li>The cost is <%= @feedback.numofbugs %>. A refund is available if you're not satisfied.</li>
-		<li>PayPal will show the payee as <%= mail_to "paypal@letustest.com" %></li>
-		<li>After paying, click return to merchant to complete your order.</li>
-	</ul>
-	<br/>
-	<%= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), @feedback.paypal_url(feedbacks_url) %>
+		<div class="purchase newfeedback">
+			<h3>Purchase feedback</h3>
+			<ul>
+				<li>The cost is <%= @feedback.numofbugs %>. A refund is available if you're not satisfied.</li>
+				<li>PayPal will show the payee as <%= mail_to "paypal@letustest.com" %></li>
+				<li>After paying, click return to merchant to complete your order.</li>
+			</ul>
+			<br/>
+			<%= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), @feedback.paypal_url(feedbacks_url) %>
+		</div>
+	</div>
 </div>

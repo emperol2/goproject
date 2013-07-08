@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130706151126) do
+ActiveRecord::Schema.define(:version => 20130708121655) do
 
   create_table "feedbacks", :force => true do |t|
     t.string   "url"
@@ -22,8 +22,16 @@ ActiveRecord::Schema.define(:version => 20130706151126) do
     t.string   "firstname"
     t.string   "lastname"
     t.string   "telephone"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "name"
+    t.string   "typeofbugs"
+    t.string   "bugsystem"
+    t.string   "numberoftesters"
+    t.string   "version"
+    t.text     "testinginstr"
+    t.string   "status"
+    t.integer  "user_id"
   end
 
   create_table "payment_notifications", :force => true do |t|

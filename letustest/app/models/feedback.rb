@@ -1,5 +1,7 @@
 class Feedback < ActiveRecord::Base
-  attr_accessible :duedate, :email, :firstname, :lastname, :numofbugs, :questions, :telephone, :url
+  belongs_to :user
+  attr_accessible :duedate, :email, :firstname, :lastname, :numofbugs, :questions, :telephone, :url, :name, :typeofbugs, :bugsystem, :numberoftesters,
+  :version, :testinginstr, :status, :user_id
   
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }

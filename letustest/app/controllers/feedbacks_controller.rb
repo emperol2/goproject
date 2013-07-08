@@ -14,12 +14,14 @@ class FeedbacksController < ApplicationController
   # GET /feedbacks/1
   # GET /feedbacks/1.json
   def show
+    @user = User.find(current_user)
     @feedback = Feedback.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @feedback }
+    
+    if @feedback.user_id != @user.id
+      redirect_to current_user, notice: 'This requested project is not belong to your account!'
     end
+    
+    
   end
 
   # GET /feedbacks/new
@@ -36,13 +38,19 @@ class FeedbacksController < ApplicationController
 
   # GET /feedbacks/1/edit
   def edit
+    @user = User.find(current_user)
     @feedback = Feedback.find(params[:id])
+    if @feedback.user_id != @user.id
+      redirect_to current_user, notice: 'This project is not belong to your account!'
+    end
   end
 
   # POST /feedbacks
   # POST /feedbacks.json
   def create
+    @user = User.find(current_user)
     @feedback = Feedback.new(params[:feedback])
+    @feedback.user_id = current_user.id
 
     respond_to do |format|
       if @feedback.save
@@ -58,6 +66,7 @@ class FeedbacksController < ApplicationController
   # PUT /feedbacks/1
   # PUT /feedbacks/1.json
   def update
+    @user = User.find(current_user)
     @feedback = Feedback.find(params[:id])
 
     respond_to do |format|
