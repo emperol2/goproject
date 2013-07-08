@@ -12,40 +12,38 @@
 <% end %>
 
 <div class="field">
-	Provide your website address.<br />
+	<%= f.label :url, "Provide your website address." %>
 	<%= f.text_field :url %>
 </div>
 <div class="question-field">
-	Write your questions or website description here.<br />
+	<%= f.label :questions, "Write your questions or website description here." %>
 	<%= f.text_area :questions, :rows => 10 %>
 </div>
 <div class="field">
-	Your email address. (to send a link to your results and Bug Tracking System)<br />
+	<%= f.label :email, "Your email address. (to send a link to your results and Bug Tracking System)" %>
 	<%= f.text_field :email %>
 </div>
 <div class="field">
-	Select number of Bugs<br />
+	<%= f.label :numofbugs, "Select number of Bugs" %>
 	<%= f.select :numofbugs, options_for_select([["10 for $20", "10 for $20 Dollars"], ["25 for $40", "25 for $40 Dollars"],["50 for $75","50 for $75 Dollars"],["Others","Others"]]) %>
 </div>
 <div class="field">
-	Select due date for testing<br />
+	<%= f.label :duedate, "Select due date for testing" %>
 	<div class="test">
 		<%= f.datetime_select :duedate %>
 	</div>
 </div>
 <div class="field">
-	Your first name<br />
+	<%= f.label :firstname, "Your first name" %>
 	<%= f.text_field :firstname %>
 </div>
 <div class="field">
-	Your last name<br />
+	<%= f.label :lastname, "Your last name" %>
 	<%= f.text_field :lastname %>
 </div>
 <div class="field">
-	Your telephone number<br />
+	<%= f.label :telephone, "Your telephone number" %>
 	<%= f.text_field :telephone %>
 </div>
-<div class="actions">
-	<%= f.submit %>
-</div>
+<%= f.submit "Submit", class: "btn btn-large btn-primary" %>
 <% end %>

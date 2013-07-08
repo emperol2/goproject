@@ -1,6 +1,9 @@
 class Feedback < ActiveRecord::Base
   attr_accessible :duedate, :email, :firstname, :lastname, :numofbugs, :questions, :telephone, :url
   
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
+  
   def paypal_url(return_url)
     values = {
       :business => 'seller@letustest.com',

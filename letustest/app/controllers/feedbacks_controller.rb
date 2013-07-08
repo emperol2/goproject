@@ -1,4 +1,5 @@
 class FeedbacksController < ApplicationController
+  before_filter :login_required
   # GET /feedbacks
   # GET /feedbacks.json
   def index
@@ -24,6 +25,7 @@ class FeedbacksController < ApplicationController
   # GET /feedbacks/new
   # GET /feedbacks/new.json
   def new
+    @user = User.find(current_user)
     @feedback = Feedback.new
 
     respond_to do |format|
