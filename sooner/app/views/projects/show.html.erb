@@ -16,6 +16,13 @@
   <strong>Duedate:</strong>
   <%= @project.duedate %>
 </p>
+<div class="field">
+	<%= hidden_field_tag "project[compatibility_ids][]", nil%>
+  <% Compatibility.all.each do |compatibility| %>
+    <%= check_box_tag "project[compatibility_ids][]", compatibility.id,  @project.compatibility_ids.include?(compatibility.id) %>
+    <%= compatibility.name %><br/>
+  <% end %>
+</div>
  <% for tester in @project.testers %>  
 
 <p>tester name: <%= tester.name %> <br/></p>

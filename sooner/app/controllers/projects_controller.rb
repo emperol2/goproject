@@ -1,7 +1,7 @@
 class ProjectsController < ApplicationController
     
-    before_filter :not_tester, :only => :edit
-    before_filter :correct_user, :only => :show
+    #before_filter :not_tester, :only => :edit
+    #before_filter :correct_user, :only => :show
     
   def index
     @projects = Project.all

@@ -1,20 +1,27 @@
 <%= form_for @project do |f| %>
-  <%= f.error_messages %>
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :website %><br />
-    <%= f.text_field :website %>
-  </p>
-  <p>
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
-  </p>
-  <p>
-    <%= f.label :duedate %><br />
-    <%= f.datetime_select :duedate %>
-  </p>
-  <p><%= f.submit %></p>
+<%= f.error_messages %>
+<p>
+	<%= f.label :name %><br />
+	<%= f.text_field :name %>
+</p>
+<p>
+	<%= f.label :website %><br />
+	<%= f.text_field :website %>
+</p>
+<p>
+	<%= f.label :description %><br />
+	<%= f.text_field :description %>
+</p>
+<p>
+	<%= f.label :duedate %><br />
+	<%= f.datetime_select :duedate %>
+</p>
+<div class="field">
+	<%= hidden_field_tag "project[compatibility_ids][]", nil%>
+  <% Compatibility.all.each do |compatibility| %>
+    <%= check_box_tag "project[compatibility_ids][]", compatibility.id,  @project.compatibility_ids.include?(compatibility.id) %>
+    <%= compatibility.name %><br/>
+  <% end %>
+</div>
+<p><%= f.submit %></p>
 <% end %>
