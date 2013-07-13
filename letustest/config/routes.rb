@@ -1,4 +1,7 @@
 Letustest::Application.routes.draw do
+  resources :testers
+
+
   resources :feedbacks
   resources :sessions, only: [:new, :create, :destroy]
 

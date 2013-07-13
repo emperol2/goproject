@@ -1,0 +1,65 @@
+<%= form_for(@tester) do |f| %>
+  <% if @tester.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tester.errors.count, "error") %> prohibited this tester from being saved:</h2>
+
+      <ul>
+      <% @tester.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :fname, "First name" %><br />
+    <%= f.text_field :fname %>
+  </div>
+  <div class="field">
+    <%= f.label :lname, "Last name" %><br />
+    <%= f.text_field :lname %>
+  </div>
+  <div class="field">
+    <%= f.label :email, "email address" %><br />
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :gender, "Gender [male, female, others]" %><br />
+    <%= f.text_field :gender %>
+  </div>
+  <div class="field">
+    <%= f.label :phone, "Telephone number" %><br />
+    <%= f.text_field :phone %>
+  </div>
+  <div class="field">
+    <%= f.label :city %><br />
+    <%= f.text_field :city %>
+  </div>
+  <div class="field">
+    <%= f.label :country %><br />
+    <%= f.text_field :country %>
+  </div>
+  <div class="field">
+    <%= f.label :twitterid, "Twitter ID" %><br />
+    <%= f.text_field :twitterid %>
+  </div>
+  <div class="field">
+    <%= f.label :linkedinid, "Linkedin ID" %><br />
+    <%= f.text_field :linkedinid %>
+  </div>
+  <div class="field">
+    <%= f.label :paypalid, "Paypal Email" %><br />
+    <%= f.text_field :paypalid %>
+  </div>
+  <div class="field">
+    <%= f.label :bankaccount, "Bank Account" %><br />
+    <%= f.text_field :bankaccount %>
+  </div>
+  <div class="field">
+    <%= f.label :aboutme, "About me" %><br />
+    <%= f.text_area :aboutme %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
