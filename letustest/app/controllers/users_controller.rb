@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_filter :login_required, :except => [:new, :create]
   before_filter :you_are_current_user, :only => :new
+  before_filter :you_are_current_tester, :only => [:new, :show]
 
   def new
     @user = User.new

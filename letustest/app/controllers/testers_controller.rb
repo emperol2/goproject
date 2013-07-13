@@ -1,4 +1,6 @@
 class TestersController < ApplicationController
+  before_filter :login_required, :except => [:new, :create]
+  before_filter :you_are_current_tester, :only => :new
   # GET /testers
   # GET /testers.json
   def index
@@ -41,11 +43,12 @@ class TestersController < ApplicationController
   # POST /testers.json
   def create
     @tester = Tester.new(params[:tester])
-    #tester = @tester
-    #session[:tester_id] = tester.id
+    
 
     respond_to do |format|
       if @tester.save
+        tester = @tester
+        session[:tester_id] = tester.id
         format.html { redirect_to @tester, notice: 'Tester was successfully created.' }
         format.json { render json: @tester, status: :created, location: @tester }
       else

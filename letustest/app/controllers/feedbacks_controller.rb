@@ -1,5 +1,6 @@
 class FeedbacksController < ApplicationController
   before_filter :login_required
+  before_filter :you_are_current_tester, :only => [:new, :show]
   # GET /feedbacks
   # GET /feedbacks.json
   def index
