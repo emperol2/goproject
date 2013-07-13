@@ -13,11 +13,12 @@
 					<li><%= link_to "Access Bug Tracking", '#' %></li>			
 					<% else %>
 					<li><%= link_to "Home", root_path %></li>
-					<li><%= link_to "Request a Test", feedbacks_path %></li>
+					<li><%# link_to "Request a Test", feedbacks_path %></li>
 					<li><%= link_to "Help", '#' %></li>
 					<li><%= link_to "Contact us", '#' %></li>
 					<li><%= link_to "Blog", '#' %></li>
-					<li><%= link_to "Sign in", signin_path %></li>					
+					<li><%= link_to "Sign in as Client", signin_path %></li>		
+					<li><%= link_to "Sign in as Tester", signin_path %></li>			
 					<li><%= link_to "Access Bug Tracking", '#' %></li>
 					<% end %>
 				</ul>
