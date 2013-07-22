@@ -1,5 +1,5 @@
 class TestersController < ApplicationController
-  before_filter :login_required, :except => [:new, :create]
+  before_filter :login_required, :except => [:new, :create, :becometester]
   before_filter :you_are_current_tester, :only => :new
   # GET /testers
   # GET /testers.json
@@ -16,11 +16,17 @@ class TestersController < ApplicationController
   # GET /testers/1.json
   def show
     @tester = Tester.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @tester }
+    
+    if @tester != current_tester
+      redirect_to current_tester, notice: 'You are not allow to see other profiles.'
     end
+    
+    #redirect_to current_tester, notice: 'You are not allow to see other profiles.'
+
+    #respond_to do |format|
+    #  format.html # show.html.erb
+    #  format.json { render json: @tester }
+    #end
   end
 
   # GET /testers/new
@@ -85,4 +91,9 @@ class TestersController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def becometester
+    
+  end
+  
 end

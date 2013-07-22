@@ -1,7 +1,7 @@
 <%= form_for(@tester) do |f| %>
 <% if @tester.errors.any? %>
 <div id="error_explanation">
-	<h2><%= pluralize(@tester.errors.count, "error") %> prohibited this tester from being saved:</h2>
+	<div class="alert alert-error"><%= pluralize(@tester.errors.count, "error") %> prohibited this tester from being saved:</div>
 
 	<ul>
 		<% @tester.errors.full_messages.each do |msg| %>
@@ -12,7 +12,7 @@
 <% end %>
 
 <div class="field">
-	<%= f.label :fname, "First name" %><br />
+	<%= f.label :fname, "Name" %>
 	<%= f.text_field :fname %>
 </div>
 <!--<div class="field">
@@ -20,7 +20,7 @@
 	<%= f.text_field :lname %>
 </div>-->
 <div class="field">
-	<%= f.label :email, "email address" %><br />
+	<%= f.label :email, "Email" %>
 	<%= f.text_field :email %>
 </div>
 <div class="field">
@@ -68,6 +68,6 @@
 <%= f.text_area :aboutme %>
 </div> -->
 <div class="actions">
-	<%= f.submit %>
+	<%= f.submit "Create new Tester", class: "btn btn-large btn-primary" %>
 </div>
 <% end %>

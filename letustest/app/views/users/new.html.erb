@@ -22,9 +22,9 @@
 		<br/>
 
 		<%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
-		<br/>
-		<br/>
-		Already have an account ? <%= link_to "Sign in", signin_path %>
+
 		<% end %>
+		Already have an account ? <%= link_to "Sign in", signin_path %> <br/>
+		If you want to join us as a Tester, <%= link_to "Tester Sign up", new_tester_path %>
 	</div>
 </div>

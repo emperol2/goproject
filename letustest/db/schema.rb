@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130713094712) do
+ActiveRecord::Schema.define(:version => 20130722084040) do
 
   create_table "feedbacks", :force => true do |t|
     t.string   "url"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(:version => 20130713094712) do
     t.text     "testinginstr"
     t.string   "status"
     t.integer  "user_id"
+    t.string   "tester_id"
   end
 
   create_table "playgrounds", :force => true do |t|
