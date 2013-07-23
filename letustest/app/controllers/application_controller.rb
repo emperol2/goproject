@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
   def you_are_current_user
     if current_user != nil
       store_target_location
-      redirect_to root_url, :alert => "You are not allow to access this page after logged in."
+      redirect_to root_url, :alert => "You are not allow to access this page after logged in as a client."
     end
   end
 

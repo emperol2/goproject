@@ -1,5 +1,6 @@
 <% provide(:title, 'Verify your request') %>
 <div class="container">
+	<% if current_user %>
 	<div id="user-left">
 		<h1>
 			<%= gravatar_for @user %> <br/>
@@ -9,6 +10,8 @@
 		<%= link_to "DASHBOARD", current_user, class: "profile-btn" %> <br/>
 
 	</div>
+	<% end %>
+	
 	<div id="user-right">
 		<div id="content">
 			<div id=verify-request>
@@ -76,6 +79,8 @@
 			</p>
 		</div>
 
+		<% if current_user %>
+		
 		<%= link_to 'Edit', edit_feedback_path(@feedback) %> |
 		<%= link_to 'Back', current_user %>
 
@@ -89,5 +94,7 @@
 			<br/>
 			<%= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), @feedback.paypal_url(feedbacks_url) %>
 		</div>
+		
+		<% end %>
 	</div>
 </div>

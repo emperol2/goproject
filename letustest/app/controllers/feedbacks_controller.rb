@@ -1,6 +1,7 @@
 class FeedbacksController < ApplicationController
   before_filter :login_required
-  before_filter :you_are_current_tester, :only => [:new, :show]
+  before_filter :you_are_current_tester, :only => :new
+
   # GET /feedbacks
   # GET /feedbacks.json
   def index
@@ -15,14 +16,23 @@ class FeedbacksController < ApplicationController
   # GET /feedbacks/1
   # GET /feedbacks/1.json
   def show
-    @user = User.find(current_user)
     @feedback = Feedback.find(params[:id])
-    
-    if @feedback.user_id != @user.id
-      redirect_to current_user, notice: 'This requested project is not belong to your account!'
+    if current_tester
+      @tester = Tester.find(current_tester)
+      @feedback.tester_id = @feedback.tester_id.to_i
+    elsif current_user
+      @user = User.find(current_user)
     end
-    
-    
+
+    if @tester == nil
+      @user = User.find(current_user)
+      if @feedback.user_id != @user.id
+        redirect_to current_user, notice: 'This requested project is not belong to your account!'
+      end
+    elsif @feedback.tester_id != @tester.id
+      redirect_to current_tester, notice: 'This requested project is not belong to your account!'
+    end
+
   end
 
   # GET /feedbacks/new
@@ -92,5 +102,5 @@ class FeedbacksController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
 end
