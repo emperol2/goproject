@@ -11,22 +11,42 @@
 
 	</div>
 	<% end %>
-	
+
+	<% if current_tester %>
+	<div id="user-left">
+		<h1>
+			Welcome, <%= @tester.fname %> <br/>
+		</h1>
+		<%= @tester.email %> <br/>
+		<%= link_to "DASHBOARD", current_tester, class: "profile-btn" %> <br/>
+	</div>
+	<% end %>
+
 	<div id="user-right">
 		<div id="content">
-			<div id=verify-request>
+			<% if current_user %>
+			<div id= "verify-request">
 				<h2>Verify Request</h2>
 				<p>Please verify this information is correct. Click edit to make changes before purchasing the feedback.</p>
 			</div>
+			<% elsif current_tester %>
+			<div id= "verify-request">
+				<h2>Project Information</h2>
+				<p>Please find all project information here, 
+					if you have any enquiry about this project you can leave a message to client.
+				</p>
+			</div>
+			<% end %>
+
 			<p class="url">
-			<p>
-				<b>Your project name:</b>
-				<%= @feedback.name %>
-			</p>
-			<p>
-				<b>Your type of project is:</b>
-				<%= @feedback.typeofbugs %>
-			</p>
+				<p>
+					<b>Your project name:</b>
+					<%= @feedback.name %>
+				</p>
+				<p>
+					<b>Your type of project is:</b>
+					<%= @feedback.typeofbugs %>
+				</p>
 				<b>URL:</b>
 				<%= @feedback.url %>
 			</p>
@@ -80,7 +100,7 @@
 		</div>
 
 		<% if current_user %>
-		
+
 		<%= link_to 'Edit', edit_feedback_path(@feedback) %> |
 		<%= link_to 'Back', current_user %>
 
@@ -94,7 +114,7 @@
 			<br/>
 			<%= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), @feedback.paypal_url(feedbacks_url) %>
 		</div>
-		
+
 		<% end %>
 	</div>
 </div>
