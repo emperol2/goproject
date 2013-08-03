@@ -72,7 +72,8 @@
 			Welcome, <%= @tester.fname %> <br/>
 		</h1>
 		<%= @tester.email %> <br/>
-		<%= link_to "EDIT PROFILE", edit_tester_path, class: "profile-btn" %> <br/>
+		<%= link_to "EDIT PROFILE", edit_tester_path, class: "profile-btn" %>
+		<%= link_to "PROJECTS", projects_path, class: "profile-btn" %>
 	</div>
 
 	<div id="user-right">

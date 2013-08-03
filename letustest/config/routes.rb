@@ -15,7 +15,12 @@ Letustest::Application.routes.draw do
   match '/signup', to: 'users#new'
   match '/signin', to: 'sessions#new'
   match '/signout', to: 'sessions#destroy'
-
+  match '/plans', to: 'pages#plans'
+  match '/companyinfo', to: 'pages#companyinfo'
+  match '/help', to: 'pages#help'
+  match '/contactus', to: 'pages#contactus'
+  match '/projects', to: 'testers#projects'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
   

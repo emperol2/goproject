@@ -97,4 +97,15 @@ class TestersController < ApplicationController
     
   end
   
+  def projects
+    @tester = Tester.find(current_tester)
+    
+    if @tester != current_tester
+      redirect_to current_tester, notice: 'You are not allow to see other profiles.'
+    end
+    
+    @feedback = Feedback.all
+    
+  end
+  
 end

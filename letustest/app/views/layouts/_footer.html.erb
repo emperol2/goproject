@@ -17,17 +17,22 @@
 			<div class="col"> <!-- Sitemap -->
 				<strong class="title">Sitemap</strong>
 				<ul>
-					<li><a href="/en/software-testing-prices">Plans &amp; pricing</a></li>
+					<!-- <li><a href="/en/software-testing-prices">Plans &amp; pricing</a></li> 
 					<li><a href="/en/software-testing-blog">Software testing blog</a></li>
-					<li><a href="/en/freelance-software-testing-jobs">Become a tester</a></li>
+					<li><a href="/en/freelance-software-testing-jobs">Become a tester</a></li> -->
+					<li><%= link_to "Plans & pricing", plans_path %></li>
+					<li><%= link_to "Software testing blog", root_path %></li>
+					<li><%= link_to "Become a tester", new_tester_path %></li>
 				</ul>
 			</div>
 			<!-- col -->
 			<div class="col"> <!-- About -->
 				<strong class="title">About</strong>
 				<ul>
-					<li><a href="/en/about-crowdsourced-testing">Company info</a></li>
-					<li><a href="/en/contact-crowdsourced-testing">Contact us</a></li>
+					<!-- <li><a href="/en/about-crowdsourced-testing">Company info</a></li>
+					<li><a href="/en/contact-crowdsourced-testing">Contact us</a></li> -->
+					<li><%= link_to "Company info", companyinfo_path %></li>
+					<li><%= link_to "Contact us", contactus_path %></li>
 				</ul>
 			</div>
 			<!-- col -->
