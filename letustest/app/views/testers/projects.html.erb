@@ -109,7 +109,7 @@
 									<td class="col3"><%= feedback.updated_at %></td>
 									<td class="col4"><%= feedback.duedate %></a></td>
 									<td class="clo5"><%= feedback.url %></th>
-									<td class="clo6">New Issue -></th>
+									<td class="clo6"><%= link_to 'New Issue ->', new_issue_path(:feedback_id => feedback.id) %></th>
 								</tr>
 								<% end %>	
 							</tbody>

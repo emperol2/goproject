@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130722084040) do
+ActiveRecord::Schema.define(:version => 20130804143650) do
 
   create_table "feedbacks", :force => true do |t|
     t.string   "url"
@@ -33,6 +33,16 @@ ActiveRecord::Schema.define(:version => 20130722084040) do
     t.string   "status"
     t.integer  "user_id"
     t.string   "tester_id"
+  end
+
+  create_table "issues", :force => true do |t|
+    t.string   "title"
+    t.string   "priority"
+    t.text     "description"
+    t.integer  "tester_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "feedback_id"
   end
 
   create_table "playgrounds", :force => true do |t|
