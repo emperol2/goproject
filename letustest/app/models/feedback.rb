@@ -1,7 +1,6 @@
 class Feedback < ActiveRecord::Base
   belongs_to :user
   belongs_to :tester
-  has_many :issues
   attr_accessible :duedate, :email, :firstname, :lastname, :numofbugs, :questions, :telephone, :url, :name, :typeofbugs, :bugsystem, :numberoftesters,
   :version, :testinginstr, :status, :user_id
   

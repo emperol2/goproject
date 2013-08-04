@@ -1,12 +1,8 @@
 Letustest::Application.routes.draw do
-  resources :issues
-
-
   resources :testers
 
 
   resources :feedbacks
-  
   resources :sessions, only: [:new, :create, :destroy]
 
   resources :playgrounds
