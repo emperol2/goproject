@@ -1,7 +1,7 @@
 @import "bootstrap";
 
 body {
-  padding-top: 40px; 
+  padding-top: 60px; 
 }
 
 @media screen and (max-width: 768px) {
@@ -92,6 +92,9 @@ footer#footer .clock .outer .inner{
   padding-right: 0px !important;
   border-right: 1px solid;
   line-height: 2px;
+}
+.navbar-inner{
+  height: 60px;
 }
 
 /*.newfeedback{

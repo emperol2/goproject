@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  type: 
+  priority: MyString
+  description: MyText
+  exp_result: MyText
+  act_result: MyText
+  feedback_id: MyString
+
+two:
+  title: MyString
+  type: 
+  priority: MyString
+  description: MyText
+  exp_result: MyText
+  act_result: MyText
+  feedback_id: MyString
