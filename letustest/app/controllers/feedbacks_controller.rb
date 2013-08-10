@@ -38,8 +38,7 @@ class FeedbacksController < ApplicationController
   # GET /feedbacks/new
   # GET /feedbacks/new.json
   def new
-    @user = User.find(params[:user_id])
-    @id = @user.id
+    @user = User.find(current_user)
     @feedback = Feedback.new
 
     respond_to do |format|
@@ -61,7 +60,6 @@ class FeedbacksController < ApplicationController
   # POST /feedbacks.json
   def create
     @user = User.find(current_user)
-    #@user = Feedback.find())
     @feedback = Feedback.new(params[:feedback])
     @feedback.user_id = current_user.id
 

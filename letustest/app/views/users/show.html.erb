@@ -8,9 +8,7 @@
 		</h1>
 		<%= @user.email %> <br/>
 		<%= link_to "EDIT PROFILE", edit_user_path, class: "profile-btn" %> <br/>
-		<!-- <%= link_to "NEW TEST REQUEST", "/feedbacks/new?user=#{@user.id}", class: "project-btn" %> <br/>-->
-		<%= link_to "NEW TEST REQUEST", new_user_feedback_path(@user), class: "project-btn" %> <br/>
-		
+		<%= link_to "NEW TEST REQUEST", "/feedbacks/new?user=#{@user.id}", class: "project-btn" %> <br/>
 	</div>
 
 	<div id="user-right">
