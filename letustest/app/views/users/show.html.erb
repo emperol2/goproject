@@ -29,7 +29,7 @@
 								
 								<tr>
 									<th class="col1">Project name</th>
-									<th class="col2">Version</th>
+									<th class="col2">Status</th>
 									<th class="col3">Test Start</th>
 									<th class="col4">Test End</th>
 								</tr>
@@ -39,7 +39,7 @@
 								<% @user.feedbacks.each do |feedback| %>
 								<tr>
 									<td class="col1"><%= link_to feedback.name, "/feedbacks/#{feedback.id}" %></td>
-									<td class="col2"><%= feedback.version %></td>
+									<td class="col2"><%= feedback.status %></td>
 									<td class="col3"><%= feedback.updated_at %></td>
 									<td class="col4"><%= feedback.duedate %></a></td>
 								</tr>

@@ -113,6 +113,9 @@
 			</ul>
 			<br/>
 			<%= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), @feedback.paypal_url(feedbacks_url) %>
+			<% if @feedback.status != "successful" %>
+			| <%= link_to "PAY OFFLINE", status_feedback_path(:status => "successful")%>
+			<% end %>
 		</div>
 
 		<% end %>

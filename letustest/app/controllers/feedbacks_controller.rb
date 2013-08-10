@@ -102,5 +102,11 @@ class FeedbacksController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def status
+    @feedback = Feedback.find(params[:id])
+    @feedback.update_attributes(:status => params[:status])
+    
+  end
 
 end

@@ -5,7 +5,11 @@ Letustest::Application.routes.draw do
   resources :testers
 
 
-  resources :feedbacks
+  resources :feedbacks do
+    member do
+      get 'status'
+    end
+  end
   
   resources :sessions, only: [:new, :create, :destroy]
 
@@ -16,6 +20,7 @@ Letustest::Application.routes.draw do
   resources :users # it endows our sample application with all the actions needed for a RESTful Users resource
   
   get "home/index"
+  #match "/status" => "feedbacks#status", :as => :status
   match '/signup', to: 'users#new'
   match '/signin', to: 'sessions#new'
   match '/signout', to: 'sessions#destroy'
