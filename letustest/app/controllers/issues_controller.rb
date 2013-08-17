@@ -26,6 +26,8 @@ class IssuesController < ApplicationController
   def new
     @issue = Issue.new
     @feedback = Feedback.find(params[:feedback_id])
+    @tester = Tester.find(current_tester)
+    @issue.tester_id = @tester.id
     @issue.feedback_id = @feedback.id
     
     
@@ -46,6 +48,8 @@ class IssuesController < ApplicationController
     #@feedback = Feedback.find(params[:feedback_id])
     #@issue.feedback_id = @feedback.id
     @issue = Issue.new(params[:issue])
+    @tester = Tester.find(current_tester)
+    @issue.tester_id = @tester.id
     
 
     respond_to do |format|
