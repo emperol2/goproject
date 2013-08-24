@@ -14,11 +14,13 @@ class IssuesController < ApplicationController
   # GET /issues/1.json
   def show
     @issue = Issue.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @issue }
+    
+    if current_tester != nil
+      @tester = Tester.find(current_tester)
+    elsif current_user
+      @user = User.find(current_user)
     end
+
   end
 
   # GET /issues/new
@@ -29,8 +31,8 @@ class IssuesController < ApplicationController
     @tester = Tester.find(current_tester)
     @issue.tester_id = @tester.id
     @issue.feedback_id = @feedback.id
-    
-    
+
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @issue }
@@ -50,11 +52,11 @@ class IssuesController < ApplicationController
     @issue = Issue.new(params[:issue])
     @tester = Tester.find(current_tester)
     @issue.tester_id = @tester.id
-    
+
 
     respond_to do |format|
       if @issue.save
-        format.html { redirect_to @issue, notice: 'Issue was successfully created.' }
+        format.html { redirect_to projects_path, notice: 'Issue was successfully created.' }
         format.json { render json: @issue, status: :created, location: @issue }
       else
         format.html { render action: "new" }

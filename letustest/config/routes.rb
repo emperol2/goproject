@@ -8,6 +8,8 @@ Letustest::Application.routes.draw do
   resources :feedbacks do
     member do
       get 'status'
+      get 'showall'
+      get 'mybug'
     end
   end
   

@@ -93,12 +93,13 @@
 
 								<tr>
 									<th class="col1">Project name</th>
-									<th class="col2">Description</th>
+									<th class="col2">Question</th>
 									<th class="col3">Test Start</th>
 									<th class="col4">Test End</th>
 									<th class="clo5">URL</th>
 									<th class="clo6">Number of Available Testers</th>
-									<th class="clo7"></th>
+									<th class="clo7">Number of issues</th>
+									<th class="clo8"></th>
 								</tr>
 
 							</thead>
@@ -110,8 +111,9 @@
 									<td class="col3"><%= feedback.updated_at %></td>
 									<td class="col4"><%= feedback.duedate %></a></td>
 									<td class="clo5"><%= feedback.url %></td>
-									<td class="clo6"><%= feedback.nboftester %></td>	
-									<td class="clo7"><%= link_to 'New Issue ->', new_issue_path(:feedback_id => feedback.id) %></th>
+									<td class="clo6"><%= feedback.nboftester %></td>
+									<td class="clo7"><%= feedback.issues.count %></td>	
+									<td class="clo8"><%= link_to 'New Issue ->', new_issue_path(:feedback_id => feedback.id) %></th>
 								</tr>
 								<% end %>	
 							</tbody>

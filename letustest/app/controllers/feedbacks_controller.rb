@@ -29,8 +29,8 @@ class FeedbacksController < ApplicationController
       if @feedback.user_id != @user.id
         redirect_to current_user, notice: 'This requested project is not belong to your account!'
       end
-    elsif @feedback.tester_id != @tester.id
-      redirect_to current_tester, notice: 'This requested project is not belong to your account!'
+    #elsif @feedback.tester_id != @tester.id
+     # redirect_to current_tester, notice: 'This requested project is not belong to your account!'
     end
 
   end
@@ -108,5 +108,31 @@ class FeedbacksController < ApplicationController
     @feedback.update_attributes(:status => params[:status])
     
   end
+  
+  def showall
+    
+    if current_user == nil
+      @tester = Tester.find(current_tester)
+    else
+      @user = User.find(current_user)
+    end
+    @feedback = Feedback.find(params[:id])
+    @issue = @feedback.issues.all
+    #@feedback = Feedback.find(params[:id])
+  end
+  
+  def mybug
+    
+    if current_user == nil
+      @tester = Tester.find(current_tester)
+    else
+      @user = User.find(current_user)
+    end
+    @feedback = Feedback.find(params[:id])
+    @issue = @feedback.issues.where(tester_id: @tester.id)
+    #@issue = @feedback.issues.where(tester_id: @tester.id)
+    #@feedback = Feedback.find(params[:id])
+  end
+  
 
 end

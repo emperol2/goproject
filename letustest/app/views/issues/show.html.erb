@@ -1,20 +1,75 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, 'Verify your request') %>
+<div class="container">
+	<% if current_user %>
+	<div id="user-left">
+		<h1>
+			<%= gravatar_for @user %> <br/>
+			Welcome, <%= @user.name %> <br/>
+		</h1>
+		<%= @user.email %> <br/>
+		<%= link_to "DASHBOARD", current_user, class: "profile-btn" %> <br/>
 
-<p>
-  <b>Title:</b>
-  <%= @issue.title %>
-</p>
+	</div>
+	<% end %>
 
-<p>
-  <b>Priority:</b>
-  <%= @issue.priority %>
-</p>
+	<% if current_tester %>
+	<div id="user-left">
+		<h1>
+			Welcome, <%= @tester.fname %> <br/>
+		</h1>
+		<%= @tester.email %> <br/>
+		<%= link_to "DASHBOARD", current_tester, class: "profile-btn" %> <br/>
+	</div>
+	<% end %>
 
-<p>
-  <b>Description:</b>
-  <%= @issue.description %>
-</p>
+	<div id="user-right">
+		<div id="content">
+			<% if current_user %>
+			<div id= "verify-request">
+				<h2>Verify Request</h2>
+				<p>Please verify this information is correct. Click edit to make changes before purchasing the feedback.</p>
+			</div>
+			<% elsif current_tester %>
+
+			<div id= "verify-request">
+				<h2>Issue Information</h2>
+				<p>This is your issue</p>
+			</div>
+			<% end %>
+
+			<p class="url">
+				<p>
+					<b>Title:</b>
+					<%= @issue.title %>
+				</p>
+
+				<p>
+					<b>Priority:</b>
+					<%= @issue.priority %>
+				</p>
+
+				<p>
+					<b>Description:</b>
+					<%= @issue.description %>
+				</p>
+			</p>
+			
+			<br/>
+			
+			<div>
+				<p>Approval Status: Waiting for Approval</p>	
+				<p>Issue Status: New</p>
+			</div>
+			
+			<br/>
+
+			<%= link_to 'Edit', edit_issue_path(@issue) %> |
+			<%= link_to 'Back', issues_path %>
+
+		</div>
+	</div>
+</div>
 
 
-<%= link_to 'Edit', edit_issue_path(@issue) %> |
-<%= link_to 'Back', issues_path %>
+
+

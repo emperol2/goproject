@@ -104,7 +104,7 @@ class TestersController < ApplicationController
       redirect_to current_tester, notice: 'You are not allow to see other profiles.'
     end
     
-    @feedback = Feedback.all
+    @feedback = Feedback.where(status: "successful")
     
   end
   
