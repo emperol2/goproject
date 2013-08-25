@@ -1,5 +1,11 @@
 Letustest::Application.routes.draw do
-  resources :issues
+  
+  resources :issues do
+    member do
+      get 'approvalstatus'
+      
+    end
+  end
 
 
   resources :testers

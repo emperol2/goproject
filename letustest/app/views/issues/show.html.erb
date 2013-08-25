@@ -57,7 +57,13 @@
 			<br/>
 			
 			<div>
-				<p>Approval Status: Waiting for Approval</p>	
+				<p>Approval Status: <%= @issue.approvalstatus %></p>
+				<% if current_user %>
+				<p>Change Approval Status: 
+				<%= link_to "Rejected", approvalstatus_issue_path(:approvalstatus => "Rejected") %>
+				| <%= link_to "Approved", approvalstatus_issue_path(:approvalstatus => "Approved")%>
+				</p>
+				<% end %>	
 				<p>Issue Status: New</p>
 			</div>
 			

@@ -52,6 +52,7 @@ class IssuesController < ApplicationController
     @issue = Issue.new(params[:issue])
     @tester = Tester.find(current_tester)
     @issue.tester_id = @tester.id
+    @issue.approvalstatus = "Waiting for Approval"
 
 
     respond_to do |format|
@@ -91,5 +92,12 @@ class IssuesController < ApplicationController
       format.html { redirect_to issues_url }
       format.json { head :no_content }
     end
+  end
+  
+  def approvalstatus
+    @issue = Issue.find(params[:id])
+    @issue.update_attributes(:approvalstatus => params[:approvalstatus])
+    
+    
   end
 end
