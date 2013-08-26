@@ -2,7 +2,7 @@ Letustest::Application.routes.draw do
   
   resources :issues do
     member do
-      get 'approvalstatus'
+      #put '/issues/:id/approvalstatus' => 'issues#approvalstatus', :as => 'approvalstatus'
       
     end
   end
@@ -22,6 +22,8 @@ Letustest::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
 
   resources :playgrounds
+  
+  put '/issues/:id/approvalstatus' => 'issues#approvalstatus', :as => 'approvalstatus'
 
 
   #get "users/new" ;was removed and added next line
