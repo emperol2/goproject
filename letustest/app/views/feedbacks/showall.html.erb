@@ -46,15 +46,17 @@
 							<th>ID</th>  
 							<th>Title</th>  
 							<th>Priority</th>  
-							<th>Description</th>  
+							<th>Description</th>
+							<th>Approval Status</th>  
 						</tr>  
 					</thead>  
 					<tbody>  
 						<tr>  
-							<td><%= issue.id %></td>  
+							<td><%= link_to issue.id, :controller => "issues", :action => "show", :id => issue.id %></td>  
 							<td><%= issue.title %></td>  
 							<td><%= issue.priority %></td>  
 							<td><%= issue.description %></td>  
+							<td style="font-weight: bold;"><%= issue.approvalstatus %></td> 
 						</tr>  
 
 					</tbody>  

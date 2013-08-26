@@ -97,6 +97,14 @@ class IssuesController < ApplicationController
   def approvalstatus
     @issue = Issue.find(params[:id])
     @issue.update_attributes(:approvalstatus => params[:approvalstatus])
+    if @issue.approvalstatus == "Approved"
+      #@issue = @issue.tester.score + 1o
+      @issue.tester.score = @issue.tester.score.to_i + 10.to_i
+      @issue.tester.update_attributes(:score => @issue.tester.score)
+    else
+      @issue.tester.score = @issue.tester.score.to_i + 0.to_i
+      @issue.tester.update_attributes(:score => @issue.tester.score)
+    end
     
     
   end

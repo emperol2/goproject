@@ -1,7 +1,8 @@
 class Tester < ActiveRecord::Base
   has_many :feedbacks
   has_many :issues
-  attr_accessible :aboutme, :bankaccount, :city, :country, :email, :fname, :gender, :linkedinid, :lname, :paypalid, :phone, :twitterid, :password, :password_confirmation, :feedback_id
+  attr_accessible :aboutme, :bankaccount, :city, :country, :email, :fname, :gender, :linkedinid, :lname, :paypalid, :phone, :twitterid, :password, 
+  :password_confirmation, :feedback_id, :score
 
   has_secure_password
   

@@ -58,7 +58,7 @@
 			
 			<div>
 				<p>Approval Status: <%= @issue.approvalstatus %></p>
-				<% if current_user %>
+				<% if current_user && @issue.approvalstatus == "Waiting for Approval"%>
 				<p>Change Approval Status: 
 				<%= link_to "Rejected", {:action => :approvalstatus, :approvalstatus => "Rejected"}, :method => :put %>
 				| <%= link_to "Approved", {:action => :approvalstatus, :approvalstatus => "Approved"},  :method => :put%>
