@@ -14,12 +14,20 @@ class IssuesController < ApplicationController
   # GET /issues/1.json
   def show
     @issue = Issue.find(params[:id])
+    @comment = Comment.new
     
     if current_tester != nil
       @tester = Tester.find(current_tester)
+      #@comment.tester_id = @tester.id
     elsif current_user
       @user = User.find(current_user)
+      #@comment.user_id = @user.id
     end
+    
+    #@comment.issue_id = @issue.id
+    
+    @commentofissue = @issue.comments.order("created_at DESC")
+    ##@commentofissue = @commentofissue.order("created_at DESC")
 
   end
 

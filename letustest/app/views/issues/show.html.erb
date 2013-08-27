@@ -71,6 +71,41 @@
 
 			<%= link_to 'Edit', edit_issue_path(@issue) %> |
 			<%= link_to 'Back', issues_path %>
+			
+			
+			<br/>
+			<br/>
+			
+			<div id="comment">
+			Please leave your comment here:
+			
+			<br/>
+			<%= render :partial =>"comment" %>
+			
+			</div>
+			
+			<p class="url">
+				<% @commentofissue.each do |commentofissue| %>
+				<table class="table">  
+					<thead>  
+						<tr>  
+							<th>ID</th>  
+							<th>Description</th>  
+							<th>Create Date</th>  
+							<th>Update Date</th>  
+						</tr>  
+					</thead>  
+					<tbody>  
+						<tr>  
+							<td><%= commentofissue.id %></td>  
+							<td><%= commentofissue.description %></td>  
+							<td><%= commentofissue.created_at %></td>  
+							<td><%= commentofissue.updated_at %></td>  
+						</tr>  
+					</tbody>  
+				</table>  
+				<% end %>
+			</p>
 
 		</div>
 	</div>

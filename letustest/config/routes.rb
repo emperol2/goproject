@@ -1,10 +1,14 @@
 Letustest::Application.routes.draw do
   
+  resources :comments
+
+
   resources :issues do
     member do
       #put '/issues/:id/approvalstatus' => 'issues#approvalstatus', :as => 'approvalstatus'
       
     end
+    resources :comments
   end
 
 
