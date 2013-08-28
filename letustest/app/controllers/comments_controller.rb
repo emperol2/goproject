@@ -53,18 +53,22 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(params[:comment])
     
+    @issueid = Issue.find(params[:comment][:issue_id])
+    
       if current_tester != nil
         @tester = Tester.find(current_tester)
         @comment.tester_id = @tester.id
+        @comment.tester_name = @tester.fname
       elsif current_user
         @user = User.find(current_user)
         @comment.user_id = @user.id
+        @comment.tester_name = @user.name
       end
     
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
+        format.html { redirect_to @issueid, notice: 'Comment was successfully created.' }
         format.json { render json: @comment, status: :created, location: @comment }
       else
         format.html { render action: "new" }

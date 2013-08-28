@@ -62,6 +62,7 @@ class FeedbacksController < ApplicationController
     @user = User.find(current_user)
     @feedback = Feedback.new(params[:feedback])
     @feedback.user_id = current_user.id
+    @feedback.status = "pending"
 
     respond_to do |format|
       if @feedback.save

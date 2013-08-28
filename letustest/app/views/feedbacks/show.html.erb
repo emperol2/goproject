@@ -21,27 +21,27 @@
 		<%= link_to "DASHBOARD", current_tester, class: "profile-btn" %> <br/>
 	</div>
 	<% end %>
-	
-	<% if @feedback.status == "successful" %>
-	<div>
-		<%= link_to "Show all bug", showall_feedback_path %>
-		
-		<% if current_tester %> 
-			| <%= link_to "My bug", mybug_feedback_path %>
-		<% end %>
-		
-	</div>
-	<% end %>
 
 	<div id="user-right">
 		<div id="content">
+			<% if @feedback.status == "successful" %>
+			<div>
+				<%= link_to "Show all bug", showall_feedback_path %>
+
+				<% if current_tester %> 
+				| <%= link_to "My bug", mybug_feedback_path %>
+				<% end %>
+
+			</div>
+			<% end %>
+
 			<% if current_user %>
 			<div id= "verify-request">
 				<h2>Verify Request</h2>
 				<p>Please verify this information is correct. Click edit to make changes before purchasing the feedback.</p>
 			</div>
 			<% elsif current_tester %>
-			
+
 			<div id= "verify-request">
 				<h2>Project Information</h2>
 				<p>Please find all project information here, 
@@ -124,7 +124,7 @@
 				<li>After paying, click return to merchant to complete your order.</li>
 			</ul>
 			<br/>
-			
+
 			<% if @feedback.status != "successful" %>
 			<%= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), @feedback.paypal_url(feedbacks_url) %> | 
 			<%= link_to "PAY OFFLINE", status_feedback_path(:status => "successful")%>
