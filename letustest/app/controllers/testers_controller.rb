@@ -103,9 +103,42 @@ class TestersController < ApplicationController
     if @tester != current_tester
       redirect_to current_tester, notice: 'You are not allow to see other profiles.'
     end
+    @checknbofproject = Assignment.where(tester_id: @tester.id)
     
     @feedback = Feedback.where(status: "successful")
+
     
+  end
+
+  def assigned
+    @feedback = Feedback.find(params[:assigned])
+    @assign = Assignment.new
+    #@assign.save
+    @tester = Tester.find(current_tester)
+    @feedback = Feedback.find(params[:assigned])
+    #@assign = Assignment.new
+    @assign.feedback_id = @feedback.id
+    @assign.tester_id = @tester.id
+    @feedback.avai_tester = @feedback.nboftester.to_i
+
+    @feedback.avai_tester = @feedback.avai_tester.to_i - 1.to_i
+    @feedback.update_attributes(:avai_tester => @feedback.avai_tester)
+
+    if @assign.save
+      redirect_to current_tester, notice: 'You are assigned to project.'
+    else
+      redirect_to current_tester, notice: 'FAILED'
+    end
+
+
+
+
+
+    #@assignment1 = Feedback.new(params[:feedback_id])
+    #@assignment2 = @assignment1.assignments.build(:tester_id => @tester.id)
+    #@assignment2.save
+
+
   end
   
 end

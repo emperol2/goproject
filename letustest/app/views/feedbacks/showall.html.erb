@@ -40,24 +40,27 @@
 
 			<p class="url">
 				<% @issue.each do |issue| %>
-				<table class="table">  
+				<table class="table table-hover">
 					<thead>  
 						<tr>  
 							<th>ID</th>  
 							<th>Title</th>  
 							<th>Priority</th>  
 							<th>Description</th>
-							<th>Approval Status</th>  
+							<th>Approval Status</th>
+                            <th><span style="color: blue;">Comments</span></th>
 						</tr>  
 					</thead>  
 					<tbody>  
 						<tr>  
-							<td><%= link_to issue.id, :controller => "issues", :action => "show", :id => issue.id %></td>  
+							<!-- <td><%= link_to issue.id, :controller => "issues", :action => "show", :id => issue.id %></td> -->
+                            <td><%= link_to issue.id, feedback_issue_path(@feedback, issue.id) %></td>
 							<td><%= issue.title %></td>  
 							<td><%= issue.priority %></td>  
 							<td><%= issue.description %></td>  
-							<td style="font-weight: bold;"><%= issue.approvalstatus %></td> 
-						</tr>  
+							<td style="font-weight: bold;"><%= issue.approvalstatus %></td>
+                            <td style="font-weight: bold; color: blue;"><%= issue.comments.count %></td>
+                        </tr>
 
 					</tbody>  
 				</table>  

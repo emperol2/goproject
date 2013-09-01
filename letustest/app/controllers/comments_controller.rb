@@ -53,7 +53,8 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(params[:comment])
     
-    @issueid = Issue.find(params[:comment][:issue_id])
+    @issue_id = Issue.find(params[:comment][:issue_id])
+    @issueid = Issue.find(params[:comment][:issue_id]).feedback
     
       if current_tester != nil
         @tester = Tester.find(current_tester)
@@ -68,7 +69,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @issueid, notice: 'Comment was successfully created.' }
+        format.html { redirect_to feedback_issue_path(@issueid.id, @issue_id.id), notice: 'Comment was successfully created.' }
         format.json { render json: @comment, status: :created, location: @comment }
       else
         format.html { render action: "new" }

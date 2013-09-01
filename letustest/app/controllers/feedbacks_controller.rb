@@ -32,6 +32,7 @@ class FeedbacksController < ApplicationController
     #elsif @feedback.tester_id != @tester.id
      # redirect_to current_tester, notice: 'This requested project is not belong to your account!'
     end
+    #@findallissue = @feedback.issues.all
 
   end
 
@@ -105,8 +106,11 @@ class FeedbacksController < ApplicationController
   end
   
   def status
+    @user = User.find(current_user)
     @feedback = Feedback.find(params[:id])
     @feedback.update_attributes(:status => params[:status])
+
+    redirect_to @user, notice: 'Feedback was suc  cessfully Paid by (OFFLINE PAYMENT).'
     
   end
   
@@ -119,7 +123,13 @@ class FeedbacksController < ApplicationController
     end
     @feedback = Feedback.find(params[:id])
     @issue = @feedback.issues.all
+    #@comment_count = Issues
     #@feedback = Feedback.find(params[:id])
+    #@issue.each do |counting|
+      #@aa = counting.comments
+      #counting = counting.id
+      #@comment_count = counting.comments.count
+    #end
   end
   
   def mybug

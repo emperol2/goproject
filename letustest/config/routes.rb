@@ -21,6 +21,8 @@ Letustest::Application.routes.draw do
       get 'showall'
       get 'mybug'
     end
+
+    resources :issues
   end
   
   resources :sessions, only: [:new, :create, :destroy]
@@ -43,6 +45,9 @@ Letustest::Application.routes.draw do
   match '/help', to: 'pages#help'
   match '/contactus', to: 'pages#contactus'
   match '/projects', to: 'testers#projects'
+  #match '/assigned', to: 'testers#assigned'
+
+  put '/projects/assigned' => 'testers#assigned', :as => 'assigned'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

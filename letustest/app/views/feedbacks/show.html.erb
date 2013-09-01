@@ -9,6 +9,14 @@
 		<%= @user.email %> <br/>
 		<%= link_to "DASHBOARD", current_user, class: "profile-btn" %> <br/>
 
+      <!----------------------------- Show Testers NAME ---------------------- -->
+      <!--<div>
+        Testers in this project:
+        <%# @findallissue.each do |tester| %>
+            Name : <%#= tester.tester.fname %>
+        <%# end %>
+      </div>-->
+
 	</div>
 	<% end %>
 
@@ -19,7 +27,18 @@
 		</h1>
 		<%= @tester.email %> <br/>
 		<%= link_to "DASHBOARD", current_tester, class: "profile-btn" %> <br/>
-	</div>
+
+      <!----------------------------- Show Testers NAME ---------------------- -->
+      <!--<div>
+        Testers in this project:
+        <%# @findallissue.each do |tester| %>
+            Name : <%#= tester.tester.fname %>
+        <%# end %>
+      </div>-->
+
+
+
+    </div>
 	<% end %>
 
 	<div id="user-right">

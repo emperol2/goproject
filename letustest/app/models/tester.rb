@@ -1,5 +1,7 @@
 class Tester < ActiveRecord::Base
-  has_many :feedbacks
+  has_many :feedbacks, :through => :assignments
+  has_many :assignments
+  #has_and_belongs_to_many :feedbacks
   has_many :issues
   #has_many :comments
   attr_accessible :aboutme, :bankaccount, :city, :country, :email, :fname, :gender, :linkedinid, :lname, :paypalid, :phone, :twitterid, :password, 
