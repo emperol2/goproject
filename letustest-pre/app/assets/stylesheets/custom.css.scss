@@ -1,7 +1,11 @@
 @import "bootstrap";
 
 body {
-  padding-top: 60px; 
+  padding-top: 60px;
+  font-family: 'Helvetica Neue',Helvetica,Arial,'Lucida Grande',sans-serif !important;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #8a92a5;
 }
 
 @media screen and (max-width: 768px) {
@@ -64,7 +68,8 @@ div.social-col{
 
 div.copyright-box{
   float:left;
-  width: 360px; 
+  width: 360px;
+  height: 110px;
 }
 
 footer#footer .clock{
@@ -116,7 +121,7 @@ footer#footer .clock .outer .inner{
 
 div#user-left{
   float: left;
-  width: 30%;
+  width: 28%;
   margin-top: 70px;
 
 }
@@ -165,4 +170,14 @@ a.project-btn{
 }
 a.project-btn:hover{
   background: #54ae67 !important;
+}
+div.clear{
+  margin-top: 70px;
+
+}
+form fieldset{
+  border: 1px solid cadetblue;
+  border-radius: 6px;
+  padding: 15px 15px 15px 15px;
+
 }
