@@ -1,0 +1,45 @@
+<h1>Listing testers</h1>
+
+<table>
+  <tr>
+    <th>Fname</th>
+    <th>Lname</th>
+    <th>Email</th>
+    <th>Gender</th>
+    <th>Phone</th>
+    <th>City</th>
+    <th>Country</th>
+    <th>Twitterid</th>
+    <th>Linkedinid</th>
+    <th>Paypalid</th>
+    <th>Bankaccount</th>
+    <th>Aboutme</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @testers.each do |tester| %>
+  <tr>
+    <td><%= tester.fname %></td>
+    <td><%= tester.lname %></td>
+    <td><%= tester.email %></td>
+    <td><%= tester.gender %></td>
+    <td><%= tester.phone %></td>
+    <td><%= tester.city %></td>
+    <td><%= tester.country %></td>
+    <td><%= tester.twitterid %></td>
+    <td><%= tester.linkedinid %></td>
+    <td><%= tester.paypalid %></td>
+    <td><%= tester.bankaccount %></td>
+    <td><%= tester.aboutme %></td>
+    <td><%= link_to 'Show', tester %></td>
+    <td><%= link_to 'Edit', edit_tester_path(tester) %></td>
+    <td><%= link_to 'Destroy', tester, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Tester', new_tester_path %>

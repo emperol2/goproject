@@ -1,0 +1,50 @@
+<%= render 'shared/error_messages' %>
+
+<% provide(:title, @user.name) %>
+
+<div class="container">
+	<div id="user-left">
+		<h1>
+			<%= gravatar_for @user %> <br/>
+			Welcome, <%= @user.name %> <br/>
+		</h1>
+		<%= @user.email %> <br/>
+		<%= link_to "DASHBOARD", current_user, class: "profile-btn" %> <br/>
+	</div>
+
+	<div id="user-right">
+		<div id="content">
+			<h2> EDIT YOUR PROFILE </h2>
+			<%= form_for(@user) do |f| %>
+
+			<%= f.label :name %>
+			<%= f.text_field :name %>
+
+			<%= f.label :email %>
+			<%= f.text_field :email %>
+
+			<%= f.label :password %>
+			<%= f.password_field :password %>
+
+			<%= f.label :password_confirmation, "Confirmation" %>
+			<%= f.password_field :password_confirmation %>
+			
+			<%= f.label :lastname, "Last name" %>
+			<%= f.text_field :lastname %>
+			
+			<%= f.label :contact_number, "Contact number" %>
+			<%= f.text_field :contact_number %>
+			
+			<%= f.label :company_name, "Company name" %>
+			<%= f.text_field :company_name %>
+			
+			<%= f.label :company_type, "Company type" %>
+			<%= f.text_field :company_type %>
+			<br/>
+
+			<%= f.submit "Update", class: "btn btn-large btn-primary" %>
+			<% end %>
+		</div>
+	</div>
+
+</div>

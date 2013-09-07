@@ -1,0 +1,96 @@
+<% provide(:title, @tester.fname) %>
+
+<div class="container">
+	<div id="user-left">
+		<h1>
+			Welcome, <%= @tester.fname %> <br/>
+		</h1>
+		<%= @tester.email %> <br/>
+		<%= link_to "DASHBOARD", current_tester, class: "profile-btn" %> <br/>
+	</div>
+
+	<div id="user-right">
+		<div id="content">
+			<h2> EDIT YOUR PROFILE </h2>
+
+			<%= form_for(@tester) do |f| %>
+			<% if @tester.errors.any? %>
+			<div id="error_explanation">
+				<div class="alert alert-error"><%= pluralize(@tester.errors.count, "error") %> 
+					prohibited this tester from being saved:
+				</div>
+				<ul>
+					<% @tester.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+					<% end %>
+				</ul>
+			</div>
+			<% end %>
+
+			<div class="field">
+				<%= f.label :fname, "Name" %>
+				<%= f.text_field :fname %>
+			</div>
+			<div class="field">
+				<%= f.label :lname, "Last name" %>
+				<%= f.text_field :lname %>
+			</div>
+			<div class="field">
+				<%= f.label :email, "Email" %>
+				<%= f.text_field :email %>
+			</div>
+			<div class="field">
+				<%= f.label :password %>
+				<%= f.password_field :password %>
+			</div>
+			<div class="field">
+				<%= f.label :password_confirmation, "Confirmation" %>
+				<%= f.password_field :password_confirmation %>
+			</div>
+			<div class="field">
+				<%= f.label :gender, "Gender [male, female, others]" %>
+				<%= f.text_field :gender %>
+			</div>
+			<div class="field">
+				<%= f.label :phone, "Telephone number" %>
+				<%= f.text_field :phone %>
+			</div>
+			<div class="field">
+				<%= f.label :city %>
+				<%= f.text_field :city %>
+			</div>
+			<div class="field">
+				<%= f.label :country %>
+				<%= f.text_field :country %>
+			</div>
+			<div class="field">
+				<%= f.label :twitterid, "Twitter ID" %>
+				<%= f.text_field :twitterid %>
+			</div>
+			<div class="field">
+				<%= f.label :linkedinid, "Linkedin ID" %>
+				<%= f.text_field :linkedinid %>
+			</div>
+			<div class="field">
+				<%= f.label :paypalid, "Paypal Email" %>
+				<%= f.text_field :paypalid %>
+			</div>
+			<div class="field">
+				<%= f.label :bankaccount, "Bank Account" %>
+				<%= f.text_field :bankaccount %>
+			</div>
+			<div class="field">
+				<%= f.label :aboutme, "About me" %>
+				<%= f.text_area :aboutme, :rows => 10 %>
+			</div>
+			<div class="actions">
+				<%= f.submit "Update", class: "btn btn-large btn-primary" %>
+			</div>
+
+			<% end %>
+
+		</div>
+	</div>
+</div>
+<!-- <%= link_to 'Show', @tester %> |
+<%= link_to 'Back', testers_path %> -->

@@ -1,0 +1,39 @@
+<div class="row">
+	<div class="span9">
+		<p id="notice"><%= notice %></p>
+
+		<p>
+			<b>Name:</b>
+			<%= @playground.name %>
+		</p>
+
+		<p>
+			<b>Email:</b>
+			<%= @playground.email %>
+		</p>
+
+		<p>
+			<b>Url:</b>
+			<%= @playground.url %>
+		</p>
+
+		<p>
+			<b>Country:</b>
+			<%= @playground.country %>
+		</p>
+
+		<p>
+			<b>Title:</b>
+			<%= @playground.title %>
+		</p>
+
+		<p>
+			<b>Reproduce:</b>
+			<%= @playground.reproduce %>
+		</p>
+
+
+		<%= link_to 'Edit', edit_playground_path(@playground) %> |
+		<%= link_to 'Back', playgrounds_path %>
+	</div>
+</div>

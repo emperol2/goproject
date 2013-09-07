@@ -1,0 +1,22 @@
+<% provide(:title, 'Submit New Test Request') %>
+<div class="container">
+	<div id="user-left">
+		<h1>
+			<%= gravatar_for @user %> <br/>
+			Welcome, <%= @user.name %> <br/>
+		</h1>
+		<%= @user.email %> <br/>
+		<%= link_to "DASHBOARD", current_user, class: "profile-btn" %> <br/>
+
+	</div>
+	<div id="user-right">
+		<div id="content">
+			<h1>Editing feedback</h1>
+
+			<%= render 'form' %>
+
+			<%= link_to 'Show', @feedback %> |
+			<%= link_to 'Back', current_user %>
+		</div>
+	</div>
+</div>

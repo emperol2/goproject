@@ -1,0 +1,73 @@
+<%= form_for(@feedback) do |f| %>
+<% if @feedback.errors.any? %>
+<div id="error_explanation">
+	<div class="alert alert-error"><%= pluralize(@feedback.errors.count, "error") %> prohibited this feedback from being saved:</div>
+
+	<ul>
+		<% @feedback.errors.full_messages.each do |msg| %>
+		<li><%= msg %></li>
+		<% end %>
+	</ul>
+</div>
+<% end %>
+
+<div class="field">
+	<%= f.label :name, "Your project name" %>
+	<%= f.text_field :name %>
+</div>
+<div class="field">
+	<%= f.label :typeofbugs, "What type of project is this?" %>
+	<%= f.select :typeofbugs, options_for_select([["Functional testing", "Functional testing"], ["Compatibility testing", "Compatibility testing"],["Load testing","Load testing"],["Others","Others"]]) %>
+</div>
+<div class="field">
+	<%= f.label :url, "Provide your website address." %>
+	<%= f.text_field :url %>
+</div>
+<div class="question-field">
+	<%= f.label :questions, "Write your questions or website description here." %>
+	<%= f.text_area :questions, :rows => 10 %>
+</div>
+<div class="field">
+	<%= f.label :bugsystem, "Bug Tracking Software" %>
+	<%= f.text_field :bugsystem %>
+</div>
+<div class="field">
+	<%= f.label :email, "Your email address. (to send a link to your results and Bug Tracking System)" %>
+	<%= f.text_field :email %>
+</div>
+<div class="field">
+	<%= f.label :numofbugs, "Select number of Bugs" %>
+	<%= f.select :numofbugs, options_for_select([["10 for $20", "10 for $20 Dollars"], ["25 for $40", "25 for $40 Dollars"],["50 for $75","50 for $75 Dollars"],["Others","Others"]]) %>
+</div>
+<div class="field">
+	<%= f.label :duedate, "Select due date for testing" %>
+	<div class="test">
+		<%= f.datetime_select :duedate %>
+	</div>
+</div>
+<div class="field">
+	<%= f.label :numberoftesters, "How many testers do you want?" %>
+	<%= f.select :numberoftesters, options_for_select([["2 testers", "2 testers"], ["3 testers", "3 testers"],["4 testers","4 testers"],["> 5 testers","more than 5 testers"]]) %>
+</div>
+<div class="field">
+	<%= f.label :version, "Version number" %>
+	<%= f.text_field :version %>
+</div>
+<div class="field">
+	<%= f.label :testinginstr, "Please provide your testing instruction, in case you have it." %>
+	<%= f.text_area :testinginstr, :rows => 10 %>
+</div>
+<div class="field">
+	<%= f.label :firstname, "Your first name" %>
+	<%= f.text_field :firstname %>
+</div>
+<div class="field">
+	<%= f.label :lastname, "Your last name" %>
+	<%= f.text_field :lastname %>
+</div>
+<div class="field">
+	<%= f.label :telephone, "Your telephone number" %>
+	<%= f.text_field :telephone %>
+</div>
+<%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+<% end %>

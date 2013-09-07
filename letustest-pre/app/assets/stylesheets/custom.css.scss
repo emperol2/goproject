@@ -1,0 +1,168 @@
+@import "bootstrap";
+
+body {
+  padding-top: 60px; 
+}
+
+@media screen and (max-width: 768px) {
+  body { 
+    padding-top: 0px; 
+  }
+}
+
+.theTitle h2{
+  font: 35px/50px "robotobold",Arial,Helvetica,sans-serif !important;
+  text-align: center;
+}
+
+h2{
+  font: 28px/35px "robotomedium", Arial, Helvetica, sans-serif !important;
+}
+
+#error_explanation {
+  color: #f00;
+  ul {
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
+}
+
+textarea {
+  width: 300px !important
+}
+
+.test select {
+  width: 108px !important
+}
+
+/* footer */
+footer#footer{
+  width: 960px;
+  border-top: solid 2px;
+  margin-top: 10px;
+}
+
+div.footer-holder{
+  position: relative;
+}
+
+div.footer-col{
+  float:right;
+  width: 580px;
+  
+}
+
+div.col{
+  float:left;
+  width: 190px; 
+}
+
+div.social-col{
+  float:left;
+  width: 190px; 
+}
+
+div.copyright-box{
+  float:left;
+  width: 360px; 
+}
+
+footer#footer .clock{
+  width: 960px;
+  height: 70px;
+  padding-top: 20px;
+}
+
+footer#footer .clock .outer{
+  float: left;
+  width: 192px;
+}
+
+footer#footer .clock .outer .inner{
+  float: left;
+}
+
+.btn-bottom{
+  float: right;
+}
+
+/* header nav */
+.navbar-inverse .brand, .navbar-inverse .nav > li{
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  border-right: 1px solid;
+  line-height: 2px;
+}
+
+.navbar-inner {
+  height: 60px;
+}
+
+/*.newfeedback{
+  border-bottom: 2px solid;
+  padding-bottom: 20px;
+}*/
+
+/*div#signup{
+  float: right;
+  padding-right: 10%;
+}*/
+
+/*div#signin{
+  float: left;
+  width: 50%;
+  border-right: solid 1px;
+}*/
+
+div#user-left{
+  float: left;
+  width: 30%;
+  margin-top: 70px;
+
+}
+div#user-right{
+  float: right;
+  width: 70%;
+  margin-top: 70px;
+
+}
+section#draft{
+  padding-top: 20px;
+}
+section#completed{
+  padding-top: 20px;
+}
+a.profile-btn{
+  display: block;
+  margin: 10px 0 30px;
+  color: #fff;
+  text-align: left;
+  padding: 17px 15px 17px 21px;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0;
+  background: #bbb;
+  width: 110px; 
+  height: 20px;
+  border-radius:3px;
+}
+a.profile-btn:hover{
+  background: #54ae67 !important;
+}
+a.project-btn{
+  display: block;
+  margin: 10px 0 30px;
+  color: #fff;
+  text-align: left;
+  padding: 17px 15px 17px 21px;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0;
+  background: #bbb;
+  width: 165px; 
+  height: 20px;
+  border-radius:3px;
+}
+a.project-btn:hover{
+  background: #54ae67 !important;
+}

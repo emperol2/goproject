@@ -1,0 +1,25 @@
+<% provide(:title, 'Sign in') %>
+
+<!-- <p>Find me in app/views/users/new.html.erb</p> -->
+
+<div class="container">
+
+	<div id="signin">
+		<h1>Sign in as Client or Tester:</h1>
+		<%= form_for(:session, url: sessions_path) do |f| %>
+
+		<%= f.label :name %>
+		<%= f.text_field :name %>
+
+		<%= f.label :password %>
+		<%= f.password_field :password %>
+
+		<br/>
+
+		<%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
+		<% end %>
+		
+		If you are a Company and No account yet ?, <%= link_to "Company Sign up", signup_path %> <br/>
+		If you want to join us as a Tester, <%= link_to "Tester Sign up", new_tester_path %>
+	</div>
+</div>

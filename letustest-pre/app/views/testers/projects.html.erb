@@ -1,0 +1,149 @@
+<!-- <p id="notice"><%= notice %></p>
+
+<p>
+<b>Fname:</b>
+<%= @tester.fname %>
+</p>
+
+<p>
+<b>Lname:</b>
+<%= @tester.lname %>
+</p>
+
+<p>
+<b>Email:</b>
+<%= @tester.email %>
+</p>
+
+<p>
+<b>Gender:</b>
+<%= @tester.gender %>
+</p>
+
+<p>
+<b>Phone:</b>
+<%= @tester.phone %>
+</p>
+
+<p>
+<b>City:</b>
+<%= @tester.city %>
+</p>
+
+<p>
+<b>Country:</b>
+<%= @tester.country %>
+</p>
+
+<p>
+<b>Twitterid:</b>
+<%= @tester.twitterid %>
+</p>
+
+<p>
+<b>Linkedinid:</b>
+<%= @tester.linkedinid %>
+</p>
+
+<p>
+<b>Paypalid:</b>
+<%= @tester.paypalid %>
+</p>
+
+<p>
+<b>Bankaccount:</b>
+<%= @tester.bankaccount %>
+</p>
+
+<p>
+<b>Aboutme:</b>
+<%= @tester.aboutme %>
+</p>
+
+
+<%= link_to 'Edit', edit_tester_path(@tester) %> |
+<%= link_to 'Back', testers_path %> -->
+
+<% provide(:title, @tester.fname) %>
+
+<div class="container">
+	<div id="user-left">
+		<h1>
+			Welcome, <%= @tester.fname %> <br/>
+		</h1>
+		<%= @tester.email %> <br/>
+		<%= link_to "PROJECTS", projects_path, class: "profile-btn" %>
+	</div>
+
+	<div id="user-right">
+		<div id="content">
+			<!-- In progress tests -->
+			<section id="inprogress" class="client-version-box">
+				<div class="client-version-section">
+					<!-- earn-title -->
+					<div class="client-version-title">
+						<div class="title">
+							<h2>ALL YOUR CHALLENGES</h2>
+						</div>
+					</div>
+					<!-- table-box -->
+					<div class="table-box">
+						<table class="table table-bordered">
+							<thead>
+
+								<tr>
+									<th class="col1">Project name</th>
+									<!-- <th class="col2">Question</th>  -->
+									<th class="col2">Test Start</th>
+									<th class="col3">Test End</th>
+									<th class="clo4">URL</th>
+									<th class="clo5"># of Available Testers</th>
+									<th class="clo6"># of issues</th>
+                                    <th class="clo7">Assigned</th>
+									<th class="clo8"></th>
+								</tr>
+
+							</thead>
+							<tbody>
+                            <% if @checknbofproject.count != 2 %>
+								<% @feedback.each do |feedback| %>
+								<tr>
+									<td class="col1"><%= link_to feedback.name, "/feedbacks/#{feedback.id}" %></td>
+									<!-- <td class="col2"><%#= feedback.questions %></td>  -->
+									<td class="col2"><%= feedback.updated_at %></td>
+									<td class="col3"><%= feedback.duedate %></a></td>
+									<td class="clo4"><%= feedback.url %></td>
+									<td class="clo5"><%= feedback.avai_tester %></td>
+									<td class="clo6"><%= feedback.issues.count %></td>
+                                    <% if feedback.assignments.where('tester_id = ?', @tester.id).empty? %>
+                                        <td class="clo7"><%= link_to 'Assigned ->', {:action => :assigned, :assigned => feedback.id}, :method => :put  %></td>
+                                        <td class="clo8">You need to apply for this project first</td>
+                                    <% else %>
+                                        <td class="clo7">You are already Assigned</td>
+                                        <td class="clo8"><%= link_to 'New Issue ->', new_issue_path(:feedback_id => feedback.id) %></td>
+                                    <% end %>
+                                </tr>
+								<% end %>
+                                <% else %>
+                                   <tr>
+                                     <td class="col1">You have two projects already, you cannot have more > 2 projects</td>
+                                     <td class="col2"></td>
+                                     <td class="col3"></td>
+                                     <td class="col4"></td>
+                                     <td class="col5"></td>
+                                     <td class="col6"></td>
+                                     <td class="col7"></td>
+                                     <td class="col8"></td>
+
+                                   </tr>
+
+                                <% end %>
+
+                            </tbody>
+						</table>
+					</div>
+				</div>
+			</section>              
+		</div>
+	</div>
+</div>
