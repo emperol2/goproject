@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130901145437) do
+ActiveRecord::Schema.define(:version => 20130921081802) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "feedback_id"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20130901145437) do
     t.string   "isfull"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "score"
   end
 
   create_table "comments", :force => true do |t|

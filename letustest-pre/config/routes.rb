@@ -20,6 +20,8 @@ Letustest::Application.routes.draw do
       get 'status'
       get 'showall'
       get 'mybug'
+      get 'description'
+      get 'rule'
     end
 
     resources :issues

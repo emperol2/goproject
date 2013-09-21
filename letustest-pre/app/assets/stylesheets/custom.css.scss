@@ -181,3 +181,47 @@ form fieldset{
   padding: 15px 15px 15px 15px;
 
 }
+
+.inactive {
+  pointer-events: none;
+  cursor: default;
+}
+
+p.error{
+  color: red;
+
+}
+
+//div.span12.all-issue{
+//  padding-bottom: 10px;
+//}
+//
+//div.issue-row{
+//
+//  position: relative;
+//}
+//div.img{
+//  float: left;
+//  padding-right: 5px;
+//}
+//
+//span.comment{
+//  right:5px;
+//  position:absolute;
+//  top: 32px;
+//}
+//
+//div.title{
+//  float:left;
+//
+//}
+//
+//h3.issue-title{
+//
+//  font-size: 13px;
+//  font-weight: bold;
+//}
+//
+//div.review{
+//  float:right;
+//}

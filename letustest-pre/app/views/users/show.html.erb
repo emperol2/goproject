@@ -12,8 +12,8 @@
         Welcome, <%= @user.name %> <br/>
       </h1>
       <%= @user.email %> <br/>
-      <%= link_to "EDIT PROFILE", edit_user_path, class: "profile-btn" %> <br/>
-      <%= link_to "NEW TEST REQUEST", "/feedbacks/new?user=#{@user.id}", class: "project-btn" %> <br/>
+      <%= link_to "EDIT PROFILE", edit_user_path, class: "profile-btn" %>
+      <%= link_to "NEW TEST REQUEST", "/feedbacks/new?user=#{@user.id}", class: "project-btn" %>
     </div>
     <!-- end span 3 -->
 

@@ -15,7 +15,7 @@ class IssuesController < ApplicationController
   def show
     @issue = Issue.find(params[:id])
     @comment = Comment.new
-    
+
     if current_tester != nil
       @tester = Tester.find(current_tester)
       #@comment.tester_id = @tester.id
@@ -23,9 +23,9 @@ class IssuesController < ApplicationController
       @user = User.find(current_user)
       #@comment.user_id = @user.id
     end
-    
+
     #@comment.issue_id = @issue.id
-    
+
     @commentofissue = @issue.comments.order("created_at DESC")
     ##@commentofissue = @commentofissue.order("created_at DESC")
 
@@ -101,19 +101,40 @@ class IssuesController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
   def approvalstatus
     @issue = Issue.find(params[:id])
+    @tester = @issue.tester_id
+    @get_feedbackID = @issue.feedback_id
     @issue.update_attributes(:approvalstatus => params[:approvalstatus])
     if @issue.approvalstatus == "Approved"
       #@issue = @issue.tester.score + 1o
-      @issue.tester.score = @issue.tester.score.to_i + 10.to_i
-      @issue.tester.update_attributes(:score => @issue.tester.score)
+      @oAssignment = Assignment.where("tester_id = ? AND feedback_id = ?", @tester, @get_feedbackID)
+      @oAssignment.each do |x|
+        x.score = x.score.to_i + 10.to_i
+        @oAssignment.update(@oAssignment, :score => x.score)
+      end
+
+      redirect_to issue_path, notice: 'Approved'
+
+      #@issue.tester.score = @issue.tester.score.to_i + 10.to_i
+      #@issue.tester.update_attributes(:score => @issue.tester.score)
     else
-      @issue.tester.score = @issue.tester.score.to_i + 0.to_i
-      @issue.tester.update_attributes(:score => @issue.tester.score)
+      #@issue.tester.score = @issue.tester.score.to_i + 0.to_i
+      #@issue.tester.update_attributes(:score => @issue.tester.score)
+      @oAssignment = Assignment.where("tester_id = ? AND feedback_id = ?", @tester, @get_feedbackID)
+      @oAssignment.each do |x|
+        x.score = x.score.to_i + 0.to_i
+        @oAssignment.update(@oAssignment, :score => x.score)
+      end
+
+      redirect_to issue_path, notice: 'Rejected'
+
     end
-    
-    
+
+
+
+
   end
 end
+

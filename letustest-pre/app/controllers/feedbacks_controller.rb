@@ -20,8 +20,12 @@ class FeedbacksController < ApplicationController
     if current_tester
       @tester = Tester.find(current_tester)
       @feedback.tester_id = @feedback.tester_id.to_i
+
+
+      @project_score = Assignment.where("tester_id = ? AND feedback_id = ?", @tester.id, @feedback.id)
     elsif current_user
       @user = User.find(current_user)
+      @project_tester = @feedback.testers.all
     end
 
     if @tester == nil
@@ -29,10 +33,12 @@ class FeedbacksController < ApplicationController
       if @feedback.user_id != @user.id
         redirect_to current_user, notice: 'This requested project is not belong to your account!'
       end
-    #elsif @feedback.tester_id != @tester.id
-     # redirect_to current_tester, notice: 'This requested project is not belong to your account!'
+      #elsif @feedback.tester_id != @tester.id
+      # redirect_to current_tester, notice: 'This requested project is not belong to your account!'
     end
     #@findallissue = @feedback.issues.all
+
+
 
   end
 
@@ -104,18 +110,18 @@ class FeedbacksController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
   def status
     @user = User.find(current_user)
     @feedback = Feedback.find(params[:id])
     @feedback.update_attributes(:status => params[:status])
 
-    redirect_to @user, notice: 'Feedback was suc  cessfully Paid by (OFFLINE PAYMENT).'
-    
+    redirect_to @user, notice: 'Feedback was successfully Paid by (OFFLINE PAYMENT).'
+
   end
-  
+
   def showall
-    
+
     if current_user == nil
       @tester = Tester.find(current_tester)
     else
@@ -123,17 +129,18 @@ class FeedbacksController < ApplicationController
     end
     @feedback = Feedback.find(params[:id])
     @issue = @feedback.issues.all
+
     #@comment_count = Issues
     #@feedback = Feedback.find(params[:id])
     #@issue.each do |counting|
-      #@aa = counting.comments
-      #counting = counting.id
-      #@comment_count = counting.comments.count
+    #@aa = counting.comments
+    #counting = counting.id
+    #@comment_count = counting.comments.count
     #end
   end
-  
+
   def mybug
-    
+
     if current_user == nil
       @tester = Tester.find(current_tester)
     else
@@ -144,6 +151,28 @@ class FeedbacksController < ApplicationController
     #@issue = @feedback.issues.where(tester_id: @tester.id)
     #@feedback = Feedback.find(params[:id])
   end
-  
+
+  def description
+
+    @user = User.find(current_user)
+    @feedback = Feedback.find(params[:id])
+
+    #@feedback.update_attributes(params[:feedback])
+
+
+
+  end
+
+  def rule
+
+    @user = User.find(current_user)
+    @feedback = Feedback.find(params[:id])
+
+    #@feedback.update_attributes(params[:feedback])
+
+
+
+  end
 
 end
+

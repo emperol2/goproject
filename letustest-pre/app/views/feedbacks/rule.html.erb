@@ -1,0 +1,44 @@
+<% provide(:title, 'Submit New Test Request') %>
+<div class="container">
+  <div id="user-left">
+    <h1>
+      <%= gravatar_for @user %> <br/>
+      Welcome, <%= @user.name %> <br/>
+    </h1>
+    <%= @user.email %> <br/>
+    <%= link_to "DASHBOARD", current_user, class: "profile-btn" %> <br/>
+
+  </div>
+  <div id="user-right">
+    <div id="content">
+      <h2> Submit new test request </h2>
+
+      <%= form_for(@feedback) do |f| %>
+          <% if @feedback.errors.any? %>
+              <div id="error_explanation">
+                <div class="alert alert-error"><%= pluralize(@feedback.errors.count, "error") %> prohibited this feedback from being saved:</div>
+
+                <ul>
+                  <% @feedback.errors.full_messages.each do |msg| %>
+                      <li><%= msg %></li>
+                  <% end %>
+                </ul>
+              </div>
+          <% end %>
+
+          <fieldset>
+
+            <div class="field">
+              <%= f.label :testinginstr, "Please provide your testing instruction, in case you have it." %>
+              <%= f.text_area :testinginstr, :rows => 10 %>
+            </div>
+
+            <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+          </fieldset>
+      <% end %>
+
+
+      <% #link_to 'Back', feedbacks_path %>
+    </div>
+  </div>
+</div>

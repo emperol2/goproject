@@ -8,10 +8,13 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by_id(params[:id])
     if @user != current_user
-      redirect_to current_user, notice: 'You are not allow to see other profiles.'
+      flash[:error] = "You are not allow to see other profiles."
+      redirect_to current_user
     end
+
+
   end
 
   def create
@@ -53,4 +56,6 @@ class UsersController < ApplicationController
       end
     end
   end
+
+
 end
