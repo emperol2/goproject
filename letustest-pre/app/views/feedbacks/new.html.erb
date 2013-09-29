@@ -1,5 +1,5 @@
 <% provide(:title, 'Submit New Test Request') %>
-<div class="container">
+<!--<div class="container">
 	<div id="user-left">
 		<h1>
 			<%= gravatar_for @user %> <br/>
@@ -8,13 +8,52 @@
 		<%= @user.email %> <br/>
 		<%= link_to "DASHBOARD", current_user, class: "profile-btn" %> <br/>
 
-	</div>
-	<div id="user-right">
-		<div id="content">
-			<h2> Submit new test request </h2>
+	</div>    -->
 
-			<%= render 'sform' %>
-			<% #link_to 'Back', feedbacks_path %>
-		</div>
-	</div>
+
+<div class="row">
+  <div class="span9">
+    <h2>Add new challenge — Get your app tested.</h2>
+    <div class="box round-corners box-shadow gray" id="t-stats">
+      <%= render 'sform' %>
+      <% #link_to 'Back', feedbacks_path %>
+    </div>
+  </div>
+  <div class="span3">
+    <div class="box round-corners box-shadow" id="t-stats">
+      <div class="how-to-ask">
+        <h2>Questions &amp; Answers</h2>
+        <ul class="qa-list unstyled">
+          <li class="question">
+            <a class="trigger" href="#faq">What is a Challenge?</a>
+            <div class="answer" style="display: none; "><p>A Testlio Challenge is a testing project set up by anyone to our community of testers. You set up all the conditions of the Challenge such as how much and for what you pay, who you accept as a tester, whether it's a public or a private challenge, duration and more.</p></div>
+          </li>
+          <li class="question">
+            <a class="trigger" href="#faq">Why use Testlio for testing?</a>
+            <div class="answer" style=""><p>Commonly known as Crowdsourcing, a Testlio Challenge has the following benefits:
+            </p><ul>
+              <li>The core testing team may not have all the resources to test the software in different environments and in different situations (e.g. different Internet bandwidths, devices, etc.), as it may not be possible to have all the resources to create different environments in which the software should be tested.</li>
+              <li>Your product is put to test under diverse realistic platforms which makes it more reliable, fast, and bug-free.</li>
+              <li>It is cost effective, as you pay only for the valid bugs reported. Usually time to test your product is comparably lesser, so it leads to better productivity and thus is cheaper than hiring permanent testers.</li>
+              <li>As there are large number of testers testing a software simultaneously, testing can be done quickly, giving more time to market.</li>
+              <li>The pool of testers is diverse with variations in languages as well as locales. This helps in testing applications which are based on localization.</li>
+            </ul>
+              <p></p></div>
+          </li>
+          <li class="question">
+            <a class="trigger" href="#faq">Crowdsource or outsource testing?</a>
+            <div class="answer" style=""><p>The main difference between crowdsource testing and outsource testing is that, in crowdsource testing, testers may belong to different workplaces. In outsource testing, the testers are from the same company or workplace that is responsible for outsourcing. In crowdsource testing, people voluntarily test a software with the possibility of not being paid (if no bugs are discovered). Outsource testers always get paid for their work.</p></div>
+          </li>            <li class="question">
+          <a class="trigger" href="#faq">What's the duration of a Challenge?</a>
+          <div class="answer" style=""><p>A standard Challenge typically lasts for 3 days but can be any duration set by the Challenger. Ongoing Challenges may be extended by the Challenger as required/desired. Testlio reserves the right to terminate a Challenge if insufficient community interest is garnered after a considerable extended period.</p></div>
+        </li>
+          <li class="question">
+            <a class="trigger" href="#faq">What is a Private Challenge?</a>
+            <div class="answer" style=""><p>Many Challengers would like to use crowdsourcing, however, prefer their sensitive intellectual property, business plans, strengths, weaknesses, potential solutions and even their identity not to be revealed to the general public or their competitors. For these customers Testlio offers the ability to host "Private Challenges", where the Challenge is only offered to a select sub-group of testers. Selection of these individuals may be based on geographic location, identified skill-sets, vertical industries, or by invitation-only.</p>
+              <p>Corporations with large inhouse testing teams are even using Testlio as a platform for their internal projects, providing access to Challenges only to their own employees.</p></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>

@@ -9,8 +9,8 @@ body {
 }
 
 @media screen and (max-width: 768px) {
-  body { 
-    padding-top: 0px; 
+  body {
+    padding-top: 0px;
   }
 }
 
@@ -20,7 +20,9 @@ body {
 }
 
 h2{
-  font: 28px/35px "robotomedium", Arial, Helvetica, sans-serif !important;
+  font-family: 'Helvetica Neue',Helvetica,Arial,'Lucida Grande',sans-serif !important;
+  font-weight: 300 !important;
+  font-size: 36px !important;
 }
 
 #error_explanation {
@@ -53,17 +55,16 @@ div.footer-holder{
 div.footer-col{
   float:right;
   width: 580px;
-  
 }
 
 div.col{
   float:left;
-  width: 190px; 
+  width: 190px;
 }
 
 div.social-col{
   float:left;
-  width: 190px; 
+  width: 190px;
 }
 
 div.copyright-box{
@@ -123,13 +124,11 @@ div#user-left{
   float: left;
   width: 28%;
   margin-top: 70px;
-
 }
 div#user-right{
   float: right;
   width: 70%;
   margin-top: 70px;
-
 }
 section#draft{
   padding-top: 20px;
@@ -147,7 +146,7 @@ a.profile-btn{
   line-height: 20px;
   letter-spacing: 0;
   background: #bbb;
-  width: 110px; 
+  width: 110px;
   height: 20px;
   border-radius:3px;
 }
@@ -164,7 +163,7 @@ a.project-btn{
   line-height: 20px;
   letter-spacing: 0;
   background: #bbb;
-  width: 165px; 
+  width: 165px;
   height: 20px;
   border-radius:3px;
 }
@@ -176,9 +175,14 @@ div.clear{
 
 }
 form fieldset{
-  border: 1px solid cadetblue;
-  border-radius: 6px;
-  padding: 15px 15px 15px 15px;
+  #border: 1px solid cadetblue;
+  #border-radius: 6px;
+  #padding: 15px 15px 15px 15px;
+
+}
+.field {
+  padding-top: 20px;
+  padding-bottom: 20px;
 
 }
 
@@ -191,6 +195,83 @@ p.error{
   color: red;
 
 }
+img.media-object{
+  padding: 3px 3px 3px 3px !important;
+
+}
+
+div.wide-box.page-description{
+  padding-top: 20px;
+  padding-bottom: 30px;
+}
+
+div.wide-box{
+
+}
+
+div.round-corners{
+  border: 1px solid #d6d6d6;
+  border-radius: 6px;
+}
+
+div.box{
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+}
+section.client-request-box{
+  border-top: 2px solid #bbb;
+}
+a.right{
+  left: 555px;
+  position: relative;
+}
+
+div.box-title{
+  border-bottom: 1px solid #DDD;
+  padding-bottom: 5px;
+}
+
+div#t-stats p{
+  margin: 10px 0 0;
+  padding: 5px 0 0;
+}
+
+.report-row{
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+.icon-gray{
+  opacity: 0.2 !important;
+  padding-right: 5px;
+}
+
+.row{
+  margin-top: 50px;
+}
+.right-btn{
+  left: 457px;
+  position: relative;
+  margin: 0px !important;
+}
+
+.box-shadow.gray{
+
+  background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#ebebeb));
+}
+
+label {
+  #width: 235px !important;
+  #float: left;
+}
+textarea.question{
+  width: 360px !important;
+
+}
+
+
 
 //div.span12.all-issue{
 //  padding-bottom: 10px;
@@ -225,3 +306,4 @@ p.error{
 //div.review{
 //  float:right;
 //}
+

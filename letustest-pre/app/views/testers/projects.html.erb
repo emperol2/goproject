@@ -66,8 +66,110 @@
 
 <% provide(:title, @tester.fname) %>
 
-<div class="container">
-  <div id="user-left">
+<div class="clearfix wide-box page-description">
+  <div class="container">
+    <h2>Do you have a product or service you want to have tested?</h2>
+    <div class="comment">We call these testing projects Challenges. This means you challenge testers to give their best to make your product better. Sounds good? We can't wait to see what new and exciting challenges you set up for our testers.</div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="span9">
+    <!-- In progress tests -->
+    <section id="inprogress" class="client-version-box">
+      <div class="client-version-section">
+        <!-- earn-title -->
+        <div class="client-version-title">
+          <div class="title">
+            <h2>ALL YOUR CHALLENGES</h2>
+          </div>
+        </div>
+
+        <div class="media">
+          <a href="#" class="pull-left"><img src="http://lorempixel.com/64/64/" class="media-object" alt='' /></a>
+          <div class="media-body">
+            <h4 class="media-heading">
+              Nested media heading
+            </h4> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
+          </div>
+        </div>
+
+        <!-- table-box -->
+        <div class="table-box">
+          <table class="table table-bordered">
+            <thead>
+
+            <tr>
+              <th class="col1">Project name</th>
+              <!-- <th class="col2">Question</th>  -->
+              <th class="col2">Test Start</th>
+              <th class="col3">Test End</th>
+              <th class="clo4">URL</th>
+              <th class="clo5"># of Available Testers</th>
+              <th class="clo6"># of issues</th>
+              <th class="clo7">Assigned</th>
+              <th class="clo8"></th>
+            </tr>
+
+            </thead>
+            <tbody>
+            <% if @checknbofproject.count != 2 %>
+
+                <% @feedback.each do |feedback| %>
+
+                    <tr>
+                      <td class="col1"><%= link_to feedback.name, "/feedbacks/#{feedback.id}" %></td>
+                      <!-- <td class="col2"><%#= feedback.questions %></td>  -->
+                      <td class="col2"><%= feedback.updated_at %></td>
+                      <td class="col3"><%= feedback.duedate %></a></td>
+                      <td class="clo4"><%= feedback.url %></td>
+                      <td class="clo5"><%= feedback.avai_tester %></td>
+                      <td class="clo6"><%= feedback.issues.count %></td>
+                      <% if feedback.assignments.where('tester_id = ?', @tester.id).empty? %>
+                          <td class="clo7"><%= link_to 'Assigned ->', {:action => :assigned, :assigned => feedback.id}, :method => :put  %></td>
+                          <td class="clo8">You need to apply for this project first</td>
+                      <% else %>
+                          <td class="clo7">You are already Assigned</td>
+                          <td class="clo8"><%= link_to 'New Issue ->', new_issue_path(:feedback_id => feedback.id) %></td>
+                      <% end %>
+                    </tr>
+                <% end %>
+
+            <% else %>
+                <p class="error"> You have two projects already, you cannot have more > 2 projects </p>
+                <% @feedback.each do |feedback| %>
+                    <tr>
+                      <td class="col1"><%= link_to feedback.name, "/feedbacks/#{feedback.id}" %></td>
+                      <!-- <td class="col2"><%#= feedback.questions %></td>  -->
+                      <td class="col2"><%= feedback.updated_at %></td>
+                      <td class="col3"><%= feedback.duedate %></a></td>
+                      <td class="clo4"><%= feedback.url %></td>
+                      <td class="clo5"><%= feedback.avai_tester %></td>
+                      <td class="clo6"><%= feedback.issues.count %></td>
+                      <% if feedback.assignments.where('tester_id = ?', @tester.id).empty? %>
+                          <td class="clo7 inactive"><%= link_to 'Assigned ->', {:action => :assigned, :assigned => feedback.id}, :method => :put  %></td>
+                          <td class="clo8">You need to apply for this project first</td>
+                      <% else %>
+                          <td class="clo7">You are already Assigned</td>
+                          <td class="clo8"><%= link_to 'New Issue ->', new_issue_path(:feedback_id => feedback.id) %></td>
+                      <% end %>
+
+                    </tr>
+
+                <% end %>
+
+            <% end %>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+  <div class="span3">
     <h1>
       Welcome, <%= @tester.fname %> <br/>
     </h1>
@@ -90,88 +192,9 @@
 
   </div>
 
-  <div id="user-right">
-    <div id="content">
-      <!-- In progress tests -->
-      <section id="inprogress" class="client-version-box">
-        <div class="client-version-section">
-          <!-- earn-title -->
-          <div class="client-version-title">
-            <div class="title">
-              <h2>ALL YOUR CHALLENGES</h2>
-            </div>
-          </div>
-          <!-- table-box -->
-          <div class="table-box">
-            <table class="table table-bordered">
-              <thead>
 
-              <tr>
-                <th class="col1">Project name</th>
-                <!-- <th class="col2">Question</th>  -->
-                <th class="col2">Test Start</th>
-                <th class="col3">Test End</th>
-                <th class="clo4">URL</th>
-                <th class="clo5"># of Available Testers</th>
-                <th class="clo6"># of issues</th>
-                <th class="clo7">Assigned</th>
-                <th class="clo8"></th>
-              </tr>
 
-              </thead>
-              <tbody>
-              <% if @checknbofproject.count != 2 %>
-
-                  <% @feedback.each do |feedback| %>
-
-                      <tr>
-                        <td class="col1"><%= link_to feedback.name, "/feedbacks/#{feedback.id}" %></td>
-                        <!-- <td class="col2"><%#= feedback.questions %></td>  -->
-                        <td class="col2"><%= feedback.updated_at %></td>
-                        <td class="col3"><%= feedback.duedate %></a></td>
-                        <td class="clo4"><%= feedback.url %></td>
-                        <td class="clo5"><%= feedback.avai_tester %></td>
-                        <td class="clo6"><%= feedback.issues.count %></td>
-                        <% if feedback.assignments.where('tester_id = ?', @tester.id).empty? %>
-                            <td class="clo7"><%= link_to 'Assigned ->', {:action => :assigned, :assigned => feedback.id}, :method => :put  %></td>
-                            <td class="clo8">You need to apply for this project first</td>
-                        <% else %>
-                            <td class="clo7">You are already Assigned</td>
-                            <td class="clo8"><%= link_to 'New Issue ->', new_issue_path(:feedback_id => feedback.id) %></td>
-                        <% end %>
-                      </tr>
-                  <% end %>
-
-              <% else %>
-                  <p class="error"> You have two projects already, you cannot have more > 2 projects </p>
-                  <% @feedback.each do |feedback| %>
-                      <tr>
-                        <td class="col1"><%= link_to feedback.name, "/feedbacks/#{feedback.id}" %></td>
-                        <!-- <td class="col2"><%#= feedback.questions %></td>  -->
-                        <td class="col2"><%= feedback.updated_at %></td>
-                        <td class="col3"><%= feedback.duedate %></a></td>
-                        <td class="clo4"><%= feedback.url %></td>
-                        <td class="clo5"><%= feedback.avai_tester %></td>
-                        <td class="clo6"><%= feedback.issues.count %></td>
-                        <% if feedback.assignments.where('tester_id = ?', @tester.id).empty? %>
-                            <td class="clo7 inactive"><%= link_to 'Assigned ->', {:action => :assigned, :assigned => feedback.id}, :method => :put  %></td>
-                            <td class="clo8">You need to apply for this project first</td>
-                        <% else %>
-                            <td class="clo7">You are already Assigned</td>
-                            <td class="clo8"><%= link_to 'New Issue ->', new_issue_path(:feedback_id => feedback.id) %></td>
-                        <% end %>
-
-                      </tr>
-
-                  <% end %>
-
-              <% end %>
-
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-    </div>
-  </div>
 </div>
+
+
+

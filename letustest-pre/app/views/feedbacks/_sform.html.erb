@@ -12,13 +12,14 @@
     <% end %>
 
     <fieldset>
+      <legend>Tell us about your challenge.<br/><small>Tell testers about your challenge. What's your product or service about?</small></legend>
       <div class="field">
-        <%= f.label :name, "Your project name" %>
+        <%= f.label :name, "Your project name:" %>
         <%= f.text_field :name %>
       </div>
       <div class="question-field">
-        <%= f.label :questions, "Write your questions or website description here." %>
-        <%= f.text_area :questions, :rows => 10 %>
+        <%= f.label :questions, "Your website description:" %>
+        <%= f.text_area :questions, :rows => 8, class: "question", placeholder: "Example: Hackathon.io helps you organize, run, and promote the best Hackathons." %>
       </div>
       <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
     </fieldset>
