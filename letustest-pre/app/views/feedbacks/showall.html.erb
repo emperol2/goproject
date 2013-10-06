@@ -1,92 +1,100 @@
-<% provide(:title, 'Show All Bug') %>
+<% provide(:title, 'Show all bug') %>
+
 <div class="container">
-  <% if current_user %>
-      <div id="user-left">
-        <h1>
-          <%= gravatar_for @user %> <br/>
-          Welcome, <%= @user.name %> <br/>
-        </h1>
-        <%= @user.email %> <br/>
-        <%= link_to "DASHBOARD", current_user, class: "profile-btn" %> <br/>
+  <div class="row">
+    <div class="span9">
+      <div class="box round-corners box-shadow overflow">
+
+        <div class="name">
+          <img src="http://placekitten.com/150/110" class="img-padding">
+        </div>
+        <h4><%= @feedback.name %></h4>
+        <p>www.google.com</p>
+        <div class="btn-group pull-right">
+          <a href="#" class="btn btn-mini">New Issue</a>
+          <a class="btn btn-mini ajax-modal" href="#">Info</a>
+        </div>
+
+        <div class="main-tabs clearfix ui-corner-bottom">
+          <!-- <a class="pull-left " href="#">Issues</a> -->
+          <%= link_to "Issues", showall_feedback_path, :class => "pull-left active" %>
+          <!-- <a class="pull-left active" href="#">Info</a> -->
+          <%= link_to "Info", feedback_path, :class => "pull-left" %>
+          <%= link_to "Testers", testers_feedback_path, :class => "pull-left" %>
+          <a class="pull-left " href="#">Files</a>
+        </div>
 
       </div>
-  <% end %>
+    </div>
 
-  <% if current_tester %>
-      <div id="user-left">
-        <h1>
-          Welcome, <%= @tester.fname %> <br/>
-        </h1>
-        <%= @tester.email %> <br/>
-        <%= link_to "DASHBOARD", current_tester, class: "profile-btn" %> <br/>
-      </div>
-  <% end %>
-
-  <div id="user-right">
-    <div id="content">
-
-      <div>
-        <%= link_to "Show all bug", showall_feedback_path %>
-
-        <% if current_tester %>
-            | <%= link_to "My bug", mybug_feedback_path %>
-        <% end %>
+    <div class="span3">
+      <div class="box round-corners box-shadow">
+        <p>You are a project's owner.</p>
+        <p>Here we can place either client information or tester's score information.</p>
 
       </div>
-      <div id= "verify-request">
-        <h2>View all issues</h2>
-        <p>Please click each issue to see the details of bugs</p>
-      </div>
+    </div>
 
-      <p class="url">
+    <div class="span9">
+      <div class="box round-corners box-shadow">
+
         <% @issue.each do |issue| %>
             <table class="table table-hover">
-            <thead>
-            <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Priority</th>
-            <th>Description</th>
-            <th>Approval Status</th>
-            <th><span style="color: blue;">Comments</span></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-            <!-- <td><%= link_to issue.id, :controller => "issues", :action => "show", :id => issue.id %></td> -->
-            <td><%= link_to issue.id, feedback_issue_path(@feedback, issue.id) %></td>
-            <td><%= issue.tester.fname %></td>
-            <td><%= issue.priority %></td>
-            <td><%= issue.description %></td>
-            <td style="font-weight: bold;"><%= issue.approvalstatus %></td>
-            <td style="font-weight: bold; color: blue;"><%= issue.comments.count %></td>
-            </tr>
+              <thead>
+              <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Priority</th>
+                <th>Description</th>
+                <th>Approval Status</th>
+                <th><span style="color: blue;">Comments</span></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <!-- <td><%= link_to issue.id, :controller => "issues", :action => "show", :id => issue.id %></td> -->
+                <td><%= link_to issue.id, feedback_issue_path(@feedback, issue.id) %></td>
+                <td><%= issue.tester.fname %></td>
+                <td><%= issue.priority %></td>
+                <td><%= issue.description %></td>
+                <td style="font-weight: bold;"><%= issue.approvalstatus %></td>
+                <td style="font-weight: bold; color: blue;"><%= issue.comments.count %></td>
+              </tr>
 
-            </tbody>
+              </tbody>
             </table>
 
             <!--<div class="row-fluid">-->
-              <!--<div class="span12 all-issue">-->
+            <!--<div class="span12 all-issue">-->
 
-                <!--<div class="issue-row">-->
-                  <!--<div class="img">-->
-                    <!--<img src="//placehold.it/50x50"></div>-->
-                  <!--<div class="title">-->
-                    <!--<h3 class="issue-title"><%= issue.title %></h3>-->
-                    <!--<div class="by-user"> Aenean sit amet felis dolor, in sagittis nisi.-->
-                      <!--<span class="comment"> <%= issue.comments.count %> comment(s) </span>-->
-                    <!--</div>-->
-                  <!--</div>-->
-                  <!--<div class="review"> <%= issue.approvalstatus %> </div>-->
+            <!--<div class="issue-row">-->
+            <!--<div class="img">-->
+            <!--<img src="//placehold.it/50x50"></div>-->
+            <!--<div class="title">-->
+            <!--<h3 class="issue-title"><%= issue.title %></h3>-->
+            <!--<div class="by-user"> Aenean sit amet felis dolor, in sagittis nisi.-->
+            <!--<span class="comment"> <%= issue.comments.count %> comment(s) </span>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="review"> <%= issue.approvalstatus %> </div>-->
 
-                <!--</div>-->
+            <!--</div>-->
 
-              <!--</div>-->
+            <!--</div>-->
             <!--</div>-->
 
 
         <% end %>
-        </p>
-        </div>
+      </div>
+    </div>
+
+    <div class="span3">
+      <div class="box round-corners box-shadow">
+        <p>span 3</p>
+        <p>This box can be help or special information for testers.</p>
+        <p>Contact client: <%= mail_to(@user.email) %></p>
+      </div>
+    </div>
+
   </div>
 </div>

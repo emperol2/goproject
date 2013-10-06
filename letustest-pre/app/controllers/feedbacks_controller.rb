@@ -48,6 +48,7 @@ class FeedbacksController < ApplicationController
     @user = User.find(current_user)
     @feedback = Feedback.new
 
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @feedback }
@@ -73,8 +74,15 @@ class FeedbacksController < ApplicationController
 
     respond_to do |format|
       if @feedback.save
-        format.html { redirect_to @feedback, notice: 'Feedback was successfully created.' }
-        format.json { render json: @feedback, status: :created, location: @feedback }
+
+        @user = User.find(current_user)
+        @feedbackobj = Feedback.find_last_by_user_id(@user.id)
+        #@idx = Feedback.where("feedback_id = ? AND user_id = ?", @feedbackobj.id, @user.id)
+        format.html { redirect_to manage_feedback_path(@feedbackobj.id), :flash => { :success => "Your challenge was added successfully" } }#, notice: 'Feedback was successfully created.' }
+        format.json { render json: manage_feedback_path, status: :created, location: manage_feedback_path }
+
+        #format.html { redirect_to manage_feedback_path, notice: 'Feedback was successfully created.' }
+        #format.json { render json: manage_feedback_path, status: :created, location: manage_feedback_path }
       else
         format.html { render action: "new" }
         format.json { render json: @feedback.errors, status: :unprocessable_entity }
@@ -170,6 +178,57 @@ class FeedbacksController < ApplicationController
 
     #@feedback.update_attributes(params[:feedback])
 
+  end
+
+  def manage
+
+    @feedback = Feedback.find(params[:id])
+    if current_tester
+      @tester = Tester.find(current_tester)
+      @feedback.tester_id = @feedback.tester_id.to_i
+
+
+      @project_score = Assignment.where("tester_id = ? AND feedback_id = ?", @tester.id, @feedback.id)
+    elsif current_user
+      @user = User.find(current_user)
+      @project_tester = @feedback.testers.all
+    end
+
+    if @tester == nil
+      @user = User.find(current_user)
+      if @feedback.user_id != @user.id
+        redirect_to current_user, notice: 'This requested project is not belong to your account!'
+      end
+      #elsif @feedback.tester_id != @tester.id
+      # redirect_to current_tester, notice: 'This requested project is not belong to your account!'
+    end
+    #@findallissue = @feedback.issues.all
+
+  end
+
+  def testers
+
+    @feedback = Feedback.find(params[:id])
+    if current_tester
+      @tester = Tester.find(current_tester)
+      @feedback.tester_id = @feedback.tester_id.to_i
+
+
+      @project_score = Assignment.where("tester_id = ? AND feedback_id = ?", @tester.id, @feedback.id)
+    elsif current_user
+      @user = User.find(current_user)
+      @project_tester = @feedback.testers.all
+    end
+
+    if @tester == nil
+      @user = User.find(current_user)
+      if @feedback.user_id != @user.id
+        redirect_to current_user, notice: 'This requested project is not belong to your account!'
+      end
+      #elsif @feedback.tester_id != @tester.id
+      # redirect_to current_tester, notice: 'This requested project is not belong to your account!'
+    end
+    #@findallissue = @feedback.issues.all
 
 
   end

@@ -1,0 +1,60 @@
+<% provide(:title, 'manage projects') %>
+
+<div class="container">
+  <div class="row">
+    <div class="span9">
+      <div class="box round-corners box-shadow overflow">
+
+        <div class="name">
+          <img src="http://placekitten.com/150/110" class="img-padding">
+        </div>
+        <h4><%= @feedback.name %></h4>
+        <p>www.google.com</p>
+        <div class="btn-group pull-right">
+          <a href="#" class="btn btn-mini">New Issue</a>
+          <a class="btn btn-mini ajax-modal" href="#">Info</a>
+        </div>
+
+        <div class="main-tabs clearfix ui-corner-bottom">
+          <!-- <a class="pull-left " href="#">Issues</a> -->
+          <%= link_to "Issues", showall_feedback_path, :class => "pull-left" %>
+          <!-- <a class="pull-left " href="#">Info</a> -->
+          <%= link_to "Info", feedback_path, :class => "pull-left" %>
+          <!-- <a class="pull-left active" href="">Testers</a> -->
+          <%= link_to "Testers", testers_feedback_path, :class => "pull-left active" %>
+          <a class="pull-left " href="#">Files</a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="span3">
+      <div class="box round-corners box-shadow">
+        <p>You are a project's owner.</p>
+        <p>Here we can place either client information or tester's score information.</p>
+
+      </div>
+    </div>
+
+    <div class="span9">
+      <div class="box round-corners box-shadow">
+
+        <% @project_tester.each do |project_tester| %>
+
+            <p><%= link_to project_tester.fname, tester_path(project_tester.id) %></p>
+
+        <% end %>
+
+      </div>
+    </div>
+
+    <div class="span3">
+      <div class="box round-corners box-shadow">
+        <p>span 3</p>
+        <p>This box can be help or special information for testers.</p>
+        <p>Contact client: <%= mail_to(@user.email) %></p>
+      </div>
+    </div>
+
+  </div>
+</div>

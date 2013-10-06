@@ -270,6 +270,98 @@ textarea.question{
   width: 360px !important;
 
 }
+.nav-tabs.nav-stacked{
+
+  margin-top: 20px !important;
+}
+.improve-list li{
+  width: 45% ;
+  float: left ;
+  margin: 20px 15px;
+
+}
+.nav-tabs > .active > a{
+  background-color: #ffe936 !important;
+}
+
+.nav-stacked a{
+  color: #8a92a5 !important;
+}
+
+.improve-list h3{
+  font-size: 16px;
+  color:#4c4c46;
+  line-height: 18px;
+  margin: 0;
+
+}
+
+.improve-list p{
+  font-size: 12px;
+  line-height: 1.4;
+  margin: 8px 0;
+}
+
+.progress{
+  height: 8px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.block{
+  float: left;
+}
+
+.analytics-wrapper{
+  text-align: center;
+
+}
+
+.main-tabs{
+  border: 1px solid;
+  #position: absolute;
+  #left: 360px;
+  float: left;
+  border-color: #DDD;
+}
+
+.nav-justified > .active > a{
+  background-color: #DDD !important;
+}
+
+.img-padding{
+  padding-right: 15px !important;
+  padding-bottom: 4px;
+}
+.name {
+  float: left;
+  position: relative;
+}
+.main-tabs a.pull-left{
+  padding: 8px 25px;
+  float: left;
+}
+
+.overflow{
+  overflow: hidden;
+}
+
+.pull-left{
+  color: black;
+}
+
+a.pull-left.active{
+  background: #DDD !important;
+}
+a.pull-left:hover{
+  background: #DDD !important;
+  color: black !important;
+  text-decoration: none !important;
+}
+
+.gray > .active > a{
+  background: #ffffff !important;
+
+}
 
 
 
