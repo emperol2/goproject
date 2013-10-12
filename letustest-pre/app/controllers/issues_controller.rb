@@ -14,6 +14,7 @@ class IssuesController < ApplicationController
   # GET /issues/1.json
   def show
     @issue = Issue.find(params[:id])
+    @feedback = Feedback.find(params[:feedback_id])
     @comment = Comment.new
 
     if current_tester != nil
@@ -26,6 +27,7 @@ class IssuesController < ApplicationController
 
     #@comment.issue_id = @issue.id
 
+    @numissue = @issue.comments.all
     @commentofissue = @issue.comments.order("created_at DESC")
     ##@commentofissue = @commentofissue.order("created_at DESC")
 
@@ -115,7 +117,7 @@ class IssuesController < ApplicationController
         @oAssignment.update(@oAssignment, :score => x.score)
       end
 
-      redirect_to issue_path, notice: 'Approved'
+      redirect_to feedback_issue_path(@get_feedbackID, @issue.id), notice: 'This issue has been approved'
 
       #@issue.tester.score = @issue.tester.score.to_i + 10.to_i
       #@issue.tester.update_attributes(:score => @issue.tester.score)
@@ -128,7 +130,7 @@ class IssuesController < ApplicationController
         @oAssignment.update(@oAssignment, :score => x.score)
       end
 
-      redirect_to issue_path, notice: 'Rejected'
+      redirect_to feedback_issue_path(@get_feedbackID, @issue.id), notice: 'This issue has been rejected'
 
     end
 

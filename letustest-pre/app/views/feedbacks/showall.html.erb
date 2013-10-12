@@ -11,6 +11,7 @@
         <h4><%= @feedback.name %></h4>
         <p>www.google.com</p>
         <div class="btn-group pull-right">
+          <%#= link_to "New Issue", new_issue_path(:feedback_id => @feedback.id), :class => "btn btn-mini" %>
           <a href="#" class="btn btn-mini">New Issue</a>
           <a class="btn btn-mini ajax-modal" href="#">Info</a>
         </div>
@@ -36,63 +37,145 @@
     </div>
 
     <div class="span9">
-      <div class="box round-corners box-shadow">
+      <ul class="nav nav-tabs">
+        <li class="gray active">
+          <%= link_to (showall_feedback_path) do %>
+              Open Issues <span class="label label-info"><%= @issue.count %></span>
+          <%end%>
+        </li>
+        <!-- <li class="gray active"><a href="#">Open Issues <span class="label label-info"><%= @issue.count %></span></a></li>-->
+        <li><a href="#">Closed Issues</a></li>
+        <li><a href="#">Tab2</a></li>
+      </ul>
+      <!-- <div class="box round-corners box-shadow overflow"> -->
+      <div class="box-shadow overflow">
 
         <% @issue.each do |issue| %>
-            <table class="table table-hover">
-              <thead>
-              <tr>
-                <th>ID</th>
-                <th>Title</th>
-                <th>Priority</th>
-                <th>Description</th>
-                <th>Approval Status</th>
-                <th><span style="color: blue;">Comments</span></th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr>
-                <!-- <td><%= link_to issue.id, :controller => "issues", :action => "show", :id => issue.id %></td> -->
-                <td><%= link_to issue.id, feedback_issue_path(@feedback, issue.id) %></td>
-                <td><%= issue.tester.fname %></td>
-                <td><%= issue.priority %></td>
-                <td><%= issue.description %></td>
-                <td style="font-weight: bold;"><%= issue.approvalstatus %></td>
-                <td style="font-weight: bold; color: blue;"><%= issue.comments.count %></td>
-              </tr>
 
-              </tbody>
-            </table>
+            <%#= link_to feedback_issue_path(@feedback, issue.id) do %>
 
-            <!--<div class="row-fluid">-->
-            <!--<div class="span12 all-issue">-->
+            <div class="media relative">
+              <div class="forid"><span class="issueid">#<%= issue.id %></span></div>
+              <a href="#" class="pull-left"><img src="http://lorempixel.com/64/64/" class="media-object" alt='' /></a>
+              <div class="media-body">
+                <h4 class="media-heading"><%= link_to issue.title, feedback_issue_path(@feedback, issue.id) %></h4>
+                <%= truncate(issue.description, length: 85) %></br>
+                <span class="label label-default">by <%= issue.tester.fname %></span> |
+                created at <%= time_ago_in_words(issue.created_at.to_datetime) %> ago | <span class="label label-important"><%= issue.priority %></span>
+              </div>
+              <div class="on-right">
+                <span class="label label-success status-right"><%= issue.approvalstatus %></span></br>
+                <span class="comment"><%= pluralize(issue.comments.count, 'comment') %></span>
+              </div>
+            </div>
 
-            <!--<div class="issue-row">-->
-            <!--<div class="img">-->
-            <!--<img src="//placehold.it/50x50"></div>-->
-            <!--<div class="title">-->
-            <!--<h3 class="issue-title"><%= issue.title %></h3>-->
-            <!--<div class="by-user"> Aenean sit amet felis dolor, in sagittis nisi.-->
-            <!--<span class="comment"> <%= issue.comments.count %> comment(s) </span>-->
-            <!--</div>-->
-            <!--</div>-->
-            <!--<div class="review"> <%= issue.approvalstatus %> </div>-->
-
-            <!--</div>-->
-
-            <!--</div>-->
-            <!--</div>-->
-
-
+            <%# end %>
         <% end %>
+
+        <!--<table class="table table-hover">-->
+        <!--<thead>-->
+        <!--<tr>-->
+        <!--<th>ID</th>-->
+        <!--<th>Title</th>-->
+        <!--<th>Priority</th>-->
+        <!--<th>Description</th>-->
+        <!--<th>Approval Status</th>-->
+        <!--<th><span style="color: blue;">Comments</span></th>-->
+        <!--</tr>-->
+        <!--</thead>-->
+        <!--<tbody>-->
+        <!--<tr>-->
+        <!--<td><%#= link_to issue.id, :controller => "issues", :action => "show", :id => issue.id %></td>-->
+        <!--<td><%#= link_to issue.id, feedback_issue_path(@feedback, issue.id) %></td>-->
+        <!--<td><%#= issue.tester.fname %></td>-->
+        <!--<td><%#= issue.priority %></td>-->
+        <!--<td><%#= issue.description %></td>-->
+        <!--<td style="font-weight: bold;"><%#= issue.approvalstatus %></td>-->
+        <!--<td style="font-weight: bold; color: blue;"><%#= issue.comments.count %></td>-->
+        <!--</tr>-->
+
+        <!--</tbody>-->
+        <!--</table>-->
+
+        <!--<div class="row-fluid">-->
+        <!--<div class="span12 all-issue">-->
+
+        <!--<div class="issue-row">-->
+        <!--<div class="img">-->
+        <!--<img src="//placehold.it/50x50"></div>-->
+        <!--<div class="title">-->
+        <!--<h3 class="issue-title"><%#= issue.title %></h3>-->
+        <!--<div class="by-user"> Aenean sit amet felis dolor, in sagittis nisi.-->
+        <!--<span class="comment"> <%#= issue.comments.count %> comment(s) </span>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="review"> <%#= issue.approvalstatus %> </div>-->
+
+        <!--</div>-->
+
+        <!--</div>-->
+        <!--</div>-->
+
       </div>
     </div>
 
     <div class="span3">
       <div class="box round-corners box-shadow">
-        <p>span 3</p>
+        <!-- <p>span 3</p>
         <p>This box can be help or special information for testers.</p>
-        <p>Contact client: <%= mail_to(@user.email) %></p>
+        <p>Contact client: <%= mail_to(@user.email) %></p>-->
+        <div class="js-editable-labels-container">
+          <ul class="js-color-label-list filter-list color-label-list small " data-pjax="">
+            <h4>Labels</h4>
+            <li>
+              <a href="#" class="filter-item color-label  labelstyle-fc2929 zeroed" data-label="bug" rel="nofollow">
+                <span class="count">0</span>
+                <span class="color" style="background-color: #fc2929">&nbsp;</span>
+                <span class="octicon octicon-remove-close"></span>
+                <span class="name">bug</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="filter-item color-label  labelstyle-cccccc zeroed" data-label="duplicate" rel="nofollow">
+                <span class="count">0</span>
+                <span class="color" style="background-color: #cccccc">&nbsp;</span>
+                <span class="octicon octicon-remove-close"></span>
+                <span class="name">duplicate</span>
+              </a>          </li>
+            <li>
+              <a href="#" class="filter-item color-label  labelstyle-84b6eb zeroed" data-label="enhancement" rel="nofollow">
+                <span class="count">0</span>
+                <span class="color" style="background-color: #84b6eb">&nbsp;</span>
+                <span class="octicon octicon-remove-close"></span>
+                <span class="name">enhancement</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="filter-item color-label  labelstyle-e6e6e6 zeroed" data-label="invalid" rel="nofollow">
+                <span class="count">0</span>
+                <span class="color" style="background-color: #e6e6e6">&nbsp;</span>
+                <span class="octicon octicon-remove-close"></span>
+                <span class="name">invalid</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="filter-item color-label  labelstyle-cc317c zeroed" data-label="question" rel="nofollow">
+                <span class="count">0</span>
+                <span class="color" style="background-color: #cc317c">&nbsp;</span>
+                <span class="octicon octicon-remove-close"></span>
+                <span class="name">question</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="filter-item color-label  labelstyle-ffffff zeroed" data-label="wontfix" rel="nofollow">
+                <span class="count">0</span>
+                <span class="color" style="background-color: #ffffff">&nbsp;</span>
+                <span class="octicon octicon-remove-close"></span>
+                <span class="name">wontfix</span>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
 

@@ -136,7 +136,7 @@ class FeedbacksController < ApplicationController
       @user = User.find(current_user)
     end
     @feedback = Feedback.find(params[:id])
-    @issue = @feedback.issues.all
+    @issue = @feedback.issues.order("created_at DESC")
 
     #@comment_count = Issues
     #@feedback = Feedback.find(params[:id])

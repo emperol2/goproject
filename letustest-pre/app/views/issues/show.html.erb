@@ -1,116 +1,152 @@
-<% provide(:title, 'Verify your request') %>
+<% provide(:title, 'Show all bug') %>
+
 <div class="container">
-	<% if current_user %>
-	<div id="user-left">
-		<h1>
-			<%= gravatar_for @user %> <br/>
-			Welcome, <%= @user.name %> <br/>
-		</h1>
-		<%= @user.email %> <br/>
-		<%= link_to "DASHBOARD", current_user, class: "profile-btn" %> <br/>
+  <div class="row">
+    <div class="span9">
+      <div class="box round-corners box-shadow overflow">
 
-	</div>
-	<% end %>
+        <div class="name">
+          <img src="http://placekitten.com/150/110" class="img-padding">
+        </div>
+        <h4><%= @feedback.name %></h4>
+        <p>www.google.com</p>
+        <div class="btn-group pull-right">
+          <%#= link_to "New Issue", new_issue_path(:feedback_id => @feedback.id), :class => "btn btn-mini" %>
+          <a href="#" class="btn btn-mini">New Issue</a>
+          <a class="btn btn-mini ajax-modal" href="#">Info</a>
+        </div>
 
-	<% if current_tester %>
-	<div id="user-left">
-		<h1>
-			Welcome, <%= @tester.fname %> <br/>
-		</h1>
-		<%= @tester.email %> <br/>
-		<%= link_to "DASHBOARD", current_tester, class: "profile-btn" %> <br/>
-	</div>
-	<% end %>
+        <div class="main-tabs clearfix ui-corner-bottom">
+          <!-- <a class="pull-left " href="#">Issues</a> -->
+          <%= link_to "Issues", showall_feedback_path(@feedback.id), :class => "pull-left active" %>
+          <!-- <a class="pull-left active" href="#">Info</a> -->
+          <%= link_to "Info", feedback_path(@feedback.id), :class => "pull-left" %>
+          <%= link_to "Testers", testers_feedback_path(@feedback.id), :class => "pull-left" %>
+          <a class="pull-left " href="#">Files</a>
+        </div>
 
-	<div id="user-right">
-		<div id="content">
-			<% if current_user %>
-			<div id= "verify-request">
-				<h2>Verify Request</h2>
-				<p>Please verify this information is correct. Click edit to make changes before purchasing the feedback.</p>
-			</div>
-			<% elsif current_tester %>
+      </div>
+    </div>
 
-			<div id= "verify-request">
-				<h2>Issue Information</h2>
-				<p>This is your issue</p>
-			</div>
-			<% end %>
+    <div class="span3">
+      <div class="box round-corners box-shadow">
+        <p>You are a project's owner.</p>
+        <p>Here we can place either client information or tester's score information.</p>
 
-			<p class="url">
-				<p>
-					<b>Title:</b>
-					<%= @issue.title %>
-				</p>
+      </div>
+    </div>
 
-				<p>
-					<b>Priority:</b>
-					<%= @issue.priority %>
-				</p>
+    <div class="span9">
+      <div class="box-shadow">
+        <div class="media relative">
+          <a href="#" class="pull-left"><img src="http://lorempixel.com/64/64/" class="media-object" alt='' /></a>
+          <div class="media-body">
 
-				<p>
-					<b>Description:</b>
-					<%= @issue.description %>
-				</p>
-			</p>
-			
-			<br/>
-			
-			<div>
-				<p>Approval Status: <%= @issue.approvalstatus %></p>
-				<% if current_user && @issue.approvalstatus == "Waiting for Approval"%>
-				<p>Change Approval Status: 
-				<%= link_to "Rejected", {:action => :approvalstatus, :approvalstatus => "Rejected"}, :method => :put %>
-				| <%= link_to "Approved", {:action => :approvalstatus, :approvalstatus => "Approved"},  :method => :put%>
-				</p>
-				<% end %>	
-				<p>Issue Status: New</p>
-			</div>
-			
-			<br/>
+            <span class="label label-default">by <%= @issue.tester.fname%></span> |
+            created at <%= time_ago_in_words(@issue.created_at.to_datetime) %> ago | <span class="label label-important"><%= @issue.priority %></span>
 
-			<%= link_to 'Edit', edit_issue_path(@issue) %> |
-			<%= link_to 'Back', issues_path %>
-			
-			
-			<br/>
-			<br/>
-			
-			<div id="comment">
-			Please leave your comment here:
-			
-			<br/>
-			<%= render :partial =>"comment" %>
-			
-			</div>
-			
-			<p class="url">
-				<% @commentofissue.each do |commentofissue| %>
-				<table class="table">  
-					<thead>  
-						<tr>  
-							<th>Name</th>  
-							<th>Description</th>  
-							<th>Create Date</th>  
-							<th>Update Date</th>  
-						</tr>  
-					</thead>  
-					<tbody>  
-						<tr>  
-							<td><%= commentofissue.tester_name %></td>  
-							<td><%= commentofissue.description %></td>  
-							<td><%= commentofissue.created_at %></td>  
-							<td><%= commentofissue.updated_at %></td>  
-						</tr>  
-					</tbody>  
-				</table>  
-				<% end %>
-			</p>
+            <h2><%= @issue.title %></h2>
+            <h4 style="color: black !important;">Description</h4>
+            <p><%= simple_format(@issue.description) %></p>
 
-		</div>
-	</div>
+          </div>
+
+        </div>
+        <div class="x">
+          <h3><%= pluralize(@issue.comments.count, 'Comment') %></h3>
+          <% if @issue.comments.count == 0 %>
+              <p class="text-warning"> There is no comment for this issue !</p>
+          <% end %>
+          <% @commentofissue.each do |commentofissue| %>
+              <div class="issue-comment clearfix">
+
+                <div class="comment-text">
+
+                  <p><%= simple_format(commentofissue.description) %></p>
+                </div>
+                <div class="user-info">
+                  <div class="comment-at">
+                    created at <%= time_ago_in_words(commentofissue.created_at) %> ago
+
+                  </div>
+                  <a href="#" class="pull-left"><img src="http://lorempixel.com/64/64/" class="media-object" alt='' /></a>
+                  <div class="user-detail">
+
+                    <span class="label label-default">by <%= commentofissue.tester_name %></span>
+                  </div>
+
+                </div>
+              </div>
+
+          <% end %>
+
+        </div>
+
+
+
+        <!--<p class="url">-->
+        <!--<% @commentofissue.each do |commentofissue| %>-->
+            <!--<table class="table">-->
+            <!--<thead>-->
+            <!--<tr>-->
+            <!--<th>Name</th>-->
+            <!--<th>Description</th>-->
+            <!--<th>Create Date</th>-->
+            <!--<th>Update Date</th>-->
+            <!--</tr>-->
+            <!--</thead>-->
+            <!--<tbody>-->
+            <!--<tr>-->
+            <!--<td><%= commentofissue.tester_name %></td>-->
+            <!--<td><%= commentofissue.description %></td>-->
+            <!--<td><%= commentofissue.created_at %></td>-->
+            <!--<td><%= commentofissue.updated_at %></td>-->
+            <!--</tr>-->
+            <!--</tbody>-->
+            <!--</table>-->
+            <!--<% end %>-->
+        <!--</p>-->
+
+
+        <div id="comment">
+          <h3>Comment</h3>
+
+          <%= render :partial =>"comment" %>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="span3">
+      <div class="box round-corners box-shadow">
+        <div>
+          <% if @issue.approvalstatus == "Waiting for Approval"%>
+              <p>Approval Status: <span class="label label-warning"><%= @issue.approvalstatus %></span></p>
+          <% else %>
+              <p>Approval Status: <span class="label label-success"><%= @issue.approvalstatus %></span></p>
+          <% end %>
+
+          <% if current_user && @issue.approvalstatus == "Waiting for Approval"%>
+              <p>Change Approval Status:
+                <span class="label label-important"><%= link_to "Rejected", {:action => :approvalstatus, :approvalstatus => "Rejected"}, :class => "status" , :method => :put %></span>
+                | <span class="label label-success"><%= link_to "Approved", {:action => :approvalstatus, :approvalstatus => "Approved"}, :class => "status",  :method => :put %></span>
+              </p>
+          <% end %>
+          <p>Issue Status: <span class="label label-info">New</span></p>
+        </div>
+        <br/>
+
+        <%= link_to 'Edit', edit_issue_path(@issue) %> |
+        <%= link_to 'Back', issues_path %>
+
+
+        <br/>
+        <br/>
+
+
+      </div>
+    </div>
+  </div>
+
 </div>
-
-
-
-

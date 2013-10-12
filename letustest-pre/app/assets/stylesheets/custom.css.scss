@@ -197,6 +197,7 @@ p.error{
 }
 img.media-object{
   padding: 3px 3px 3px 3px !important;
+  padding-right: 8px !important;
 
 }
 
@@ -363,6 +364,129 @@ a.pull-left:hover{
 
 }
 
+.relative{
+  position: relative;
+}
+
+.on-right{
+  height: 0px;
+}
+
+.media-body{
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+  line-height: 18px;
+
+
+}
+.status-right{
+  position: absolute;
+  right: 0px;
+  top: 5px;
+}
+
+.comment{
+  #font-weight: bold;
+  position: absolute;
+  top: 50px;
+  right: 0px;
+
+}
+
+img.media-object:hover {
+  padding: 3px 3px 3px 3px !important;
+  padding-right: 8px !important;
+  background-color: white;
+}
+
+span.issueid{
+
+  float: left;
+  position: relative;
+  top: 26px;
+  padding-right: 8px;
+}
+
+.gray.active a{
+
+  background: #DDD !important;
+}
+
+.filter-list{
+
+  list-style-type: none;
+}
+
+ul.color-label-list .color{
+
+  display: block;
+  float: left;
+  margin-left: -5px;
+  margin-right: 4px;
+  width: 6px;
+  height: 14px;
+  border-radius: 3px;
+  border: 1px solid #fff;
+
+}
+
+ul.filter-list .filter-item .count {
+  font-weight: bold;
+  float: right;
+}
+
+ul.filter-list.small .filter-item {
+  font-size: 12px;
+  padding: 4px 4px 20px 10px;
+  margin: 0px 0px 0px 0px;
+  display: block;
+}
+
+ul.filter-list{
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
+.filter-item:hover {
+  background-color: #ebebeb;
+  border-radius: 3px;
+}
+
+.user-info {
+
+  float: right;
+  position: relative;
+  right: 30px;
+}
+
+.issue-comment{
+
+  border-bottom: 1px solid #DDD;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+
+}
+
+.longarea{
+  width: auto !important;
+}
+
+.text-warning{
+
+  color: #c09853;
+}
+
+a.status{
+
+  color: #ffffff;
+
+}
+a.status:hover{
+
+  color: #ffffff;
+  text-decoration: none;
+
+}
 
 
 //div.span12.all-issue{
