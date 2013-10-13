@@ -1,5 +1,63 @@
-<h1>New issue</h1>
+<!--<h1>New issue</h1>-->
 
-<%= render 'form' %>
+<!--<%#= render 'form' %>-->
 
-<%= link_to 'Back', issues_path %>
+<!--<%#= link_to 'Back', issues_path %>-->
+
+
+<% provide(:title, 'Show all bug') %>
+
+<div class="container">
+  <div class="row">
+    <div class="span9">
+      <div class="box round-corners box-shadow overflow">
+
+        <div class="name">
+          <img src="http://placekitten.com/150/110" class="img-padding">
+        </div>
+        <h4><%= @feedback.name %></h4>
+        <p>www.google.com</p>
+        <div class="btn-group pull-right">
+          <%#= link_to "New Issue", new_issue_path(:feedback_id => @feedback.id), :class => "btn btn-mini" %>
+          <a href="#" class="btn btn-mini">New Issue</a>
+          <a class="btn btn-mini ajax-modal" href="#">Info</a>
+        </div>
+
+        <div class="main-tabs clearfix ui-corner-bottom">
+          <!-- <a class="pull-left " href="#">Issues</a> -->
+          <%= link_to "Issues", showall_feedback_path(@feedback.id), :class => "pull-left active" %>
+          <!-- <a class="pull-left active" href="#">Info</a> -->
+          <%= link_to "Info", feedback_path(@feedback.id), :class => "pull-left" %>
+          <%= link_to "Testers", testers_feedback_path(@feedback.id), :class => "pull-left" %>
+          <a class="pull-left " href="#">Files</a>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="span3">
+      <div class="box round-corners box-shadow">
+        <p>You are a project's owner.</p>
+        <p>Here we can place either client information or tester's score information.</p>
+
+      </div>
+    </div>
+
+    <div class="span9">
+      <div class="box-shadow">
+        <h2>New issue</h2>
+
+        <%= render :partial =>"form" %>
+
+      </div>
+
+    </div>
+
+    <div class="span3">
+      <div class="box round-corners box-shadow">
+
+      </div>
+    </div>
+
+  </div>
+</div>

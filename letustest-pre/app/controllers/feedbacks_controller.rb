@@ -215,6 +215,7 @@ class FeedbacksController < ApplicationController
 
 
       @project_score = Assignment.where("tester_id = ? AND feedback_id = ?", @tester.id, @feedback.id)
+      @project_tester = @feedback.testers.all
     elsif current_user
       @user = User.find(current_user)
       @project_tester = @feedback.testers.all

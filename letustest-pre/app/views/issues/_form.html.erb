@@ -1,32 +1,41 @@
 <%= form_for(@issue) do |f| %>
 
-  <% if @issue.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@issue.errors.count, "error") %> prohibited this issue from being saved:</h2>
+    <% if @issue.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@issue.errors.count, "error") %> prohibited this issue from being saved:</h2>
 
-      <ul>
-      <% @issue.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% @issue.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <%= f.hidden_field "feedback_id", :value => @issue.feedback_id %>
+
+    <!-- <div class="field"> -->
+    <%#= f.label :title %> <!-- <br /> -->
+    <%= f.text_field :title, class: "input-xxlarge", :placeholder => "Title" %>
+    <!--</div>-->
+    <!--<div class="field">-->
+    <%#= f.label :priority %><!-- <br /> -->
+    <!-- <h3>Severity</h3> -->
+    <%#= f.text_field :priority %>
+    <div class="issue-severity">
+      <div class="control-group">
+        <label class="inline">Severity</label>
+        <label class="inline"><input type="radio" class="required-center" value="low" name="issue[priority]"> <span class="tippable label label-info" data-original-title="The issue affects a minor part of a system, and has very little impact on its operation. This severity level is assigned when a non-central requirement of a system (and with lower importance) is affected.">Low</span></label>
+        <label class="inline"><input type="radio" class="required-center" value="medium" name="issue[priority]"> <span class="tippable label label-warning" data-original-title="The issue affects a minor part of a system, but has some impact on its operation. This severity level is assigned when a non-central requirement of a system is affected.">Medium</span></label>
+        <label class="inline"><input type="radio" class="required-center" value="high" name="issue[priority]"> <span class="tippable label label-important" data-original-title="The issue affects a crucial part of a system, and must be fixed in order for it to resume normal operation.">High</span></label>
+      </div>
     </div>
-  <% end %>
-
-<%= f.hidden_field "feedback_id", :value => @issue.feedback_id %>
-
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :priority %><br />
-    <%= f.text_field :priority %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <!--</div>-->
+    <!--<div class="field">-->
+    <%#= f.label :description %><!-- <br /> -->
+    <%= f.text_area :description, :size => "100x10", :class => "longarea", :placeholder => "Description about your issue.                                                                                                       Example: Hackathon.io helps you organize, run, and promote the best Hackathons." %>
+    <!--</div>-->
+    <div style="float:right; position: relative; right: 70px">
+      <%= f.submit "Submit new issue", class: "btn btn-large btn-primary" %>
+    </div>
 <% end %>
