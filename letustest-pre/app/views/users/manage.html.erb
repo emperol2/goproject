@@ -13,7 +13,14 @@
 
       <div class="span3">
         <ul class="nav nav-tabs nav-stacked">
-          <li class="view-all"><a href="#"><i class="icon-arrow-left icon-gray"></i>Dashboard</a></li>
+
+          <li class="view-all">
+            <%= link_to current_user do %>
+                <i class="icon-arrow-left icon-gray"></i>Dashboard
+            <% end %>
+          </li>
+
+          <!--<li class="view-all"><a href="#"><i class="icon-arrow-left icon-gray"></i>Dashboard</a></li>-->
           <li class="active"><a href="#">Manage Profile</a></li>
           <li><a href="#"><i class="icon-edit icon-gray"></i>Basic Information &amp; Photo</a></li>
           <li><a href="#"><i class="icon-certificate icon-gray"></i>Contact Information</a></li>

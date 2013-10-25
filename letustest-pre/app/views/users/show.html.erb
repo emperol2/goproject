@@ -10,15 +10,17 @@
       <div class="box round-corners box-shadow" id="t-stats">
 
         <%= gravatar_for @user %>
-        <h1> Welcome, <%= @user.name %></h1>
-        E-mail: <%= @user.email %> <br/>
+        <h2> Welcome, <%= @user.name %></h2>
+        <p>E-mail: <%= @user.email %></p>
 
       </div>
 
       <div class="box round-corners box-shadow" id="t-stats">
         <div class="box-title"><h2>Statistics</h2></div>
         <div class="box-content">
-          <p><span class="badge">3760</span> Testlio score <a href="#"><i class="icon-gray icon-question-sign"></i></a></p>
+          <p><span class="badge">3760</span> Testlio score
+            <a href="#" rel="tooltip" title="first tooltip for score<br/>This is the second line score"
+               data-placement="top" data-toggle="tooltip"><i class="icon-gray icon-question-sign"></i></a></p>
           <p><span class="badge">1026</span> profile views</p>
         </div>
       </div>
@@ -29,17 +31,17 @@
           <ul class="unstyled report">
             <li class="clearfix report-row">
               <i class="icon-facetime-video icon-gray"></i>Facebook Connected<i class="icon-ok-green pull-right"></i>
-              <div class="report-row-actions comment">282 Friends</div>
+              <div class="report-row-actions">282 Friends</div>
             </li>
             <li class="clearfix report-row"><i class="icon-book icon-gray"></i>LinkedIn Connected<i class="icon-ok-green pull-right"></i>
-              <div class="report-row-actions comment">Validated</div>
+              <div class="report-row-actions">Validated</div>
             </li>
           </ul>
         </div>
       </div>
 
-      <%= link_to "EDIT PROFILE", edit_user_path, class: "profile-btn" %>
-      <%= link_to "MANAGE PROFILE", manage_user_path, class: "project-btn" %>
+      <%#= link_to "EDIT PROFILE", edit_user_path, class: "profile-btn" %>
+      <%#= link_to "MANAGE PROFILE", manage_user_path, class: "project-btn" %>
     </div>
     <!-- end span 3 -->
 
@@ -56,31 +58,41 @@
                 <h2>PUBLIC PROJECTS</h2>
               </div>
             </div>
-            <!-- table-box -->
-            <div class="table-box">
-              <table class="table table-bordered">
-                <thead>
+            <% if @public.empty? %>
 
-                <tr>
-                  <th class="col1">Project name</th>
-                  <th class="col2">Status</th>
-                  <th class="col3">Test Start</th>
-                  <th class="col4">Test End</th>
-                </tr>
+                <div class="table-box">
+                  <div style="height: 250px; text-align: center; vertical-align: middle; display: table-cell;">
+                    <p style="margin-left: 234px;width: 170px;margin-top: 36px;">No available projects</p>
+                  </div>
+                </div>
 
-                </thead>
-                <tbody>
-                <% @user.feedbacks.each do |feedback| %>
+            <% else %>
+                <!-- table-box -->
+                <div class="table-box">
+                  <table class="table table-bordered">
+                    <thead>
+
                     <tr>
-                      <td class="col1"><%= link_to feedback.name, "/feedbacks/#{feedback.id}" %></td>
-                      <td class="col2"><%= feedback.status %></td>
-                      <td class="col3"><%= feedback.updated_at %></td>
-                      <td class="col4"><%= feedback.duedate %></a></td>
+                      <th class="col1">Project name</th>
+                      <th class="col2">Status</th>
+                      <th class="col3">Test Start</th>
+                      <th class="col4">Test End</th>
                     </tr>
-                <% end %>
-                </tbody>
-              </table>
-            </div>
+
+                    </thead>
+                    <tbody>
+                    <% @public.each do |feedback| %>
+                        <tr>
+                          <td class="col1"><%= link_to feedback.name, "/feedbacks/#{feedback.id}" %></td>
+                          <td class="col2"><%= feedback.status %></td>
+                          <td class="col3"><%= feedback.updated_at %></td>
+                          <td class="col4"><%= feedback.duedate %></a></td>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                  </table>
+                </div>
+            <% end %>
           </div>
         </section>
         <!-- Draft requests -->
@@ -88,7 +100,7 @@
           <div class="client-request-section">
             <!-- earn-title -->
             <div class="client-request-title">
-              <a href="#" class="button right">Need help?</a>
+              <a href="#" rel="tooltip" class="button right" title="first tooltip" data-placement="top" data-toggle="tooltip">Need help?</a>
 
               <div class="title">
                 <h2>PRIVATE PROJECTS</h2>
@@ -129,18 +141,53 @@
           <div class="client-request-section">
             <!-- earn-title -->
             <div class="client-request-title">
-              <a href="#" class="button right">Need help?</a>
+              <a href="#" rel="tooltip" class="button right" title="The User cannot add more issue on Completed Project" data-placement="top" data-toggle="tooltip">Need help?</a>
 
               <div class="title">
                 <h2>COMPLETED PROJECTS</h2>
               </div>
             </div>
             <!-- table-box -->
-            <div class="table-box">
-              <div style="height: 250px; text-align: center; vertical-align: middle; display: table-cell;">
-                <p style="margin-left: 234px;width: 170px;margin-top: 36px;">No available projects</p>
-              </div>
-            </div>
+
+            <% if @completed.empty? %>
+
+                <div class="table-box">
+                  <div style="height: 250px; text-align: center; vertical-align: middle; display: table-cell;">
+                    <p style="margin-left: 234px;width: 170px;margin-top: 36px;">No available projects</p>
+                  </div>
+                </div>
+
+            <% else %>
+
+                <div class="table-box">
+                  <table class="table table-bordered">
+                    <thead>
+
+                    <tr>
+                      <th class="col1">Project name</th>
+                      <th class="col2">Status</th>
+                      <th class="col3">Test Start</th>
+                      <th class="col4">Test End</th>
+                    </tr>
+
+                    </thead>
+                    <tbody>
+                    <% @completed.each do |completelist| %>
+                        <%# @user.feedbacks.each do |feedback| %>
+                        <tr>
+                          <td class="col1"><%= link_to completelist.name, "/feedbacks/#{completelist.id}" %></td>
+                          <td class="col2"><%= completelist.status %></td>
+                          <td class="col3"><%= completelist.updated_at %></td>
+                          <td class="col4"><%= completelist.duedate %></a></td>
+                        </tr>
+                    <% end %>
+
+                    </tbody>
+                  </table>
+                </div>
+
+            <% end %>
+
           </div>
         </section>
       </div>

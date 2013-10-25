@@ -6,7 +6,7 @@ class Feedback < ActiveRecord::Base
   #has_and_belongs_to_many :testers
   has_many :issues
   attr_accessible :duedate, :email, :firstname, :lastname, :numofbugs, :questions, :telephone, :url, :name, :typeofbugs, :bugsystem, :numberoftesters,
-  :version, :testinginstr, :status, :user_id, :avai_tester
+  :version, :testinginstr, :status, :user_id, :avai_tester, :project_type
   
   #VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   #validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }

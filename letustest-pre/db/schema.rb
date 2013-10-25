@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130921081802) do
+ActiveRecord::Schema.define(:version => 20131025151531) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "feedback_id"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20130921081802) do
     t.string   "tester_id"
     t.integer  "nboftester"
     t.integer  "avai_tester"
+    t.string   "project_type"
   end
 
   create_table "issues", :force => true do |t|

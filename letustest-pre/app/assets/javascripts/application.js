@@ -12,7 +12,14 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require myjs
+//= require bootstrap
 //= require_tree .
+
+$(document).ready(function (){
+    $("a[rel=tooltip]").tooltip()
+    $(".dropdown-toggle").dropdown()
+});
 
 $(function($) {
     var optionsEST = {

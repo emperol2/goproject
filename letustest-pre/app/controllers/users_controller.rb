@@ -13,6 +13,8 @@ class UsersController < ApplicationController
       flash[:error] = "You are not allow to see other profiles."
       redirect_to current_user
     end
+    @public = @user.feedbacks.where("project_type = ? AND status = ?", "public", "active")
+    @completed = @user.feedbacks.where("status = ?", "completed")
 
 
   end
