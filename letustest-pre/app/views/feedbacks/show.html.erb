@@ -29,8 +29,15 @@
 
     <div class="span3">
       <div class="box round-corners box-shadow">
-        <p>You are a project's owner.</p>
-        <p>Here we can place either client information or tester's score information.</p>
+        <% if current_tester %>
+            <p>Your project score: <%= @project_score.first.score %></p>
+            <p>Here we can place either client information or tester's score information.</p>
+
+        <% else %>
+            <p>You are a project's owner.</p>
+            <p>Here we can place either client information or tester's score information.</p>
+
+        <% end %>
 
       </div>
     </div>

@@ -1,200 +1,198 @@
-<!-- <p id="notice"><%= notice %></p>
+<% provide(:title, 'Show all bug') %>
 
-<p>
-<b>Fname:</b>
-<%= @tester.fname %>
-</p>
+<div class="container">
+  <div class="row">
+    <div class="span9">
+      <h2>Do you have a product or service you want to have tested?</h2>
+      <p>We call these testing projects Challenges. This means you challenge testers to give their best to make your product better.
+        Sounds good? We can't wait to see what new and exciting challenges you set up for our testers.</p>
+      <ul class="nav nav-tabs">
+        <li class="gray active">
+          <%= link_to (projects_path) do %>
+              Public <span class="label label-info"><%= @feedback.count() %></span>
+          <% end %>
+        </li>
+        <!-- <li class="gray active"><a href="#">Open Issues <span class="label label-info"><%#= @issue.count %></span></a></li>-->
+        <li><a href="#">Private</a></li>
+        <li><a href="#">Tab2</a></li>
+      </ul>
+      <!-- <div class="box round-corners box-shadow overflow"> -->
+      <div class="box-shadow overflow">
 
-<p>
-<b>Lname:</b>
-<%= @tester.lname %>
-</p>
+        <% if @checknbofproject.count == 2 %>
+            <div class="alert alert-error"><span style="opacity: 1; ">You can not apply for any project.</span>
+              <a class="close" data-dismiss="alert" href="#" onclick="$(this).parent().fadeOut();return false;">×</a>
+            </div>
+        <% end %>
 
-<p>
-<b>Email:</b>
-<%= @tester.email %>
-</p>
+        <% @feedback.each do |feedback| %>
 
-<p>
-<b>Gender:</b>
-<%= @tester.gender %>
-</p>
+            <%#= link_to feedback_issue_path(@feedback, issue.id) do %>
 
-<p>
-<b>Phone:</b>
-<%= @tester.phone %>
-</p>
+            <div class="media relative">
+              <div class="forid"><span class="issueid">#<%= feedback.id %></span></div>
+              <a href="#" class="pull-left"><img src="http://lorempixel.com/64/64/" class="media-object" alt='' /></a>
+              <div class="media-body">
+                <h4 class="media-heading"><%= link_to feedback.name, "/feedbacks/#{feedback.id}" %></h4>
+                <%= truncate(feedback.questions, length: 85) %></br>
+                <span class="label label-default">by <%= feedback.user.name %></span> |
+                created at <%= time_ago_in_words(feedback.created_at.to_datetime) %> ago |
+                <span class="label label-important"><%= feedback.url %></span>
+                <br/> <br/>
 
-<p>
-<b>City:</b>
-<%= @tester.city %>
-</p>
-
-<p>
-<b>Country:</b>
-<%= @tester.country %>
-</p>
-
-<p>
-<b>Twitterid:</b>
-<%= @tester.twitterid %>
-</p>
-
-<p>
-<b>Linkedinid:</b>
-<%= @tester.linkedinid %>
-</p>
-
-<p>
-<b>Paypalid:</b>
-<%= @tester.paypalid %>
-</p>
-
-<p>
-<b>Bankaccount:</b>
-<%= @tester.bankaccount %>
-</p>
-
-<p>
-<b>Aboutme:</b>
-<%= @tester.aboutme %>
-</p>
+                <% if @checknbofproject.count == 2 && feedback.assignments.where('tester_id = ?', @tester.id).empty? == false %>
 
 
-<%= link_to 'Edit', edit_tester_path(@tester) %> |
-<%= link_to 'Back', testers_path %> -->
 
-<% provide(:title, @tester.fname) %>
+                    <%#= link_to( url_for(:action => :assigned, :assigned => feedback.id, :method => :put), :class => "clear-hover") do %>
+                    <!-- <span class="label label-important clear-hover">Apply</span> | -->
+                    <%# end %>
 
-<div class="clearfix wide-box page-description">
-  <div class="container">
-    <h2>Do you have a product or service you want to have tested?</h2>
-    <div class="comment">We call these testing projects Challenges. This means you challenge testers to give their best to make your product better. Sounds good? We can't wait to see what new and exciting challenges you set up for our testers.</div>
-  </div>
-</div>
+                    <%= link_to(url_for(new_issue_path(:feedback_id => feedback.id)), :class => "clear-hover") do %>
+                        <span class="label label-success">New Issues</span>
+                    <% end %>
 
 
-<div class="row">
-  <div class="span9">
-    <!-- In progress tests -->
-    <section id="inprogress" class="client-version-box">
-      <div class="client-version-section">
-        <!-- earn-title -->
-        <div class="client-version-title">
-          <div class="title">
-            <h2>ALL YOUR CHALLENGES</h2>
-          </div>
-        </div>
 
-        <div class="media">
-          <a href="#" class="pull-left"><img src="http://lorempixel.com/64/64/" class="media-object" alt='' /></a>
-          <div class="media-body">
-            <h4 class="media-heading">
-              Nested media heading
-            </h4> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
-          </div>
-        </div>
+                <% elsif @checknbofproject.count != 2 && feedback.assignments.where('tester_id = ?', @tester.id).empty? == true %>
 
-        <!-- table-box -->
-        <div class="table-box">
-          <table class="table table-bordered">
-            <thead>
 
-            <tr>
-              <th class="col1">Project name</th>
-              <!-- <th class="col2">Question</th>  -->
-              <th class="col2">Test Start</th>
-              <th class="col3">Test End</th>
-              <th class="clo4">URL</th>
-              <th class="clo5"># of Available Testers</th>
-              <th class="clo6"># of issues</th>
-              <th class="clo7">Assigned</th>
-              <th class="clo8"></th>
-            </tr>
+                    <%= link_to (url_for(:action => :assigned, :assigned => feedback.id)), :method => :put, :class => "clear-hover" do %>
+                        <span class="label label-important clear-hover">Apply</span> |
+                    <% end %>
 
-            </thead>
-            <tbody>
-            <% if @checknbofproject.count != 2 %>
 
-                <% @feedback.each do |feedback| %>
 
-                    <tr>
-                      <td class="col1"><%= link_to feedback.name, "/feedbacks/#{feedback.id}" %></td>
-                      <!-- <td class="col2"><%#= feedback.questions %></td>  -->
-                      <td class="col2"><%= feedback.updated_at %></td>
-                      <td class="col3"><%= feedback.duedate %></a></td>
-                      <td class="clo4"><%= feedback.url %></td>
-                      <td class="clo5"><%= feedback.avai_tester %></td>
-                      <td class="clo6"><%= feedback.issues.count %></td>
-                      <% if feedback.assignments.where('tester_id = ?', @tester.id).empty? %>
-                          <td class="clo7"><%= link_to 'Assigned ->', {:action => :assigned, :assigned => feedback.id}, :method => :put  %></td>
-                          <td class="clo8">You need to apply for this project first</td>
-                      <% else %>
-                          <td class="clo7">You are already Assigned</td>
-                          <td class="clo8"><%= link_to 'New Issue ->', new_issue_path(:feedback_id => feedback.id) %></td>
-                      <% end %>
-                    </tr>
-                <% end %>
+                <% elsif @checknbofproject.count != 2 && feedback.assignments.where('tester_id = ?', @tester.id).empty? == false %>
 
-            <% else %>
-                <p class="error"> You have two projects already, you cannot have more > 2 projects </p>
-                <% @feedback.each do |feedback| %>
-                    <tr>
-                      <td class="col1"><%= link_to feedback.name, "/feedbacks/#{feedback.id}" %></td>
-                      <!-- <td class="col2"><%#= feedback.questions %></td>  -->
-                      <td class="col2"><%= feedback.updated_at %></td>
-                      <td class="col3"><%= feedback.duedate %></a></td>
-                      <td class="clo4"><%= feedback.url %></td>
-                      <td class="clo5"><%= feedback.avai_tester %></td>
-                      <td class="clo6"><%= feedback.issues.count %></td>
-                      <% if feedback.assignments.where('tester_id = ?', @tester.id).empty? %>
-                          <td class="clo7 inactive"><%= link_to 'Assigned ->', {:action => :assigned, :assigned => feedback.id}, :method => :put  %></td>
-                          <td class="clo8">You need to apply for this project first</td>
-                      <% else %>
-                          <td class="clo7">You are already Assigned</td>
-                          <td class="clo8"><%= link_to 'New Issue ->', new_issue_path(:feedback_id => feedback.id) %></td>
-                      <% end %>
+                    <%= link_to (url_for(:action => :assigned, :assigned => feedback.id)), :method => :put, :class => "clear-hover" do %>
+                        <span class="label label-important clear-hover">Apply</span> |
+                    <% end %>
 
-                    </tr>
+                    <%= link_to(url_for(new_issue_path(:feedback_id => feedback.id)), :class => "clear-hover") do %>
+                        <span class="label label-success">New Issues</span>
+                    <% end %>
+
 
                 <% end %>
 
-            <% end %>
+              </div>
 
-            </tbody>
-          </table>
+              <div class="on-right">
+                <span class="label label-success status-right"># of available Testers <%= feedback.avai_tester %></span></br>
+                <span class="comment label label-info"><%= pluralize(feedback.issues.count, 'issue') %></span>
+              </div>
+            </div>
+
+            <%# end %>
+        <% end %>
+
+        <!--<table class="table table-hover">-->
+        <!--<thead>-->
+        <!--<tr>-->
+        <!--<th>ID</th>-->
+        <!--<th>Title</th>-->
+        <!--<th>Priority</th>-->
+        <!--<th>Description</th>-->
+        <!--<th>Approval Status</th>-->
+        <!--<th><span style="color: blue;">Comments</span></th>-->
+        <!--</tr>-->
+        <!--</thead>-->
+        <!--<tbody>-->
+        <!--<tr>-->
+        <!--<td><%#= link_to issue.id, :controller => "issues", :action => "show", :id => issue.id %></td>-->
+        <!--<td><%#= link_to issue.id, feedback_issue_path(@feedback, issue.id) %></td>-->
+        <!--<td><%#= issue.tester.fname %></td>-->
+        <!--<td><%#= issue.priority %></td>-->
+        <!--<td><%#= issue.description %></td>-->
+        <!--<td style="font-weight: bold;"><%#= issue.approvalstatus %></td>-->
+        <!--<td style="font-weight: bold; color: blue;"><%#= issue.comments.count %></td>-->
+        <!--</tr>-->
+
+        <!--</tbody>-->
+        <!--</table>-->
+
+        <!--<div class="row-fluid">-->
+        <!--<div class="span12 all-issue">-->
+
+        <!--<div class="issue-row">-->
+        <!--<div class="img">-->
+        <!--<img src="//placehold.it/50x50"></div>-->
+        <!--<div class="title">-->
+        <!--<h3 class="issue-title"><%#= issue.title %></h3>-->
+        <!--<div class="by-user"> Aenean sit amet felis dolor, in sagittis nisi.-->
+        <!--<span class="comment"> <%#= issue.comments.count %> comment(s) </span>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="review"> <%#= issue.approvalstatus %> </div>-->
+
+        <!--</div>-->
+
+        <!--</div>-->
+        <!--</div>-->
+
+      </div>
+    </div>
+
+    <div class="span3">
+      <div class="box round-corners box-shadow">
+        <!-- <p>span 3</p>
+        <p>This box can be help or special information for testers.</p>
+        <p>Contact client: <%#= mail_to(@user.email) %></p>-->
+        <div class="js-editable-labels-container">
+          <ul class="js-color-label-list filter-list color-label-list small " data-pjax="">
+            <h4>Labels</h4>
+            <li>
+              <a href="#" class="filter-item color-label  labelstyle-fc2929 zeroed" data-label="bug" rel="nofollow">
+                <span class="count">0</span>
+                <span class="color" style="background-color: #fc2929">&nbsp;</span>
+                <span class="octicon octicon-remove-close"></span>
+                <span class="name">bug</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="filter-item color-label  labelstyle-cccccc zeroed" data-label="duplicate" rel="nofollow">
+                <span class="count">0</span>
+                <span class="color" style="background-color: #cccccc">&nbsp;</span>
+                <span class="octicon octicon-remove-close"></span>
+                <span class="name">duplicate</span>
+              </a>          </li>
+            <li>
+              <a href="#" class="filter-item color-label  labelstyle-84b6eb zeroed" data-label="enhancement" rel="nofollow">
+                <span class="count">0</span>
+                <span class="color" style="background-color: #84b6eb">&nbsp;</span>
+                <span class="octicon octicon-remove-close"></span>
+                <span class="name">enhancement</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="filter-item color-label  labelstyle-e6e6e6 zeroed" data-label="invalid" rel="nofollow">
+                <span class="count">0</span>
+                <span class="color" style="background-color: #e6e6e6">&nbsp;</span>
+                <span class="octicon octicon-remove-close"></span>
+                <span class="name">invalid</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="filter-item color-label  labelstyle-cc317c zeroed" data-label="question" rel="nofollow">
+                <span class="count">0</span>
+                <span class="color" style="background-color: #cc317c">&nbsp;</span>
+                <span class="octicon octicon-remove-close"></span>
+                <span class="name">question</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="filter-item color-label  labelstyle-ffffff zeroed" data-label="wontfix" rel="nofollow">
+                <span class="count">0</span>
+                <span class="color" style="background-color: #ffffff">&nbsp;</span>
+                <span class="octicon octicon-remove-close"></span>
+                <span class="name">wontfix</span>
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
-    </section>
-  </div>
-
-
-  <div class="span3">
-    <h1>
-      Welcome, <%= @tester.fname %> <br/>
-    </h1>
-    <%= @tester.email %> <br/>
-    <%= link_to "PROJECTS", projects_path, class: "profile-btn" %>
-
-    <ul class="nav nav-list">
-      <li class="nav-header">List header</li>
-      <!--<li class="active"><a href="#">Home</a></li>-->
-      <li class="<%= 'active' if current_page?(projects_path) %>"><%= link_to "PROJECTS", projects_path %></li>
-      <!--<li><a href="#">Library</a></li>-->
-      <!--<li><a href="#">Applications</a></li>-->
-      <li class="nav-header">Another list header</li>
-      <li class="<%= 'active' if current_page?(current_tester) %>"><%= link_to "DASHBOARD", current_tester %></li>
-      <!--<li><a href="#">Profile</a></li>-->
-      <!--<li><a href="#">Settings</a></li>-->
-      <!--<li class="divider"></li>-->
-      <!--<li><a href="#">Help</a></li>-->
-    </ul>
+    </div>
 
   </div>
-
-
-
 </div>
-
-
-

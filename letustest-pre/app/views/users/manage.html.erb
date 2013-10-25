@@ -1,0 +1,104 @@
+<% provide(:title, 'manage projects') %>
+
+<div class="container">
+  <div class="content-wrapper clearfix">
+    <div class="row">
+      <div class="span12">
+        <div class="box round-corners box-shadow">
+          <h3><%= @user.name %></h3>
+          <p><%= @user.email %></p>
+          <p>Please verify this information is correct. Click edit to make changes before purchasing the feedback.</p>
+        </div>
+      </div>
+
+      <div class="span3">
+        <ul class="nav nav-tabs nav-stacked">
+          <li class="view-all"><a href="#"><i class="icon-arrow-left icon-gray"></i>Dashboard</a></li>
+          <li class="active"><a href="#">Manage Profile</a></li>
+          <li><a href="#"><i class="icon-edit icon-gray"></i>Basic Information &amp; Photo</a></li>
+          <li><a href="#"><i class="icon-certificate icon-gray"></i>Contact Information</a></li>
+          <li><a href="#"><i class="icon-user icon-gray"></i>Projects Information</a></li>
+          <li><a href="#"><i class="icon-user icon-gray"></i>Testers</a></li>
+          <li class="divider"></li>
+          <li><a href="#"><i class="icon-cog icon-gray"></i>Settings</a></li>
+          <li><a href="#"><i class="icon-thumbs-up icon-gray"></i>Payment Information</a></li>
+          <li><a href="#"><i class="icon-bullhorn icon-gray"></i>Promote</a></li>
+        </ul>
+      </div>
+
+      <div class="span9 content">
+        <div class="box round-corners box-shadow">
+          <% flash.each do |key, value| %>
+              <div class="alert alert-<%= key %>"><span style="opacity: 1; "><%= value %></span>
+                <a class="close" data-dismiss="alert" href="#" onclick="$(this).parent().fadeOut();return false;">×</a>
+              </div>
+          <% end %>
+          <!--<div class="alert alert-success">-->
+          <!--<span style="opacity: 1; ">Your challenge was added successfully</span>-->
+          <!--<a class="close" data-dismiss="alert" href="#" onclick="$(this).parent().fadeOut();return false;">×</a>-->
+          <!--</div>-->
+
+          <div class="box round-corners box-shadow">
+            <div class="analytics-wrapper">
+              <div id="manage-activation">
+                <strong>To see performance analytics</strong>
+                <a href="#">give us your name »</a>
+              </div>
+              <div class="content-description gradient-gray">
+                <strong>Views</strong>
+                <span class="comment">In the last 90 days</span>
+              </div>
+            </div>
+          </div>
+
+          <form>
+            <fieldset>
+              <ul class="unstyled improve-list clearfix">
+                <li>
+                  <h3>Challenge Results Report</h3>
+                  <p>View your challenge results report and get an overview of your application quality.</p>
+                  <a href="#" class="btn btn-large btn-info">View report</a>
+                </li>
+
+                <li>
+                  <h3>Description</h3>
+                  <div class="progress progress-danger">
+                    <div class="bar" style="width: 1%;"></div>
+                  </div>
+                  <p>Your challenge description has 1 words. Successful challenges have over 100 words in the description.</p>
+                  <a href="#" class="btn btn-large btn-info">Improve description</a>
+                </li>
+
+                <li>
+                  <h3>Profile trust</h3>
+                  <p>You can raise your trustworthiness.<br>Top challengers have done all in profile trust section.</p>
+                  <a href="#" class="btn btn-large btn-info">Improve trust</a>
+                </li>
+
+                <li>
+                  <h3>Rules</h3>
+                  <p>Your challenge has 0 words in the rules.<br>Top challenges have over 50 words in the rules.</p>
+                  <a href="#" class="btn btn-large btn-info">Improve rules</a>
+                </li>
+
+                <li>
+                  <h3>Challenge photo</h3>
+                  <p>Challenges with photo attract more quality testers.</p>
+                  <a href="#" class="btn btn-large btn-info">Upload photo</a>
+                </li>
+
+                <li>
+                  <h3>Profile photo</h3>
+                  <p>Challengers with profile photo get more testers to their Challenges.</p>
+                  <a href="#" class="btn btn-large btn-info">Upload photo</a>
+                </li>
+              </ul>
+
+            </fieldset>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

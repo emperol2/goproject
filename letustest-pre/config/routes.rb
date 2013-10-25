@@ -1,12 +1,12 @@
 Letustest::Application.routes.draw do
-  
+
   resources :comments
 
 
   resources :issues do
     member do
       #put '/issues/:id/approvalstatus' => 'issues#approvalstatus', :as => 'approvalstatus'
-      
+
     end
     resources :comments
   end
@@ -28,17 +28,26 @@ Letustest::Application.routes.draw do
 
     resources :issues
   end
-  
+
   resources :sessions, only: [:new, :create, :destroy]
 
   resources :playgrounds
-  
+
   put '/issues/:id/approvalstatus' => 'issues#approvalstatus', :as => 'approvalstatus'
 
 
   #get "users/new" ;was removed and added next line
-  resources :users # it endows our sample application with all the actions needed for a RESTful Users resource
-  
+
+  # it endows our sample application with all the actions needed for a RESTful Users resource
+
+  resources :users do
+
+    member do
+      get 'manage'
+    end
+
+  end
+
   get "home/index"
   #match "/status" => "feedbacks#status", :as => :status
   match '/signup', to: 'users#new'
@@ -52,12 +61,12 @@ Letustest::Application.routes.draw do
   #match '/assigned', to: 'testers#assigned'
 
   put '/projects/assigned' => 'testers#assigned', :as => 'assigned'
-  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
-  
+
   root :to => "home#index"
-  
+
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action

@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    
+
     @user = User.find(params[:id])
     if @user != current_user
       redirect_to current_user, notice: 'You are not allow to see other profiles.'
@@ -55,6 +55,38 @@ class UsersController < ApplicationController
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+
+  def manage
+
+    #@feedback = Feedback.find(params[:id])
+    #if current_tester
+    #  @tester = Tester.find(current_tester)
+    #  @feedback.tester_id = @feedback.tester_id.to_i
+    #
+    #
+    #  @project_score = Assignment.where("tester_id = ? AND feedback_id = ?", @tester.id, @feedback.id)
+    #elsif current_user
+    #  @user = User.find(current_user)
+    #  @project_tester = @feedback.testers.all
+    #end
+
+    if current_user
+
+      @user = User.find(current_user)
+
+    end
+
+    #if @tester == nil
+    #  @user = User.find(current_user)
+    #  if @feedback.user_id != @user.id
+    #    redirect_to current_user, notice: 'This requested project is not belong to your account!'
+    #  end
+    #  #elsif @feedback.tester_id != @tester.id
+    #  # redirect_to current_tester, notice: 'This requested project is not belong to your account!'
+    #end
+
   end
 
 

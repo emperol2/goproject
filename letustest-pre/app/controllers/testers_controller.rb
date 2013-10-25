@@ -19,11 +19,11 @@ class TestersController < ApplicationController
     @tester = Tester.find(params[:id])
     @getTotalScore = Assignment.where("tester_id = ?", @tester.id).sum :score
 
-    
+
     if @tester != current_tester
       redirect_to current_tester, notice: 'You are not allow to see other profiles.'
     end
-    
+
     #redirect_to current_tester, notice: 'You are not allow to see other profiles.'
 
     #respond_to do |format|
@@ -54,7 +54,7 @@ class TestersController < ApplicationController
   # POST /testers.json
   def create
     @tester = Tester.new(params[:tester])
-    
+
 
     respond_to do |format|
       if @tester.save
@@ -96,22 +96,23 @@ class TestersController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
   def becometester
-    
+
   end
-  
+
   def projects
     @tester = Tester.find(current_tester)
-    
+
     if @tester != current_tester
       redirect_to current_tester, notice: 'You are not allow to see other profiles.'
     end
     @checknbofproject = Assignment.where(tester_id: @tester.id)
-    
-    @feedback = Feedback.where(status: "successful")
 
-    
+    @feedback = Feedback.where(status: "successful")
+    @allfeedback = Feedback.all
+
+
   end
 
   def assigned
@@ -133,10 +134,6 @@ class TestersController < ApplicationController
     else
       redirect_to current_tester, notice: 'FAILED'
     end
-
-
-
-
 
     #@assignment1 = Feedback.new(params[:feedback_id])
     #@assignment2 = @assignment1.assignments.build(:tester_id => @tester.id)
