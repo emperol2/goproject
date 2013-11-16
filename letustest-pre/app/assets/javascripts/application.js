@@ -29,6 +29,10 @@ $(document).ready(function (){
         $myGroup.find('.collapse.in').collapse('hide');
     });
 
+    $("div.alert-notice").fadeOut(5000);
+
+
+
 });
 
 

@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_filter :login_required, :except => [:new, :create]
   before_filter :you_are_current_user, :only => :new
   before_filter :you_are_current_tester, :only => [:new, :show]
+  before_filter :check_for_cancel, :only => [:create, :update]
 
   def new
     @user = User.new
@@ -88,6 +89,21 @@ class UsersController < ApplicationController
     #  #elsif @feedback.tester_id != @tester.id
     #  # redirect_to current_tester, notice: 'This requested project is not belong to your account!'
     #end
+
+  end
+
+  def basicinfo
+
+    @user = User.find(current_user)
+    @feedback = Feedback.find(params[:id])
+
+  end
+
+  def check_for_cancel
+    if params[:commit] == 'Cancel'
+      redirect_to manage_user_path(current_user)
+
+    end
 
   end
 

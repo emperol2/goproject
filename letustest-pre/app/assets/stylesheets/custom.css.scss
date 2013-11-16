@@ -509,6 +509,30 @@ a.clear-hover:hover{
 
 }
 
+.control-label{
+  float: left;
+  width: 170px;
+  font-size: 13px !important;
+}
+
+li.active > a > i.icon-edit.icon-gray{
+
+  background-image: url(/assets/glyphicons-halflings.png);
+}
+li.active > a > i.icon-user.icon-gray{
+
+  background-image: url(/assets/glyphicons-halflings.png);
+}
+
+.project-field{
+  margin-bottom: 10px;
+
+}
+
+
+
+
+
 
 //div.span12.all-issue{
 //  padding-bottom: 10px;

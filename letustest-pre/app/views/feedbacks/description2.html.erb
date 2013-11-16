@@ -66,18 +66,15 @@
               <% end %>
 
               <fieldset>
-
-                <div class="field">
-                  <%= f.label :testinginstr, "Please provide your testing instruction, in case you have it." %>
-                  <%= f.text_area :testinginstr, :rows => 10 %>
+                <legend><i class="icon-ok-sign" style="margin-top:5px"></i> Required</legend>
+                <div class="project-field">
+                  <%= f.label :name, "Your project name:" %>
+                  <%= f.text_field :name %>
                 </div>
-
-                <!--<div>-->
-
-                  <!--<input id="auto" type="text" class="span3" style="margin: 0 auto;" data-provide="typeahead" data-items="8" data-source='<%= @categories.to_json %>'>-->
-                <!---->
-                <!--</div>-->
-
+                <div class="question-field">
+                  <%= f.label :questions, "Your website description:" %>
+                  <%= f.text_area :questions, :rows => 8, class: "question", placeholder: "Example: Hackathon.io helps you organize, run, and promote the best Hackathons." %>
+                </div>
                 <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
               </fieldset>
           <% end %>

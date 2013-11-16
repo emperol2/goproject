@@ -109,7 +109,7 @@ class TestersController < ApplicationController
     end
     @checknbofproject = Assignment.where(tester_id: @tester.id)
 
-    @feedback = Feedback.where(status: "successful")
+    @feedback = Feedback.where(status: "active")
     @allfeedback = Feedback.all
 
 

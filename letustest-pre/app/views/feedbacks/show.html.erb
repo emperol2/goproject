@@ -10,8 +10,9 @@
         </div>
         <h4><%= @feedback.name %></h4>
         <p>www.google.com</p>
-        <div class="btn-group pull-right">
-          <a href="#" class="btn btn-mini">New Issue</a>
+        <div class="btn-group pull-right" style="top: -70px;">
+          <!--<a href="#" class="btn btn-mini">Manage Project</a>-->
+          <%= link_to "Manage Project", manage_feedback_path(@feedback.id), :class => "btn btn-mini" %>
           <a class="btn btn-mini ajax-modal" href="#">Info</a>
         </div>
 

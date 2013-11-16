@@ -5,6 +5,7 @@
     <div class="row">
       <div class="span12">
         <div class="box round-corners box-shadow">
+          <h2>Manage Project</h2>
           <h3><%= @feedback.name %></h3>
           <p><%= @feedback.questions %></p>
           <p>Please verify this information is correct. Click edit to make changes before purchasing the feedback.</p>
@@ -13,7 +14,11 @@
 
       <div class="span3">
         <ul class="nav nav-tabs nav-stacked">
-          <li class="view-all"><a href="#"><i class="icon-arrow-left icon-gray"></i> View All Challenges</a></li>
+          <li class="view-all">
+            <%= link_to feedback_path(@feedback.id) do %>
+                <i class="icon-arrow-left icon-gray"></i> View All Challenges
+            <% end %>
+          </li>
           <li class="active"><a href="#">Challenge Overview</a></li>
           <li><a href="#"><i class="icon-edit icon-gray"></i>Description &amp; Photo</a></li>
           <li><a href="#"><i class="icon-certificate icon-gray"></i>Terms</a></li>
@@ -66,7 +71,8 @@
                     <div class="bar" style="width: 1%;"></div>
                   </div>
                   <p>Your challenge description has 1 words. Successful challenges have over 100 words in the description.</p>
-                  <a href="#" class="btn btn-large btn-info">Improve description</a>
+                  <!--<a href="#" class="btn btn-large btn-info">Improve description</a>-->
+                  <%= link_to "Improve description", description2_feedback_path, :class => "btn btn-large btn-info" %>
                 </li>
 
                 <li>
@@ -78,7 +84,8 @@
                 <li>
                   <h3>Rules</h3>
                   <p>Your challenge has 0 words in the rules.<br>Top challenges have over 50 words in the rules.</p>
-                  <a href="#" class="btn btn-large btn-info">Improve rules</a>
+                  <!--<a href="#" class="btn btn-large btn-info">Improve rules</a>-->
+                  <%= link_to "Improve rules", rule_feedback_path, :class => "btn btn-large btn-info" %>
                 </li>
 
                 <li>

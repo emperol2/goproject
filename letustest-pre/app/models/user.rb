@@ -12,7 +12,7 @@
 class User < ActiveRecord::Base
   has_many :feedbacks
   #has_many :comments
-  attr_accessible :email, :name, :password, :password_confirmation, :lastname, :contact_number, :company_name, :company_type
+  attr_accessible :email, :name, :password, :password_confirmation, :lastname, :contact_number, :company_name, :company_type, :timezone
   has_secure_password
   
   before_save { |user| user.email = email.downcase }

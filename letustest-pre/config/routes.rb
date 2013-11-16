@@ -24,6 +24,7 @@ Letustest::Application.routes.draw do
       get 'rule'
       get 'manage'
       get 'testers'
+      get 'description2'
     end
 
     resources :issues
@@ -44,6 +45,7 @@ Letustest::Application.routes.draw do
 
     member do
       get 'manage'
+      get 'basicinfo'
     end
 
   end

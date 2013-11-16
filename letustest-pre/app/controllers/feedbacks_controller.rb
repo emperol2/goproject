@@ -176,6 +176,8 @@ class FeedbacksController < ApplicationController
 
     @user = User.find(current_user)
     @feedback = Feedback.find(params[:id])
+    @categories = Feedback.find(1,2,3).map(&:name)
+
 
     #@feedback.update_attributes(params[:feedback])
 
@@ -231,6 +233,17 @@ class FeedbacksController < ApplicationController
       # redirect_to current_tester, notice: 'This requested project is not belong to your account!'
     end
     #@findallissue = @feedback.issues.all
+
+
+  end
+
+  def description2
+
+    @user = User.find(current_user)
+    @feedback = Feedback.find(params[:id])
+
+    #@feedback.update_attributes(params[:feedback])
+
 
 
   end

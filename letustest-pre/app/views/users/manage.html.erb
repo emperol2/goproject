@@ -22,13 +22,18 @@
 
           <!--<li class="view-all"><a href="#"><i class="icon-arrow-left icon-gray"></i>Dashboard</a></li>-->
           <li class="active"><a href="#">Manage Profile</a></li>
-          <li><a href="#"><i class="icon-edit icon-gray"></i>Basic Information &amp; Photo</a></li>
-          <li><a href="#"><i class="icon-certificate icon-gray"></i>Contact Information</a></li>
-          <li><a href="#"><i class="icon-user icon-gray"></i>Projects Information</a></li>
-          <li><a href="#"><i class="icon-user icon-gray"></i>Testers</a></li>
+          <!--<li><a href="#"><i class="icon-user icon-gray"></i>Basic Information</a></li>-->
+          <li>
+            <%= link_to basicinfo_user_path(@user.id) do %>
+                <i class="icon-user icon-gray"></i> Basic Information
+            <% end %>
+          </li>
+          <!--<li><a href="#"><i class="icon-certificate icon-gray"></i>Contact Information</a></li>-->
+          <li><a href="#"><i class="icon-edit icon-gray"></i>Projects Information</a></li>
+          <!--<li><a href="#"><i class="icon-user icon-gray"></i>Testers</a></li>-->
+          <li><a href="#"><i class="icon-shopping-cart icon-gray"></i>Payment Information</a></li>
           <li class="divider"></li>
           <li><a href="#"><i class="icon-cog icon-gray"></i>Settings</a></li>
-          <li><a href="#"><i class="icon-thumbs-up icon-gray"></i>Payment Information</a></li>
           <li><a href="#"><i class="icon-bullhorn icon-gray"></i>Promote</a></li>
         </ul>
       </div>
@@ -61,37 +66,39 @@
           <form>
             <fieldset>
               <ul class="unstyled improve-list clearfix">
+
                 <li>
-                  <h3>Challenge Results Report</h3>
+                  <h3>Projects information</h3>
                   <p>View your challenge results report and get an overview of your application quality.</p>
-                  <a href="#" class="btn btn-large btn-info">View report</a>
+                  <a href="#" class="btn btn-large btn-info">View projects</a>
                 </li>
 
                 <li>
-                  <h3>Description</h3>
+                  <h3>Basic information</h3>
                   <div class="progress progress-danger">
                     <div class="bar" style="width: 1%;"></div>
                   </div>
                   <p>Your challenge description has 1 words. Successful challenges have over 100 words in the description.</p>
-                  <a href="#" class="btn btn-large btn-info">Improve description</a>
+                  <!--<a href="#" class="btn btn-large btn-info">Improve description</a>-->
+                  <%=link_to "Improve description", basicinfo_user_path, :class => "btn btn-large btn-info" %>
                 </li>
 
-                <li>
-                  <h3>Profile trust</h3>
-                  <p>You can raise your trustworthiness.<br>Top challengers have done all in profile trust section.</p>
-                  <a href="#" class="btn btn-large btn-info">Improve trust</a>
-                </li>
+                <!--<li>-->
+                  <!--<h3>Profile trust</h3>-->
+                  <!--<p>You can raise your trustworthiness.<br>Top challengers have done all in profile trust section.</p>-->
+                  <!--<a href="#" class="btn btn-large btn-info">Improve trust</a>-->
+                <!--</li>-->
+
+                <!--<li>-->
+                <!--<h3>Expertise</h3>-->
+                <!--<p>Your challenge has 0 words in the rules.<br>Top challenges have over 50 words in the rules.</p>-->
+                <!--<a href="#" class="btn btn-large btn-info">Improve rules</a>-->
+                <!--</li>-->
 
                 <li>
-                  <h3>Rules</h3>
-                  <p>Your challenge has 0 words in the rules.<br>Top challenges have over 50 words in the rules.</p>
-                  <a href="#" class="btn btn-large btn-info">Improve rules</a>
-                </li>
-
-                <li>
-                  <h3>Challenge photo</h3>
+                  <h3>Payment information</h3>
                   <p>Challenges with photo attract more quality testers.</p>
-                  <a href="#" class="btn btn-large btn-info">Upload photo</a>
+                  <a href="#" class="btn btn-large btn-info">Update payment</a>
                 </li>
 
                 <li>
