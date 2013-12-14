@@ -25,6 +25,9 @@ Letustest::Application.routes.draw do
       get 'manage'
       get 'testers'
       get 'description2'
+      get 'seetesters'
+      get 'promote'
+      get 'contact'
     end
 
     resources :issues
@@ -35,6 +38,7 @@ Letustest::Application.routes.draw do
   resources :playgrounds
 
   put '/issues/:id/approvalstatus' => 'issues#approvalstatus', :as => 'approvalstatus'
+  get '/users/:id/projects' => 'users#projects', :as => 'projects'
 
 
   #get "users/new" ;was removed and added next line
@@ -46,6 +50,9 @@ Letustest::Application.routes.draw do
     member do
       get 'manage'
       get 'basicinfo'
+      get 'setting'
+      get 'projects'
+      get 'payment'
     end
 
   end

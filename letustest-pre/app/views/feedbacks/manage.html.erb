@@ -8,7 +8,7 @@
           <h2>Manage Project</h2>
           <h3><%= @feedback.name %></h3>
           <p><%= @feedback.questions %></p>
-          <p>Please verify this information is correct. Click edit to make changes before purchasing the feedback.</p>
+          <p>Please complete your project information. Click update to make changes on your project information.</p>
         </div>
       </div>
 
@@ -16,13 +16,13 @@
         <ul class="nav nav-tabs nav-stacked">
           <li class="view-all">
             <%= link_to feedback_path(@feedback.id) do %>
-                <i class="icon-arrow-left icon-gray"></i> View All Challenges
+                <i class="icon-arrow-left icon-gray"></i> View Challenge
             <% end %>
           </li>
           <li class="active"><a href="#">Challenge Overview</a></li>
           <li><a href="#"><i class="icon-edit icon-gray"></i>Description &amp; Photo</a></li>
           <li><a href="#"><i class="icon-certificate icon-gray"></i>Terms</a></li>
-          <li><a href="#"><i class="icon-user icon-gray"></i>Admins</a></li>
+          <!--<li><a href="#"><i class="icon-user icon-gray"></i>Admins</a></li>-->
           <li><a href="#"><i class="icon-user icon-gray"></i>Testers</a></li>
           <li class="divider"></li>
           <li><a href="#"><i class="icon-cog icon-gray"></i>Settings</a></li>
@@ -76,28 +76,32 @@
                 </li>
 
                 <li>
-                  <h3>Profile trust</h3>
-                  <p>You can raise your trustworthiness.<br>Top challengers have done all in profile trust section.</p>
-                  <a href="#" class="btn btn-large btn-info">Improve trust</a>
-                </li>
-
-                <li>
-                  <h3>Rules</h3>
+                  <h3>Rules & Terms</h3>
                   <p>Your challenge has 0 words in the rules.<br>Top challenges have over 50 words in the rules.</p>
                   <!--<a href="#" class="btn btn-large btn-info">Improve rules</a>-->
                   <%= link_to "Improve rules", rule_feedback_path, :class => "btn btn-large btn-info" %>
                 </li>
 
                 <li>
-                  <h3>Challenge photo</h3>
-                  <p>Challenges with photo attract more quality testers.</p>
-                  <a href="#" class="btn btn-large btn-info">Upload photo</a>
+                  <h3>Testers</h3>
+                  <p>You can raise your trustworthiness.<br>Top challengers have done all in profile trust section.</p>
+                  <!--<a href="#" class="btn btn-large btn-info">View testers</a>-->
+                  <%= link_to "View testers", seetesters_feedback_path, :class => "btn btn-large btn-info" %>
                 </li>
 
                 <li>
-                  <h3>Profile photo</h3>
+                  <h3>Promote</h3>
+                  <p>Challenges with photo attract more quality testers.</p>
+                  <!--<a href="#" class="btn btn-large btn-info">Share & Promote</a>-->
+                  <%= link_to "Share & Promote", promote_feedback_path, :class => "btn btn-large btn-info" %>
+                </li>
+
+                <li>
+                  <h3>Contact Let{us}test</h3>
                   <p>Challengers with profile photo get more testers to their Challenges.</p>
-                  <a href="#" class="btn btn-large btn-info">Upload photo</a>
+                  <!--<a href="#" class="btn btn-large btn-info">Contact us</a>-->
+                  <%= link_to "Contact us", contact_feedback_path, :class => "btn btn-large btn-info" %>
+
                 </li>
               </ul>
 

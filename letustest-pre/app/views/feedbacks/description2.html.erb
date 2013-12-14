@@ -67,16 +67,44 @@
 
               <fieldset>
                 <legend><i class="icon-ok-sign" style="margin-top:5px"></i> Required</legend>
-                <div class="project-field">
-                  <%= f.label :name, "Your project name:" %>
-                  <%= f.text_field :name %>
+                <div class="project-field pname">
+                  <%= f.label :name, "Project Name:", :class => "control-label" %>
+                  <%= f.text_field :name, :placeholder => "Example: Let{us}Test" %>
                 </div>
-                <div class="question-field">
-                  <%= f.label :questions, "Your website description:" %>
+                <div class="project-field url">
+                  <%= f.label :url, "URL:", :class => "control-label" %>
+                  <%= f.text_field :url, :placeholder => "Example: www.letustest.com" %>
+                </div>
+                <div class="project-field version">
+                  <%= f.label :version, "Version:", :class => "control-label" %>
+                  <%= f.text_field :version, :placeholder => "Example: 1.0 beta" %>
+                </div>
+                <div class="project-field question">
+                  <%= f.label :questions, "Website Description:", :class => "control-label"  %>
                   <%= f.text_area :questions, :rows => 8, class: "question", placeholder: "Example: Hackathon.io helps you organize, run, and promote the best Hackathons." %>
                 </div>
+                <div class="project-field instruction">
+                  <%= f.label :testinginstr, "Website Instruction:", :class => "control-label"  %>
+                  <%= f.text_area :testinginstr, :rows => 8, class: "question", placeholder: "Example: Hackathon.io helps you organize, run, and promote the best Hackathons." %>
+                </div>
+                <!--<div class="project-field contact">-->
+                  <!--<#%= f.label :contact_number, "Contact Number:", :class => "control-label" %>-->
+                  <!--<#%= f.text_field :contact_number, :placeholder => "Example: +66-81-9882642" %>-->
+                <!--</div>-->
+                <!--<div class="question-field">-->
+                <!--<%#= f.label :questions, "Your website description:" %>-->
+                <!--<%#= f.text_area :questions, :rows => 8, class: "question", placeholder: "Example: Hackathon.io helps you organize, run, and promote the best Hackathons." %>-->
+                <!--</div>-->
+                <legend><i class="icon-info-sign" style="margin-top:5px"></i> Optional</legend>
+                <div class="project-field contact">
+                  <%= f.label :bugsystem, "Bug Based System:", :class => "control-label" %>
+                  <%= f.text_field :bugsystem, :placeholder => "Example: Redmine, Bugzilla, Mantis, etc or Let{us}test" %>
+                </div>
+
                 <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+                <%= f.submit "Cancel", class: "btn btn-large btn-primary" %>
               </fieldset>
+
           <% end %>
 
         </div>

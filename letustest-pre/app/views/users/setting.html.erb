@@ -1,4 +1,4 @@
-<% provide(:title, 'manage projects') %>
+<% provide(:title, 'Setting') %>
 
 <div class="container">
   <div class="content-wrapper clearfix">
@@ -21,7 +21,7 @@
           </li>
 
           <!--<li class="view-all"><a href="#"><i class="icon-arrow-left icon-gray"></i>Dashboard</a></li>-->
-          <li class="active"><a href="#">Manage Profile</a></li>
+          <li><a href="#">Manage Profile</a></li>
           <!--<li><a href="#"><i class="icon-user icon-gray"></i>Basic Information</a></li>-->
           <li>
             <%= link_to basicinfo_user_path(@user.id) do %>
@@ -44,7 +44,7 @@
           </li>
           <li class="divider"></li>
           <!--<li><a href="#"><i class="icon-cog icon-gray"></i>Settings</a></li>-->
-          <li>
+          <li class="active">
             <%= link_to setting_user_path(@user.id) do %>
                 <i class="icon-user icon-gray"></i> Setting
             <% end %>
@@ -69,62 +69,51 @@
             <div class="analytics-wrapper">
               <div id="manage-activation">
                 <strong>To see performance analytics</strong>
-                <a href="#">give us your name »</a>
+                <p>Your challenge description has 1 words. Successful challenges have over 100 words in the description.</p>
               </div>
-              <div class="content-description gradient-gray">
-                <strong>Views</strong>
-                <span class="comment">In the last 90 days</span>
-              </div>
+
             </div>
           </div>
 
-          <form>
-            <fieldset>
-              <ul class="unstyled improve-list clearfix">
+          <%= form_for(@user) do |f| %>
+              <% if @user.errors.any? %>
+                  <div id="error_explanation">
+                    <div class="alert alert-error"><%= pluralize(@user.errors.count, "error") %> prohibited this feedback from being saved:</div>
 
-                <li>
-                  <h3>Projects information</h3>
-                  <p>View your challenge results report and get an overview of your application quality.</p>
-                  <a href="#" class="btn btn-large btn-info">View projects</a>
-                </li>
-
-                <li>
-                  <h3>Basic information</h3>
-                  <div class="progress progress-danger">
-                    <div class="bar" style="width: 1%;"></div>
+                    <ul>
+                      <% @user.errors.full_messages.each do |msg| %>
+                          <li><%= msg %></li>
+                      <% end %>
+                    </ul>
                   </div>
-                  <p>Your challenge description has 1 words. Successful challenges have over 100 words in the description.</p>
-                  <!--<a href="#" class="btn btn-large btn-info">Improve description</a>-->
-                  <%=link_to "Improve description", basicinfo_user_path, :class => "btn btn-large btn-info" %>
-                </li>
+              <% end %>
 
-                <!--<li>-->
-                  <!--<h3>Profile trust</h3>-->
-                  <!--<p>You can raise your trustworthiness.<br>Top challengers have done all in profile trust section.</p>-->
-                  <!--<a href="#" class="btn btn-large btn-info">Improve trust</a>-->
-                <!--</li>-->
+              <fieldset>
+                <legend><i class="icon-ok-sign" style="margin-top:5px"></i> Required</legend>
+                <div class="project-field password">
+                  <%= f.label :password, "New Password:", :class => "control-label" %>
+                  <%= f.password_field :password %>
+                </div>
 
-                <!--<li>-->
-                <!--<h3>Expertise</h3>-->
-                <!--<p>Your challenge has 0 words in the rules.<br>Top challenges have over 50 words in the rules.</p>-->
-                <!--<a href="#" class="btn btn-large btn-info">Improve rules</a>-->
-                <!--</li>-->
+                <div class="project-field password-confirm">
+                  <%= f.label :company_name, "Confirmation password:", :class => "control-label" %>
+                  <%= f.password_field :password_confirmation %>
+                </div>
 
-                <li>
-                  <h3>Payment information</h3>
-                  <p>Challenges with photo attract more quality testers.</p>
-                  <a href="#" class="btn btn-large btn-info">Update payment</a>
-                </li>
+                <!--<div class="question-field">-->
+                <!--<%#= f.label :questions, "Your website description:" %>-->
+                <!--<%#= f.text_area :questions, :rows => 8, class: "question", placeholder: "Example: Hackathon.io helps you organize, run, and promote the best Hackathons." %>-->
+                <!--</div>-->
+                <!--<legend><i class="icon-info-sign" style="margin-top:5px"></i> Optional</legend>-->
+                <!--<div class="project-field contact">-->
+                  <!--<%#= f.label :timezone, "Time Zone:", :class => "control-label" %>-->
+                  <!--<%#= f.text_field :timezone, :placeholder => "Example: UTC-6, GMT+8" %>-->
+                <!--</div>-->
 
-                <li>
-                  <h3>Profile photo</h3>
-                  <p>Challengers with profile photo get more testers to their Challenges.</p>
-                  <a href="#" class="btn btn-large btn-info">Upload photo</a>
-                </li>
-              </ul>
-
-            </fieldset>
-          </form>
+                <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+                <%= f.submit "Cancel", class: "btn btn-large btn-primary" %>
+              </fieldset>
+          <% end %>
 
         </div>
       </div>

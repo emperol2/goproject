@@ -1,6 +1,8 @@
 class FeedbacksController < ApplicationController
   before_filter :login_required
   before_filter :you_are_current_tester, :only => :new
+  before_filter :check_for_cancel, :only => [:create, :update]
+
 
   # GET /feedbacks
   # GET /feedbacks.json
@@ -238,6 +240,65 @@ class FeedbacksController < ApplicationController
   end
 
   def description2
+
+    @user = User.find(current_user)
+    @feedback = Feedback.find(params[:id])
+
+    #@feedback.update_attributes(params[:feedback])
+
+
+
+  end
+
+  def check_for_cancel
+    if params[:commit] == 'Cancel'
+      @feedback = Feedback.find(params[:id])
+      redirect_to manage_feedback_path(@feedback.id)
+
+    end
+
+  end
+
+  def seetesters
+
+    @feedback = Feedback.find(params[:id])
+    if current_tester
+      @tester = Tester.find(current_tester)
+      @feedback.tester_id = @feedback.tester_id.to_i
+
+
+      @project_score = Assignment.where("tester_id = ? AND feedback_id = ?", @tester.id, @feedback.id)
+      @project_tester = @feedback.testers.all
+    elsif current_user
+      @user = User.find(current_user)
+      @project_tester = @feedback.testers.all
+    end
+
+    if @tester == nil
+      @user = User.find(current_user)
+      if @feedback.user_id != @user.id
+        redirect_to current_user, notice: 'This requested project is not belong to your account!'
+      end
+      #elsif @feedback.tester_id != @tester.id
+      # redirect_to current_tester, notice: 'This requested project is not belong to your account!'
+    end
+    #@findallissue = @feedback.issues.all
+
+
+  end
+
+  def promote
+
+    @user = User.find(current_user)
+    @feedback = Feedback.find(params[:id])
+
+    #@feedback.update_attributes(params[:feedback])
+
+
+
+  end
+
+  def contact
 
     @user = User.find(current_user)
     @feedback = Feedback.find(params[:id])

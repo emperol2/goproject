@@ -1,0 +1,152 @@
+<% provide(:title, 'View Testers') %>
+
+<div class="container">
+  <div class="content-wrapper clearfix">
+    <div class="row">
+      <div class="span12">
+        <div class="box round-corners box-shadow">
+          <h3><%= @feedback.name %></h3>
+          <p><%= @feedback.questions %></p>
+          <p>Please verify this information is correct. Click edit to make changes before purchasing the feedback.</p>
+        </div>
+      </div>
+
+      <div class="span3">
+        <ul class="nav nav-tabs nav-stacked">
+          <li class="view-all">
+            <%= link_to feedback_path(@feedback.id) do %>
+                <i class="icon-arrow-left icon-gray"></i> View All Challenges
+            <% end %>
+          </li>
+          <li><a href="#">Challenge Overview</a></li>
+          <li class="active"><a href="#"><i class="icon-edit icon-gray"></i>Description &amp; Photo</a></li>
+          <li><a href="#"><i class="icon-certificate icon-gray"></i>Terms</a></li>
+          <li><a href="#"><i class="icon-user icon-gray"></i>Admins</a></li>
+          <li><a href="#"><i class="icon-user icon-gray"></i>Testers</a></li>
+          <li class="divider"></li>
+          <li><a href="#"><i class="icon-cog icon-gray"></i>Settings</a></li>
+          <li><a href="#"><i class="icon-thumbs-up icon-gray"></i>Improve</a></li>
+          <li><a href="#"><i class="icon-bullhorn icon-gray"></i>Promote</a></li>
+        </ul>
+      </div>
+
+      <div class="span9 content">
+        <div class="box round-corners box-shadow">
+          <% flash.each do |key, value| %>
+              <div class="alert alert-<%= key %>"><span style="opacity: 1; "><%= value %></span>
+                <a class="close" data-dismiss="alert" href="#" onclick="$(this).parent().fadeOut();return false;">×</a>
+              </div>
+          <% end %>
+          <!--<div class="alert alert-success">-->
+          <!--<span style="opacity: 1; ">Your challenge was added successfully</span>-->
+          <!--<a class="close" data-dismiss="alert" href="#" onclick="$(this).parent().fadeOut();return false;">×</a>-->
+          <!--</div>-->
+
+          <div class="box round-corners box-shadow">
+            <div class="analytics-wrapper">
+              <div id="manage-activation">
+                <strong>To see performance analytics</strong>
+                <p>Your challenge description has 1 words. Successful challenges have over 100 words in the description.</p>
+              </div>
+
+            </div>
+          </div>
+
+          <%= form_for(@feedback) do |f| %>
+              <% if @feedback.errors.any? %>
+                  <div id="error_explanation">
+                    <div class="alert alert-error"><%= pluralize(@feedback.errors.count, "error") %> prohibited this feedback from being saved:</div>
+
+                    <ul>
+                      <% @feedback.errors.full_messages.each do |msg| %>
+                          <li><%= msg %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+              <% end %>
+
+              <h2>These are the Testers who involved on your challenge.</h2>
+              <p>We call these testing projects Challenges. This means you challenge testers to give their best to make your product better.
+                Sounds good? We can't wait to see what new and exciting challenges you set up for our testers.</p>
+
+              <!-- <div class="box round-corners box-shadow overflow"> -->
+              <div class="box-shadow overflow">
+
+                <% @project_tester.each do |project_tester| %>
+
+                    <%#= link_to feedback_issue_path(@feedback, issue.id) do %>
+
+                    <div class="media relative">
+                      <div class="forid"><span class="issueid">#<%= project_tester.id %></span></div>
+                      <a href="#" class="pull-left"><img src="http://lorempixel.com/64/64/" class="media-object" alt='' /></a>
+                      <div class="media-body">
+                        <h4 class="media-heading"><%= link_to project_tester.fname, tester_path(project_tester.id) %></h4>
+                        <%= truncate(project_tester.aboutme, length: 85) %></br>
+                        <span class="label label-default">Tel. <%= project_tester.phone %></span> |
+                        created at <%= time_ago_in_words(project_tester.created_at.to_datetime) %> ago |
+                        <span class="label label-important"><%= project_tester.email %></span>
+                        <br/> <br/>
+
+                      </div>
+
+                      <div class="on-right">
+                        <span class="label label-success status-right">Tester's score <%= project_tester.score %></span></br>
+                        <!--<span class="comment label label-info"><%#= pluralize(feedback.issues.count, 'issue') %></span>-->
+                      </div>
+                    </div>
+
+                    <%# end %>
+                <% end %>
+
+                <!--<table class="table table-hover">-->
+                <!--<thead>-->
+                <!--<tr>-->
+                <!--<th>ID</th>-->
+                <!--<th>Title</th>-->
+                <!--<th>Priority</th>-->
+                <!--<th>Description</th>-->
+                <!--<th>Approval Status</th>-->
+                <!--<th><span style="color: blue;">Comments</span></th>-->
+                <!--</tr>-->
+                <!--</thead>-->
+                <!--<tbody>-->
+                <!--<tr>-->
+                <!--<td><%#= link_to issue.id, :controller => "issues", :action => "show", :id => issue.id %></td>-->
+                <!--<td><%#= link_to issue.id, feedback_issue_path(@feedback, issue.id) %></td>-->
+                <!--<td><%#= issue.tester.fname %></td>-->
+                <!--<td><%#= issue.priority %></td>-->
+                <!--<td><%#= issue.description %></td>-->
+                <!--<td style="font-weight: bold;"><%#= issue.approvalstatus %></td>-->
+                <!--<td style="font-weight: bold; color: blue;"><%#= issue.comments.count %></td>-->
+                <!--</tr>-->
+
+                <!--</tbody>-->
+                <!--</table>-->
+
+                <!--<div class="row-fluid">-->
+                <!--<div class="span12 all-issue">-->
+
+                <!--<div class="issue-row">-->
+                <!--<div class="img">-->
+                <!--<img src="//placehold.it/50x50"></div>-->
+                <!--<div class="title">-->
+                <!--<h3 class="issue-title"><%#= issue.title %></h3>-->
+                <!--<div class="by-user"> Aenean sit amet felis dolor, in sagittis nisi.-->
+                <!--<span class="comment"> <%#= issue.comments.count %> comment(s) </span>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--<div class="review"> <%#= issue.approvalstatus %> </div>-->
+
+                <!--</div>-->
+
+                <!--</div>-->
+                <!--</div>-->
+
+              </div>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

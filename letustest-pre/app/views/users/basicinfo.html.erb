@@ -22,13 +22,33 @@
 
           <!--<li class="view-all"><a href="#"><i class="icon-arrow-left icon-gray"></i>Dashboard</a></li>-->
           <li><a href="#">Manage Profile</a></li>
-          <li class="active"><a href="#"><i class="icon-user icon-gray"></i>Basic Information</a></li>
+          <!--<li><a href="#"><i class="icon-user icon-gray"></i>Basic Information</a></li>-->
+          <li class="active">
+            <%= link_to basicinfo_user_path(@user.id) do %>
+                <i class="icon-user icon-gray"></i> Basic Information
+            <% end %>
+          </li>
           <!--<li><a href="#"><i class="icon-certificate icon-gray"></i>Contact Information</a></li>-->
-          <li><a href="#"><i class="icon-edit icon-gray"></i>Projects Information</a></li>
+          <!--<li><a href="#"><i class="icon-edit icon-gray"></i>Projects Information</a></li>-->
+          <li>
+            <%= link_to projects_user_path(@user.id) do %>
+                <i class="icon-edit icon-gray"></i> Projects Information
+            <% end %>
+          </li>
           <!--<li><a href="#"><i class="icon-user icon-gray"></i>Testers</a></li>-->
-          <li><a href="#"><i class="icon-shopping-cart icon-gray"></i>Payment Information</a></li>
+          <!--<li><a href="#"><i class="icon-shopping-cart icon-gray"></i>Payment Information</a></li>-->
+          <li>
+            <%= link_to payment_user_path(@user.id) do %>
+                <i class="icon-shopping-cart icon-gray"></i> Payment Information
+            <% end %>
+          </li>
           <li class="divider"></li>
-          <li><a href="#"><i class="icon-cog icon-gray"></i>Settings</a></li>
+          <!--<li><a href="#"><i class="icon-cog icon-gray"></i>Settings</a></li>-->
+          <li>
+            <%= link_to setting_user_path(@user.id) do %>
+                <i class="icon-user icon-gray"></i> Setting
+            <% end %>
+          </li>
           <li><a href="#"><i class="icon-bullhorn icon-gray"></i>Promote</a></li>
         </ul>
       </div>
@@ -83,6 +103,11 @@
                 <div class="project-field ctype">
                   <%= f.label :company_type, "Company Type:", :class => "control-label" %>
                   <%= f.text_field :company_type, :placeholder => "Example: Small, Medium or Large" %>
+                </div>
+                <div class="project-field caddress">
+                  <%= f.label :company_type, "Address:", :class => "control-label" %>
+                  <%= f.text_area :company_type, :rows => 8, :class => "question", :placeholder => "Example: Let{us}test company, 64/19
+                  Tiwanon Rd, Bangkok, 12000 Thailand" %>
                 </div>
                 <div class="project-field contact">
                   <%= f.label :contact_number, "Contact Number:", :class => "control-label" %>

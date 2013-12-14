@@ -107,5 +107,40 @@ class UsersController < ApplicationController
 
   end
 
+  def setting
+
+    @user = User.find(current_user)
+    @feedback = Feedback.find(params[:id])
+
+  end
+
+  def projects
+    @user = User.find(current_user)
+    @public = Feedback.all
+
+    @feedback = Feedback.where(status: "active")
+    @completed = Feedback.where(status: "completed")
+
+    if params[:projects] == 'completed'
+      @feedback = Feedback.where(status: "completed")
+      @return =  'completed'
+    else
+      @feedback = Feedback.where(status: "active")
+      @return = 'active'
+
+    end
+
+    #@allfeedback = Feedback.all
+
+
+
+  end
+
+  def payment
+    @user = User.find(current_user)
+    @feedback = Feedback.find(params[:id])
+
+  end
+
 
 end
