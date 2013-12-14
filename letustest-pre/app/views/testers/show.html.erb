@@ -102,12 +102,12 @@
     </div>
 
     <%= link_to "EDIT PROFILE", edit_tester_path, class: "profile-btn" %>
-    <%= link_to "PROJECTS", projects_path, class: "profile-btn" %>
+    <%= link_to "PROJECTS", projects_tester_path, class: "profile-btn" %>
 
     <ul class="nav nav-list">
       <li class="nav-header">List header</li>
       <!--<li class="active"><a href="#">Home</a></li>-->
-      <li class="<%= 'active' if current_page?(projects_path) %>"><%= link_to "PROJECTS", projects_path %></li>
+      <li class="<%= 'active' if current_page?(projects_tester_path) %>"><%= link_to "PROJECTS", projects_tester_path %></li>
       <!--<li><a href="#">Library</a></li>-->
       <!--<li><a href="#">Applications</a></li>-->
       <li class="nav-header">Another list header</li>

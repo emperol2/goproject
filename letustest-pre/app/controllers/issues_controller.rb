@@ -64,10 +64,9 @@ class IssuesController < ApplicationController
     @issue.tester_id = @tester.id
     @issue.approvalstatus = "Waiting for Approval"
 
-
     respond_to do |format|
       if @issue.save
-        format.html { redirect_to projects_path, notice: 'Issue was successfully created.' }
+        format.html { redirect_to projects_tester_path(@issue), notice: 'Issue was successfully created.' }
         format.json { render json: @issue, status: :created, location: @issue }
       else
         format.html { render action: "new" }

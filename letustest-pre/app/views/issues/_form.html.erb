@@ -17,6 +17,10 @@
     <!-- <div class="field"> -->
     <%#= f.label :title %> <!-- <br /> -->
     <%= f.text_field :title, class: "input-xxlarge", :placeholder => "Title" %>
+    <br />
+    <br />
+    <%= f.label :issue_type, "Type of issue:", :class => 'inline' %>
+    <%= f.select :issue_type, options_for_select([["Bug", "Bug"], ["Improvement", "Improvement"],["Question","Question"],["Others","Others"]]) %>
     <!--</div>-->
     <!--<div class="field">-->
     <%#= f.label :priority %><!-- <br /> -->
@@ -24,7 +28,7 @@
     <%#= f.text_field :priority %>
     <div class="issue-severity">
       <div class="control-group">
-        <label class="inline">Severity</label>
+        <label class="inline">Severity:</label>
         <label class="inline"><input type="radio" class="required-center" value="low" name="issue[priority]"> <span class="tippable label label-info" data-original-title="The issue affects a minor part of a system, and has very little impact on its operation. This severity level is assigned when a non-central requirement of a system (and with lower importance) is affected.">Low</span></label>
         <label class="inline"><input type="radio" class="required-center" value="medium" name="issue[priority]"> <span class="tippable label label-warning" data-original-title="The issue affects a minor part of a system, but has some impact on its operation. This severity level is assigned when a non-central requirement of a system is affected.">Medium</span></label>
         <label class="inline"><input type="radio" class="required-center" value="high" name="issue[priority]"> <span class="tippable label label-important" data-original-title="The issue affects a crucial part of a system, and must be fixed in order for it to resume normal operation.">High</span></label>
@@ -33,6 +37,7 @@
     <!--</div>-->
     <!--<div class="field">-->
     <%#= f.label :description %><!-- <br /> -->
+    <br />
     <%= f.text_area :description, :size => "100x10", :class => "longarea", :placeholder => "Description about your issue.                                                                                                       Example: Hackathon.io helps you organize, run, and promote the best Hackathons." %>
     <!--</div>-->
     <div style="float:right; position: relative; right: 70px">

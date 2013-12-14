@@ -138,8 +138,50 @@ class FeedbacksController < ApplicationController
     else
       @user = User.find(current_user)
     end
+
+
+    #if Feedback.find(params[:id]) == nil
+    #  @feedback = Feedback.find(params[:id])
+    #  @issue = @feedback.issues.order("created_at DESC")
+    #
+    #else
+
     @feedback = Feedback.find(params[:id])
-    @issue = @feedback.issues.order("created_at DESC")
+    @bug = @feedback.issues.where(:issue_type => 'Bug').count
+    @improvement = @feedback.issues.where(:issue_type => 'Improvement').count
+    @question = @feedback.issues.where(:issue_type => 'Question').count
+    @others = @feedback.issues.where(:issue_type => 'Others').count
+
+    severity_type = params[:severity]
+
+    if severity_type == 'high'
+      @feedback = Feedback.find(params[:id])
+      @high_priority = @feedback.issues.where(:priority => 'high').order("created_at DESC")
+      @issue = @high_priority
+    elsif severity_type == 'medium'
+      @medium_priority = @feedback.issues.where(:priority => 'medium').order("created_at DESC")
+      @issue = @medium_priority
+    elsif severity_type == 'low'
+      @low_priority = @feedback.issues.where(:priority => 'low').order("created_at DESC")
+      @issue = @low_priority
+    else
+      @feedback = Feedback.find(params[:id])
+      @open_issue_count = @feedback.issues.order("created_at DESC")
+      @issue = @feedback.issues.order("created_at DESC")
+      @rejected_issues = @feedback.issues.where(:approvalstatus => 'Rejected').order("created_at DESC")
+
+    end
+
+    rejected = params[:status]
+    if rejected == 'rejected'
+      @feedback = Feedback.find(params[:id])
+      @rejected_issues = @feedback.issues.where(:approvalstatus => 'Rejected').order("created_at DESC")
+      @issue = @rejected_issues
+      @reject_tab = rejected
+
+    end
+
+    #end
 
     #@comment_count = Issues
     #@feedback = Feedback.find(params[:id])
@@ -308,6 +350,8 @@ class FeedbacksController < ApplicationController
 
 
   end
+
+
 
 end
 

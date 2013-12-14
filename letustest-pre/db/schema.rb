@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131025151531) do
+ActiveRecord::Schema.define(:version => 20131214140640) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "feedback_id"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(:version => 20131025151531) do
     t.datetime "updated_at",     :null => false
     t.integer  "feedback_id"
     t.string   "approvalstatus"
+    t.string   "issue_type"
   end
 
   create_table "playgrounds", :force => true do |t|

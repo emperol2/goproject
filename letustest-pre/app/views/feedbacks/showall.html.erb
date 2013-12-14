@@ -38,14 +38,43 @@
 
 <div class="span9">
   <ul class="nav nav-tabs">
-    <li class="gray active">
-      <%= link_to (showall_feedback_path) do %>
-          Open Issues <span class="label label-info"><%= @issue.count %></span>
-      <%end%>
-    </li>
+
     <!-- <li class="gray active"><a href="#">Open Issues <span class="label label-info"><%= @issue.count %></span></a></li>-->
-    <li><a href="#">Closed Issues</a></li>
-    <li><a href="#">Tab2</a></li>
+    <!--<li><a href="#">Closed Issues</a></li>-->
+    <!--<li><a href="#">Tab2</a></li>-->
+    <% if @reject_tab == 'rejected' %>
+        <li>
+          <%= link_to (showall_feedback_path) do %>
+              Open Issues <span class="label label-info"><%= @open_issue_count.count %></span>
+          <%end%>
+        </li>
+
+        <li><a href="#">Closed Issues</a></li>
+
+        <li class="gray active">
+          <%= link_to (showall_feedback_path(:status => 'rejected')) do %>
+              Rejected <span class="label label-info"><%= @rejected_issues.count %></span>
+          <%end%>
+        </li>
+
+    <% else %>
+
+        <li class="gray active">
+          <%= link_to (showall_feedback_path) do %>
+              Open Issues <span class="label label-info"><%= @open_issue_count.count %></span>
+          <%end%>
+        </li>
+
+        <li><a href="#">Closed Issues</a></li>
+
+        <li>
+          <%= link_to (showall_feedback_path(:status => 'rejected')) do %>
+              Rejected <span class="label label-info"><%= @rejected_issues.count %></span>
+          <%end%>
+        </li>
+
+    <% end %>
+
   </ul>
   <!-- <div class="box round-corners box-shadow overflow"> -->
   <div class="box-shadow overflow">
@@ -129,7 +158,7 @@
         <h4>Labels</h4>
         <li>
           <a href="#" class="filter-item color-label  labelstyle-fc2929 zeroed" data-label="bug" rel="nofollow">
-            <span class="count">0</span>
+            <span class="count"><%= @bug %></span>
             <span class="color" style="background-color: #fc2929">&nbsp;</span>
             <span class="octicon octicon-remove-close"></span>
             <span class="name">bug</span>
@@ -160,7 +189,7 @@
         </li>
         <li>
           <a href="#" class="filter-item color-label  labelstyle-cc317c zeroed" data-label="question" rel="nofollow">
-            <span class="count">0</span>
+            <span class="count"><%= @question %></span>
             <span class="color" style="background-color: #cc317c">&nbsp;</span>
             <span class="octicon octicon-remove-close"></span>
             <span class="name">question</span>
@@ -188,27 +217,43 @@
       <ul class="js-color-label-list filter-list color-label-list small " data-pjax="">
         <h4>Severity</h4>
         <li>
-          <a href="#" class="filter-item color-label  labelstyle-fc2929 zeroed" data-label="bug" rel="nofollow">
-            <!--<span class="count">0</span>-->
-            <span class="color" style="background-color: #fc2929">&nbsp;</span>
-            <span class="octicon octicon-remove-close"></span>
-            <span class="name">High</span>
-          </a>
+          <!--<a href="#" class="filter-item color-label  labelstyle-fc2929 zeroed" data-label="bug" rel="nofollow">-->
+          <!--&lt;!&ndash;<span class="count">0</span>&ndash;&gt;-->
+          <!--<span class="color" style="background-color: #fc2929">&nbsp;</span>-->
+          <!--<span class="octicon octicon-remove-close"></span>-->
+          <!--<span class="name">High</span>-->
+          <!--</a>-->
+          <%= link_to (showall_feedback_path(:severity => 'high')), :class => 'filter-item color-label labelstyle-fc2929 zeroed' do %>
+              <span class="color" style="background-color: #fc2929">&nbsp;</span>
+              <span class="octicon octicon-remove-close"></span>
+              <span class="name">High</span>
+          <% end %>
         </li>
         <li>
-          <a href="#" class="filter-item color-label  labelstyle-cccccc zeroed" data-label="duplicate" rel="nofollow">
-            <!--<span class="count">0</span>-->
-            <span class="color" style="background-color: #cccccc">&nbsp;</span>
-            <span class="octicon octicon-remove-close"></span>
-            <span class="name">Medium</span>
-          </a>          </li>
+          <!--<a href="#" class="filter-item color-label  labelstyle-cccccc zeroed" data-label="duplicate" rel="nofollow">-->
+          <!--&lt;!&ndash;<span class="count">0</span>&ndash;&gt;-->
+          <!--<span class="color" style="background-color: #cccccc">&nbsp;</span>-->
+          <!--<span class="octicon octicon-remove-close"></span>-->
+          <!--<span class="name">Medium</span>-->
+          <!--</a>-->
+          <%= link_to (showall_feedback_path(:severity => 'medium')), :class => 'filter-item color-label labelstyle-fc2929 zeroed' do %>
+              <span class="color" style="background-color: #cccccc">&nbsp;</span>
+              <span class="octicon octicon-remove-close"></span>
+              <span class="name">Medium</span>
+          <% end %>
+        </li>
         <li>
-          <a href="#" class="filter-item color-label  labelstyle-84b6eb zeroed" data-label="enhancement" rel="nofollow">
-            <!--<span class="count">0</span>-->
-            <span class="color" style="background-color: #84b6eb">&nbsp;</span>
-            <span class="octicon octicon-remove-close"></span>
-            <span class="name">Low</span>
-          </a>
+          <!--<a href="#" class="filter-item color-label  labelstyle-84b6eb zeroed" data-label="enhancement" rel="nofollow">-->
+          <!--&lt;!&ndash;<span class="count">0</span>&ndash;&gt;-->
+          <!--<span class="color" style="background-color: #84b6eb">&nbsp;</span>-->
+          <!--<span class="octicon octicon-remove-close"></span>-->
+          <!--<span class="name">Low</span>-->
+          <!--</a>-->
+          <%= link_to (showall_feedback_path(:severity => 'low')), :class => 'filter-item color-label labelstyle-fc2929 zeroed' do %>
+              <span class="color" style="background-color: #84b6eb">&nbsp;</span>
+              <span class="octicon octicon-remove-close"></span>
+              <span class="name">Low</span>
+          <% end %>
         </li>
 
       </ul>

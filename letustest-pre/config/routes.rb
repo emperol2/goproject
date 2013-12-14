@@ -12,7 +12,11 @@ Letustest::Application.routes.draw do
   end
 
 
-  resources :testers
+  resources :testers do
+    member do
+      get 'projects'
+    end
+  end
 
 
   resources :feedbacks do
@@ -40,7 +44,6 @@ Letustest::Application.routes.draw do
   put '/issues/:id/approvalstatus' => 'issues#approvalstatus', :as => 'approvalstatus'
   get '/users/:id/projects' => 'users#projects', :as => 'projects'
 
-
   #get "users/new" ;was removed and added next line
 
   # it endows our sample application with all the actions needed for a RESTful Users resource
@@ -66,7 +69,7 @@ Letustest::Application.routes.draw do
   match '/companyinfo', to: 'pages#companyinfo'
   match '/help', to: 'pages#help'
   match '/contactus', to: 'pages#contactus'
-  match '/projects', to: 'testers#projects'
+  #match '/projects', to: 'testers#projects'
   #match '/assigned', to: 'testers#assigned'
 
   put '/projects/assigned' => 'testers#assigned', :as => 'assigned'
