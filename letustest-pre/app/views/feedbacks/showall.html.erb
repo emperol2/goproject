@@ -10,11 +10,20 @@
     </div>
     <h4><%= @feedback.name %></h4>
     <p>www.google.com</p>
-    <div class="btn-group pull-right">
-      <%#= link_to "New Issue", new_issue_path(:feedback_id => @feedback.id), :class => "btn btn-mini" %>
-      <a href="#" class="btn btn-mini">New Issue</a>
-      <a class="btn btn-mini ajax-modal" href="#">Info</a>
-    </div>
+    <% if @feedback.status == 'completed' %>
+        <div class="btn-group pull-right">
+          <%#= link_to "New Issue", new_issue_path(:feedback_id => @feedback.id), :class => "btn btn-mini" %>
+          <a href="#" class="btn btn-mini inactive">New Issue</a>
+          <a class="btn btn-mini ajax-modal inactive" href="#">Info</a>
+        </div>
+    <% else %>
+        <div class="btn-group pull-right">
+          <%#= link_to "New Issue", new_issue_path(:feedback_id => @feedback.id), :class => "btn btn-mini" %>
+          <a href="#" class="btn btn-mini">New Issue</a>
+          <a class="btn btn-mini ajax-modal" href="#">Info</a>
+        </div>
+
+    <% end %>
 
     <div class="main-tabs clearfix ui-corner-bottom">
       <!-- <a class="pull-left " href="#">Issues</a> -->
@@ -93,7 +102,13 @@
             created at <%= time_ago_in_words(issue.created_at.to_datetime) %> ago | <span class="label label-important"><%= issue.priority %></span>
           </div>
           <div class="on-right">
-            <span class="label label-success status-right"><%= issue.approvalstatus %></span></br>
+            <% if issue.approvalstatus == 'Approved' %>
+                <span class="label label-success status-right"><%= issue.approvalstatus %></span></br>
+            <% elsif issue.approvalstatus == 'Rejected' %>
+                <span class="label label-important status-right"><%= issue.approvalstatus %></span></br>
+            <% else %>
+                <span class="label label-warning status-right"><%= issue.approvalstatus %></span></br>
+            <% end %>
             <span class="comment"><%= pluralize(issue.comments.count, 'comment') %></span>
           </div>
         </div>
@@ -208,7 +223,7 @@
   </div>
 </div>
 
-<div class="span3">
+<div class="span3 severity">
   <div class="box round-corners box-shadow">
     <!-- <p>span 3</p>
         <p>This box can be help or special information for testers.</p>

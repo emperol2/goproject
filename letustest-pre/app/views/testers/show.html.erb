@@ -72,16 +72,16 @@
 
       <h1> Welcome, <%= @tester.fname %> </h1>
 
-      E-mail: <%= @tester.email %> <br/>
+      Email: <%= @tester.email %> <br/>
 
-      Total Score: <%= @getTotalScore %> <br/>
+      <!-- Total Score: <%#= @getTotalScore %> <br/> -->
 
     </div>
 
     <div class="box round-corners box-shadow" id="t-stats">
       <div class="box-title"><h2>Statistics</h2></div>
       <div class="box-content">
-        <p><span class="badge"><%= @getTotalScore %></span> Testlio score <a href="#"><i class="icon-gray icon-question-sign"></i></a></p>
+        <p><span class="badge"><%= @getTotalScore %></span> Let{us}test score <a href="#"><i class="icon-gray icon-question-sign"></i></a></p>
         <p><span class="badge">1026</span> profile views</p>
       </div>
     </div>

@@ -158,12 +158,24 @@ class FeedbacksController < ApplicationController
       @feedback = Feedback.find(params[:id])
       @high_priority = @feedback.issues.where(:priority => 'high').order("created_at DESC")
       @issue = @high_priority
+      @open_issue_count = @feedback.issues.order("created_at DESC")
+      @rejected_issues = @feedback.issues.where(:approvalstatus => 'Rejected').order("created_at DESC")
+
+
     elsif severity_type == 'medium'
       @medium_priority = @feedback.issues.where(:priority => 'medium').order("created_at DESC")
       @issue = @medium_priority
+      @open_issue_count = @feedback.issues.order("created_at DESC")
+      @rejected_issues = @feedback.issues.where(:approvalstatus => 'Rejected').order("created_at DESC")
+
+
     elsif severity_type == 'low'
       @low_priority = @feedback.issues.where(:priority => 'low').order("created_at DESC")
       @issue = @low_priority
+      @open_issue_count = @feedback.issues.order("created_at DESC")
+      @rejected_issues = @feedback.issues.where(:approvalstatus => 'Rejected').order("created_at DESC")
+
+
     else
       @feedback = Feedback.find(params[:id])
       @open_issue_count = @feedback.issues.order("created_at DESC")
@@ -180,6 +192,8 @@ class FeedbacksController < ApplicationController
       @reject_tab = rejected
 
     end
+
+
 
     #end
 
