@@ -48,95 +48,36 @@
 <div class="span9">
   <ul class="nav nav-tabs">
 
-    <!-- <li class="gray active"><a href="#">Open Issues <span class="label label-info"><%= @issue.count %></span></a></li>-->
-    <!--<li><a href="#">Closed Issues</a></li>-->
-    <!--<li><a href="#">Tab2</a></li>-->
-    <% if @reject_tab == 'rejected' %>
-        <li>
-          <%= link_to (showall_feedback_path) do %>
-              Open Issues <span class="label label-info"><%= @open_issue_count.count %></span>
-          <%end%>
-        </li>
+    <li>
+      <%= link_to (showall_feedback_path) do %>
+          Open Issues <span class="label label-info"><%= @open_issue_count.count %></span>
+      <%end%>
+    </li>
 
-        <li><a href="#">Closed Issues</a></li>
+    <li><a href="#">Closed Issues</a></li>
 
-        <li class="gray active">
-          <%= link_to (showall_feedback_path(:status => 'rejected')) do %>
-              Rejected <span class="label label-info"><%= @rejected_issues.count %></span>
-          <%end%>
-        </li>
+    <li>
+      <%= link_to (showall_feedback_path(:status => 'rejected')) do %>
+          Rejected <span class="label label-info"><%= @rejected_issues.count %></span>
+      <%end%>
+    </li>
+    <li>
+      <%= link_to (showall_feedback_path(:status => 'approved')) do %>
+          Approved <span class="label label-info"><%= @approved_issues.count %></span>
+      <%end%>
+    </li>
+    <li class="gray active">
+      <%= link_to "#{}" do %>
+          Search <span class="label label-info"><%= @feedback_issue.count %></span>
+      <%end%>
+    </li>
 
-    <% elsif @tab == 'High' || @tab == 'Medium' || @tab == 'Low' %>
-
-        <li class="gray">
-          <%= link_to (showall_feedback_path) do %>
-              Open Issues <span class="label label-info"><%= @open_issue_count.count %></span>
-          <%end%>
-        </li>
-
-        <li><a href="#">Closed Issues</a></li>
-
-        <li>
-          <%= link_to (showall_feedback_path(:status => 'rejected')) do %>
-              Rejected <span class="label label-info"><%= @rejected_issues.count %></span>
-          <%end%>
-        </li>
-
-        <li class = 'gray active'>
-          <%= link_to (showall_feedback_path(:severity => @tab)) do %>
-              <%= @tab %> <span class="label label-info"><%= @issue.count %></span>
-          <%end%>
-        </li>
-
-    <% elsif @approved_tab == 'approved' %>
-
-        <li>
-          <%= link_to (showall_feedback_path) do %>
-              Open Issues <span class="label label-info"><%= @open_issue_count.count %></span>
-          <%end%>
-        </li>
-
-        <li><a href="#">Closed Issues</a></li>
-
-        <li>
-          <%= link_to (showall_feedback_path(:status => 'rejected')) do %>
-              Rejected <span class="label label-info"><%= @rejected_issues.count %></span>
-          <%end%>
-        </li>
-        <li class="gray active">
-          <%= link_to (showall_feedback_path(:status => 'approved')) do %>
-              Approved <span class="label label-info"><%= @approved_issues.count %></span>
-          <%end%>
-        </li>
-
-    <% else %>
-
-        <li class="gray active">
-          <%= link_to (showall_feedback_path) do %>
-              Open Issues <span class="label label-info"><%= @open_issue_count.count %></span>
-          <%end%>
-        </li>
-
-        <li><a href="#">Closed Issues</a></li>
-
-        <li>
-          <%= link_to (showall_feedback_path(:status => 'rejected')) do %>
-              Rejected <span class="label label-info"><%= @rejected_issues.count %></span>
-          <%end%>
-        </li>
-        <li>
-          <%= link_to (showall_feedback_path(:status => 'approved')) do %>
-              Approved <span class="label label-info"><%= @approved_issues.count %></span>
-          <%end%>
-        </li>
-
-    <% end %>
 
   </ul>
   <!-- <div class="box round-corners box-shadow overflow"> -->
   <div class="box-shadow overflow">
 
-    <% @issue.each do |issue| %>
+    <% @feedback_issue.each do |issue| %>
 
         <%#= link_to feedback_issue_path(@feedback, issue.id) do %>
 

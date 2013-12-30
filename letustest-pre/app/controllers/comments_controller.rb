@@ -26,7 +26,7 @@ class CommentsController < ApplicationController
   def new
     @comment = Comment.new
     @issue = Issue.find(params[:issue_id])
-    
+
     if current_tester != nil
       @tester = Tester.find(current_tester)
       @comment.tester_id = @tester.id
@@ -34,7 +34,7 @@ class CommentsController < ApplicationController
       @user = User.find(current_user)
       @comment.user_id = @user.id
     end
-    
+
     @comment.issue_id = @issue.id
 
     respond_to do |format|
@@ -52,28 +52,29 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = Comment.new(params[:comment])
-    
+
     @issue_id = Issue.find(params[:comment][:issue_id])
     @issueid = Issue.find(params[:comment][:issue_id]).feedback
-    
-      if current_tester != nil
-        @tester = Tester.find(current_tester)
-        @comment.tester_id = @tester.id
-        @comment.tester_name = @tester.fname
-      elsif current_user
-        @user = User.find(current_user)
-        @comment.user_id = @user.id
-        @comment.tester_name = @user.name
-      end
-    
+
+    if current_tester != nil
+      @tester = Tester.find(current_tester)
+      @comment.tester_id = @tester.id
+      @comment.tester_name = @tester.fname
+    elsif current_user
+      @user = User.find(current_user)
+      @comment.user_id = @user.id
+      @comment.tester_name = @user.name
+    end
+
 
     respond_to do |format|
       if @comment.save
         format.html { redirect_to feedback_issue_path(@issueid.id, @issue_id.id), notice: 'Comment was successfully created.' }
         format.json { render json: @comment, status: :created, location: @comment }
       else
-        format.html { render action: "new" }
+        format.html { redirect_to feedback_issue_path(@issueid.id, @issue_id.id), :flash => {:error => 'Description cannot be blank !'} }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
+        #format.json { render :json => @comment.errors }
       end
     end
   end

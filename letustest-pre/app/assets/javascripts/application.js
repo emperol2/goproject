@@ -30,6 +30,7 @@ $(document).ready(function (){
     });
 
     $("div.alert-notice").fadeOut(5000);
+    $("div.alert").fadeOut(5000);
 
 
 

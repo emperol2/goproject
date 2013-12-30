@@ -32,6 +32,7 @@ Letustest::Application.routes.draw do
       get 'seetesters'
       get 'promote'
       get 'contact'
+      get 'search'
     end
 
     resources :issues

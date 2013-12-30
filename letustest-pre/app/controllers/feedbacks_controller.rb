@@ -154,26 +154,29 @@ class FeedbacksController < ApplicationController
 
     severity_type = params[:severity]
 
-    if severity_type == 'high'
+    if severity_type == 'High'
       @feedback = Feedback.find(params[:id])
       @high_priority = @feedback.issues.where(:priority => 'high').order("created_at DESC")
       @issue = @high_priority
       @open_issue_count = @feedback.issues.order("created_at DESC")
       @rejected_issues = @feedback.issues.where(:approvalstatus => 'Rejected').order("created_at DESC")
+      @tab = 'High'
 
 
-    elsif severity_type == 'medium'
+    elsif severity_type == 'Medium'
       @medium_priority = @feedback.issues.where(:priority => 'medium').order("created_at DESC")
       @issue = @medium_priority
       @open_issue_count = @feedback.issues.order("created_at DESC")
       @rejected_issues = @feedback.issues.where(:approvalstatus => 'Rejected').order("created_at DESC")
+      @tab = 'Medium'
 
 
-    elsif severity_type == 'low'
+    elsif severity_type == 'Low'
       @low_priority = @feedback.issues.where(:priority => 'low').order("created_at DESC")
       @issue = @low_priority
       @open_issue_count = @feedback.issues.order("created_at DESC")
       @rejected_issues = @feedback.issues.where(:approvalstatus => 'Rejected').order("created_at DESC")
+      @tab = 'Low'
 
 
     else
@@ -181,6 +184,9 @@ class FeedbacksController < ApplicationController
       @open_issue_count = @feedback.issues.order("created_at DESC")
       @issue = @feedback.issues.order("created_at DESC")
       @rejected_issues = @feedback.issues.where(:approvalstatus => 'Rejected').order("created_at DESC")
+      @approved_issues = @feedback.issues.where(:approvalstatus => 'Approved').order("created_at DESC")
+      @feedback_issue = @feedback.issues.where('title LIKE ? OR description LIKE ?', "%#{@query}%", "%#{@query}%"  )
+
 
     end
 
@@ -193,6 +199,15 @@ class FeedbacksController < ApplicationController
 
     end
 
+    approved = params[:status]
+    if approved == 'approved'
+      @feedback = Feedback.find(params[:id])
+      @approved_issues = @feedback.issues.where(:approvalstatus => 'Approved').order("created_at DESC")
+      @issue = @approved_issues
+      @approved_tab = approved
+
+
+    end
 
 
     #end
@@ -365,6 +380,20 @@ class FeedbacksController < ApplicationController
 
   end
 
+  def search
+    find = params[:commit]
+    @query = params[:query]
+
+    if find == 'Find'
+      @feedback = Feedback.find(params[:id])
+      @feedback_issue = @feedback.issues.where('title LIKE ? OR description LIKE ?', "%#{@query}%", "%#{@query}%")
+    end
+
+    @open_issue_count = @feedback.issues.order("created_at DESC")
+    @rejected_issues = @feedback.issues.where(:approvalstatus => 'Rejected').order("created_at DESC")
+    @approved_issues = @feedback.issues.where(:approvalstatus => 'Approved').order("created_at DESC")
+    @feedback_issue = @feedback.issues.where('title LIKE ? OR description LIKE ?', "%#{@query}%", "%#{@query}%")
+  end
 
 
 end

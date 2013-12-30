@@ -52,6 +52,7 @@ class IssuesController < ApplicationController
   # GET /issues/1/edit
   def edit
     @issue = Issue.find(params[:id])
+    @feedback = Feedback.find(params[:feedback_id])
   end
 
   # POST /issues
@@ -79,10 +80,11 @@ class IssuesController < ApplicationController
   # PUT /issues/1.json
   def update
     @issue = Issue.find(params[:id])
+    @feedback = Feedback.find(params[:issue][:feedback_id])
 
     respond_to do |format|
       if @issue.update_attributes(params[:issue])
-        format.html { redirect_to @issue, notice: 'Issue was successfully updated.' }
+        format.html { redirect_to feedback_issue_path(@feedback.id), notice: 'Issue was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
