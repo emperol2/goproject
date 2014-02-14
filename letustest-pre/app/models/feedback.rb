@@ -12,6 +12,8 @@ class Feedback < ActiveRecord::Base
   #validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
 
   validates :name, :questions, presence: true
+
+  self.per_page = 10
   
   def paypal_url(return_url)
     values = {
@@ -30,4 +32,7 @@ class Feedback < ActiveRecord::Base
       })
     "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
   end
+
+
+
 end

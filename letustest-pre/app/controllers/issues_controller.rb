@@ -1,6 +1,9 @@
 class IssuesController < ApplicationController
   # GET /issues
   # GET /issues.json
+
+  before_filter :check_for_cancel, :only => [:create, :update]
+
   def index
     @issues = Issue.all
 
@@ -53,6 +56,7 @@ class IssuesController < ApplicationController
   def edit
     @issue = Issue.find(params[:id])
     @feedback = Feedback.find(params[:feedback_id])
+    @priority = @issue.priority.to_s
   end
 
   # POST /issues
@@ -136,7 +140,17 @@ class IssuesController < ApplicationController
     end
 
 
+  end
 
+
+
+  def check_for_cancel
+    if params[:commit] == 'Cancel'
+      @issue = Issue.find(params[:issue][:issue_id])
+      @feedback = Feedback.find(params[:issue][:feedback_id])
+      redirect_to feedback_issue_path(@feedback.id, @issue.id)
+
+    end
 
   end
 end

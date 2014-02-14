@@ -113,6 +113,16 @@
           <h3>Comment</h3>
 
           <%= render :partial =>"comment" %>
+          <script type="text/javascript">
+              $(document).ready(function(){
+
+                  //$('.longarea').each(function(i, elem) {
+                  //    $(elem).wysihtml5();
+                  //});
+                  $('.longarea').wysihtml5();
+
+              })
+          </script>
 
         </div>
 
@@ -138,8 +148,8 @@
         </div>
         <br/>
 
-        <%= link_to 'Edit', edit_feedback_issue_path(@feedback.id, @issue) %> |
-        <%= link_to 'Back', issues_path %>
+        <%= link_to 'Edit', edit_feedback_issue_path(@feedback.id, @issue) %> <!-- | -->
+        <%#= link_to 'Back', issues_path %>
 
 
         <br/>

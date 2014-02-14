@@ -3,3 +3,11 @@
 
 en:
   hello: "Hello world"
+  # kaminari
+  views:
+    pagination:
+      previous: "&lt; Previous"
+      next: "Next &gt;"
+      truncate: "..."
+
+

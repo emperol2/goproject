@@ -2,13 +2,19 @@
 <html>
 <head>
   <title>Letustest</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%#= stylesheet_link_tag    "http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%#= stylesheet_link_tag "http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" %>
   <%= javascript_include_tag "application" %>
   <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js", :all %>
   <%#= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js", :all %>
   <%= javascript_include_tag "jquery.jclock.js" %>
   <%= javascript_include_tag 'jquery', 'application' %>
+  <%= stylesheet_link_tag "bootstrap-wysihtml5.css" %>
+  <%= stylesheet_link_tag "bootstrap.min.css" %>
+  <%= javascript_include_tag "wysihtml5-0.3.0.js" %>
+  <%= javascript_include_tag "jquery-1.7.2.min.js" %>
+  <%= javascript_include_tag "bootstrap.min.js" %>
+  <%= javascript_include_tag "bootstrap-wysihtml5.js" %>
   <%= csrf_meta_tags %>
   <!--[if lt IE 9]>
   <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>

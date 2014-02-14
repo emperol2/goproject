@@ -182,7 +182,8 @@ class FeedbacksController < ApplicationController
     else
       @feedback = Feedback.find(params[:id])
       @open_issue_count = @feedback.issues.order("created_at DESC")
-      @issue = @feedback.issues.order("created_at DESC")
+      #@issue = @feedback.issues.order("created_at DESC")
+      @issue = @feedback.issues.paginate :per_page => 10, :page => params[:page], :order => 'created_at DESC'
       @rejected_issues = @feedback.issues.where(:approvalstatus => 'Rejected').order("created_at DESC")
       @approved_issues = @feedback.issues.where(:approvalstatus => 'Approved').order("created_at DESC")
       @feedback_issue = @feedback.issues.where('title LIKE ? OR description LIKE ?', "%#{@query}%", "%#{@query}%"  )
@@ -193,7 +194,8 @@ class FeedbacksController < ApplicationController
     rejected = params[:status]
     if rejected == 'rejected'
       @feedback = Feedback.find(params[:id])
-      @rejected_issues = @feedback.issues.where(:approvalstatus => 'Rejected').order("created_at DESC")
+      #@rejected_issues = @feedback.issues.where(:approvalstatus => 'Rejected').order("created_at DESC")
+      @rejected_issues = @feedback.issues.paginate :per_page => 10, :page => params[:page], :conditions => ["approvalstatus = ?", 'Rejected'] ,:order => 'created_at DESC'
       @issue = @rejected_issues
       @reject_tab = rejected
 
@@ -202,7 +204,8 @@ class FeedbacksController < ApplicationController
     approved = params[:status]
     if approved == 'approved'
       @feedback = Feedback.find(params[:id])
-      @approved_issues = @feedback.issues.where(:approvalstatus => 'Approved').order("created_at DESC")
+      #@approved_issues = @feedback.issues.where(:approvalstatus => 'Approved').order("created_at DESC")
+      @approved_issues = @feedback.issues.paginate :per_page => 10, :page => params[:page], :conditions => ["approvalstatus = ?", 'Approved'] ,:order => 'created_at DESC'
       @issue = @approved_issues
       @approved_tab = approved
 

@@ -13,7 +13,10 @@
 //= require bootstrap
 //= require jquery
 //= require jquery_ujs
+//= require jquery.jclock.js
 //= require myjs
+//= require wysihtml5-0.3.0
+//= require bootstrap-wysihtml5
 
 //= require_tree .
 
@@ -31,6 +34,8 @@ $(document).ready(function (){
 
     $("div.alert-notice").fadeOut(5000);
     $("div.alert").fadeOut(5000);
+
+
 
 
 

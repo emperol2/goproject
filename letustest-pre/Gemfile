@@ -31,6 +31,8 @@ gem 'jquery-rails'
 # gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'bootstrap-wysihtml5-rails'
+gem 'kaminari'
+gem 'will_paginate', '~> 3.0'
 
 gem "nifty-generators", :group => :development
 
