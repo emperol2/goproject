@@ -1,5 +1,6 @@
 @import "bootstrap";
 
+
 body {
   padding-top: 60px;
   font-family: 'Helvetica Neue',Helvetica,Arial,'Lucida Grande',sans-serif !important;
@@ -546,6 +547,11 @@ li.active > a > i.icon-user.icon-gray{
 }
 em.current{
   display: none !important;
+}
+
+select#feedback_duedate_1i, select#feedback_duedate_2i, select#feedback_duedate_3i {
+  width: 120px;
+
 }
 
 

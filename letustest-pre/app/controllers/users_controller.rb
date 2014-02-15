@@ -16,6 +16,7 @@ class UsersController < ApplicationController
     end
     @public = @user.feedbacks.where("project_type = ? AND status = ?", "public", "active")
     @completed = @user.feedbacks.where("status = ?", "completed")
+    @waiting = @user.feedbacks.where("status = ?", "waiting")
 
 
   end

@@ -11,6 +11,7 @@
 
     <%= gravatar_for @user %>
     <h2> Welcome, <%= @user.name %></h2>
+    <p><%= link_to "Edit Profile", basicinfo_user_path %></p>
     <!--<p>E-mail: <#%= @user.email %></p>-->
 
   </div>
@@ -67,6 +68,8 @@
 
 <div class="span9">
   <div class="box round-corners box-shadow" id="t-stats">
+
+    <div class="alert alert-error">You have <%= pluralize(@waiting.count,"project") %> that waiting for approval by admin </div>
 
     <!-- In progress tests -->
     <section id="inprogress" class="client-version-box">

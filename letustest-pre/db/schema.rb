@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131214140640) do
+ActiveRecord::Schema.define(:version => 20140214153821) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "feedback_id"
@@ -116,6 +116,10 @@ ActiveRecord::Schema.define(:version => 20131214140640) do
     t.string   "address"
     t.string   "state"
     t.string   "timezone"
+    t.text     "aboutcompany"
+    t.string   "website"
+    t.string   "paypalaccount"
+    t.text     "paymentinfo"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

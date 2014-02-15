@@ -230,4 +230,4 @@
     timeout: 1000 // 1000 = one second, 60000 = one minute
   };
  
-})(jQuery);
+})(window.jQuery);

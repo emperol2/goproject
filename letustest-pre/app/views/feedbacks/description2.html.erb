@@ -87,9 +87,13 @@
                   <%= f.label :testinginstr, "Website Instruction:", :class => "control-label"  %>
                   <%= f.text_area :testinginstr, :rows => 8, class: "question", placeholder: "Example: Hackathon.io helps you organize, run, and promote the best Hackathons." %>
                 </div>
+                <div class="project-field duedate">
+                  <%= f.label :duedate, "Due Date:", :class => "control-label"  %>
+                  <%= f.date_select :duedate %>
+                </div>
                 <!--<div class="project-field contact">-->
-                  <!--<#%= f.label :contact_number, "Contact Number:", :class => "control-label" %>-->
-                  <!--<#%= f.text_field :contact_number, :placeholder => "Example: +66-81-9882642" %>-->
+                <!--<#%= f.label :contact_number, "Contact Number:", :class => "control-label" %>-->
+                <!--<#%= f.text_field :contact_number, :placeholder => "Example: +66-81-9882642" %>-->
                 <!--</div>-->
                 <!--<div class="question-field">-->
                 <!--<%#= f.label :questions, "Your website description:" %>-->

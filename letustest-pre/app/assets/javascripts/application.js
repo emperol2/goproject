@@ -10,14 +10,10 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
+//= require jquery-jclock
 //= require bootstrap
-//= require jquery
-//= require jquery_ujs
-//= require jquery.jclock.js
-//= require myjs
 //= require wysihtml5-0.3.0
 //= require bootstrap-wysihtml5
-
 //= require_tree .
 
 $(document).ready(function (){
@@ -26,7 +22,6 @@ $(document).ready(function (){
     $(".collapse.show").collapse('show')
     $('.collapse.in').collapse('hide')
 
-
     var $myGroup = $('#accordion2');
     $myGroup.on('show','.collapse', function() {
         $myGroup.find('.collapse.in').collapse('hide');
@@ -34,9 +29,6 @@ $(document).ready(function (){
 
     $("div.alert-notice").fadeOut(5000);
     $("div.alert").fadeOut(5000);
-
-
-
 
 
 });

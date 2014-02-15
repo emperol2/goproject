@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/jim/carmen-rails.git
+  revision: 076dd251e075d07408e0b5268f886956ef2a347c
+  specs:
+    carmen-rails (1.0.0)
+      carmen (~> 1.0.0)
+      rails
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -32,10 +40,17 @@ GEM
       rake
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
-    bootstrap-sass (2.1.0.0)
+    bootstrap-sass (3.1.1.0)
+      sass (~> 3.2)
     bootstrap-wysihtml5-rails (0.3.1.20)
       railties (>= 3.0)
     builder (3.0.4)
+    carmen (1.0.0)
+      unicode_utils (~> 1.4.0)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.3)
+      climate_control (>= 0.0.3, < 1.0)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -61,6 +76,11 @@ GEM
     mime-types (1.25)
     multi_json (1.7.9)
     nifty-generators (0.4.6)
+    paperclip (3.5.4)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.3)
+      mime-types
     polyglot (0.3.3)
     rack (1.4.5)
     rack-cache (1.2)
@@ -107,6 +127,7 @@ GEM
     uglifier (2.2.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
+    unicode_utils (1.4.0)
     will_paginate (3.0.5)
 
 PLATFORMS
@@ -115,12 +136,14 @@ PLATFORMS
 DEPENDENCIES
   annotate (= 2.5.0)
   bcrypt-ruby (= 3.0.1)
-  bootstrap-sass (= 2.1)
+  bootstrap-sass (~> 3.1.1)
   bootstrap-wysihtml5-rails
+  carmen-rails (~> 1.0.0)!
   coffee-rails (~> 3.2.1)
   jquery-rails
   kaminari
   nifty-generators
+  paperclip (~> 3.0)
   rails (= 3.2.13)
   sass-rails (~> 3.2.3)
   sqlite3

@@ -90,17 +90,16 @@
 
               <fieldset>
                 <legend><i class="icon-ok-sign" style="margin-top:5px"></i> Required</legend>
-                <div class="project-field fname">
-                  <%= f.label :name, "Paypal Account:", :class => "control-label" %>
-                  <%#= f.text_field :timezone, :placeholder => "Example: UTC-6, GMT+8" %>
+                <div class="project-field paypalaccount">
+                  <%= f.label :paypalaccount, "Paypal Account:", :class => "control-label" %>
+                  <%= f.text_field :paypalaccount, :placeholder => "Example: ..." %>
                 </div>
 
                 <legend><i class="icon-info-sign" style="margin-top:5px"></i> Optional</legend>
-                <div class="project-field contact">
+                <div class="project-field paymentinfo">
                   <%= f.label :timezone, "Payment Information:", :class => "control-label" %>
-                  <%#= f.text_field :timezone, :placeholder => "Example: UTC-6, GMT+8" %>
+                  <%= f.text_area :paymentinfo, :rows => 8, :class => "question", :placeholder => "Example: UTC-6, GMT+8" %>
                 </div>
-
 
                 <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
                 <%= f.submit "Cancel", class: "btn btn-large btn-primary" %>
