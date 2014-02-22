@@ -125,7 +125,8 @@
                 </div>
                 <div class="project-field state">
                   <%= f.label :state, "State:", :class => "control-label" %>
-                  <%= f.text_field :state %>
+                  <%#= f.text_field :state %>
+                  <%= render partial: 'subregion_select', locals: {parent_region: f.object.country} %>
                 </div>
                 <div class="project-field zipcode">
                   <%= f.label :zipcode, "Zipcode:", :class => "control-label" %>

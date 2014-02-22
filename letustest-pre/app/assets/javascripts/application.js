@@ -10,8 +10,10 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require jquery-jclock
 //= require bootstrap
+//= require jquery
+//= require jquery-jclock
+//= require jquery_ujs
 //= require wysihtml5-0.3.0
 //= require bootstrap-wysihtml5
 //= require_tree .

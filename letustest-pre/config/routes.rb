@@ -49,6 +49,8 @@ Letustest::Application.routes.draw do
 
   # it endows our sample application with all the actions needed for a RESTful Users resource
 
+  get '/users/subregion_options' => 'users#subregion_options'
+
   resources :users do
 
     member do
