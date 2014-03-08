@@ -146,9 +146,10 @@ class IssuesController < ApplicationController
 
   def check_for_cancel
     if params[:commit] == 'Cancel'
-      @issue = Issue.find(params[:issue][:issue_id])
+      @issue2 = Issue.find(params[:id])
+      #@issue = Issue.find(params[:issue][:issue_id])
       @feedback = Feedback.find(params[:issue][:feedback_id])
-      redirect_to feedback_issue_path(@feedback.id, @issue.id)
+      redirect_to feedback_issue_path(@feedback.id, @issue2.id)
 
     end
 

@@ -1,4 +1,4 @@
-<%= form_for(@issue) do |f| %>
+<%= form_for @issue, :html => {:multipart => true } do |f| %>
 
     <% if @issue.errors.any? %>
         <div id="error_explanation">
@@ -13,7 +13,10 @@
     <% end %>
 
     <%= f.hidden_field "feedback_id", :value => @issue.feedback_id %>
-    <%= f.hidden_field "issue_id", :value => @issue.id %>
+    <%#= @issue.id %>
+    <%# if @issue.id != nil %>
+        <%#= f.hidden_field "issue_id", :value => @issue.id %>
+    <%# end %>
 
 
     <!-- <div class="field"> -->
@@ -50,9 +53,12 @@
     <%#= f.label :description %><!-- <br /> -->
     <br />
     <%= f.text_area :description, :size => "100x10", :class => "longarea", :placeholder => "Description about your issue.                                                                                                       Example: Hackathon.io helps you organize, run, and promote the best Hackathons." %>
+    <div class="attachment">
+      <%= f.file_field :attachment %>
+    </div>
 
     <!--</div>-->
-    <div style="float:right; position: relative; right: 70px">
+    <div style="float:right; position: absolute; right: 270px; top:270px">
       <%= f.submit "Submit new issue", class: "btn btn-large btn-primary" %>
       <br/>
       <br/>

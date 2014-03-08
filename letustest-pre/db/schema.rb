@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140214153821) do
+ActiveRecord::Schema.define(:version => 20140222100555) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "feedback_id"
@@ -63,11 +63,15 @@ ActiveRecord::Schema.define(:version => 20140214153821) do
     t.string   "priority"
     t.text     "description"
     t.integer  "tester_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
     t.integer  "feedback_id"
     t.string   "approvalstatus"
     t.string   "issue_type"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
   end
 
   create_table "playgrounds", :force => true do |t|

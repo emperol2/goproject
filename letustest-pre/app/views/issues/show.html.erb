@@ -50,6 +50,16 @@
             <h4 style="color: black !important;">Description</h4>
             <p><%= simple_format(@issue.description) %></p>
 
+            <% if @issue.attachment_file_size != nil%>
+                <% if @issue.attachment_content_type == "image/jpeg" %>
+                    <%= image_tag @issue.attachment.url(:original) %>
+                <% end %>
+                <br/>
+                <br/>
+                <%= link_to "Download", @issue.attachment.url(:original, false) %>
+
+            <% end %>
+
           </div>
 
         </div>
