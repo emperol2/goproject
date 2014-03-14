@@ -32,6 +32,18 @@
               <li><%= link_to "Sign out", signout_path %></li>
               <li><%= link_to "Access Bug Tracking", '#' %></li>
               <li><%= link_to "TESTER", '#' %></li>
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">My Account
+                  <b class="caret" style="margin-top: 0px !important;"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "My Profile", current_tester %></li>
+                  <li><%= link_to "Manage Profile", manage_tester_path(current_tester) %></li>
+                  <li><%#= link_to "Edit Profile", basicinfo_user_path(current_user) %></li>
+                  <li class="divider"></li>
+                  <li><a href="#">Separated link</a></li>
+                </ul>
+              </li>
           <% else %>
               <li><%= link_to "Home", root_path %></li>
               <li><%# link_to "Request a Test", feedbacks_path %></li>

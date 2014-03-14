@@ -142,6 +142,14 @@ class TestersController < ApplicationController
 
   end
 
+  def manage
+    if current_tester
+
+      @tester = Tester.find(current_tester)
+
+    end
+  end
+
 
 
 end

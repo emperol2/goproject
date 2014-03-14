@@ -1,0 +1,103 @@
+<% provide(:title, 'manage projects') %>
+
+<div class="container">
+  <div class="row">
+    <div class="span9">
+      <div class="box round-corners box-shadow overflow">
+
+        <div class="name">
+          <img src="http://placekitten.com/150/110" class="img-padding">
+        </div>
+        <h4><%= @feedback.name %></h4>
+        <p>www.google.com</p>
+        <div class="btn-group pull-right" style="top: -70px;">
+          <!--<a href="#" class="btn btn-mini">Manage Project</a>-->
+          <%= link_to "Manage Project", manage_feedback_path(@feedback.id), :class => "btn btn-mini" %>
+          <a class="btn btn-mini ajax-modal" href="#">Info</a>
+        </div>
+
+        <div class="main-tabs clearfix ui-corner-bottom">
+          <!-- <a class="pull-left " href="#">Issues</a> -->
+          <%= link_to "Issues", showall_feedback_path, :class => "pull-left" %>
+          <!-- <a class="pull-left active" href="#">Info</a> -->
+          <%= link_to "Info", feedback_path, :class => "pull-left" %>
+          <%= link_to "Testers", testers_feedback_path, :class => "pull-left" %>
+          <!-- <a class="pull-left " href="#">Files</a> -->
+          <%= link_to "Files", files_feedback_path, :class => "pull-left active" %>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="span3">
+      <div class="box round-corners box-shadow">
+        <% if current_tester %>
+            <p>Your project score: <%= @project_score.first.score %></p>
+            <p>Here we can place either client information or tester's score information.</p>
+
+        <% else %>
+            <p>You are a project's owner.</p>
+            <p>Here we can place either client information or tester's score information.</p>
+
+        <% end %>
+
+      </div>
+    </div>
+
+    <div class="span9">
+      <div class="box round-corners box-shadow">
+        <%= form_for @feedback, :html => {:multipart => true } do |f| %>
+            <% if @feedback.errors.any? %>
+                <div id="error_explanation">
+                  <div class="alert alert-error"><%= pluralize(@feedback.errors.count, "error") %> prohibited this feedback from being saved:</div>
+
+                  <ul>
+                    <% @feedback.errors.full_messages.each do |msg| %>
+                        <li><%= msg %></li>
+                    <% end %>
+                  </ul>
+                </div>
+            <% end %>
+
+            <fieldset>
+              <div class="field">
+                <%= f.label :attachment_file_name, "Filename" %>
+                <%= f.text_field :attachment_file_name %>
+              </div>
+              <div class="field">
+                <%= f.label :attachment_description, "Description" %>
+                <%= f.text_field :attachment_description %>
+              </div>
+              <div class="attachment">
+                <%= f.file_field :attachment %>
+              </div>
+              <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+            </fieldset>
+
+            <% if @feedback.attachment_file_size != nil%>
+                <% if @feedback.attachment_content_type == "image/jpeg" %>
+                    <%= image_tag @feedback.attachment.url(:original) %>
+                <% end %>
+                <br/>
+                <br/>
+                <%= link_to "Download", @feedback.attachment.url(:original, false) %>
+
+            <% end %>
+        <% end %>
+
+
+
+      </div>
+    </div>
+
+    <div class="span3">
+      <div class="box round-corners box-shadow">
+        <p>span 3</p>
+        <p>This box can be help or special information for testers.</p>
+        <p>Contact client: <%#= mail_to(@user.email) %></p>
+      </div>
+    </div>
+
+  </div>
+</div>

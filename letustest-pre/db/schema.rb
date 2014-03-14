@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140222100555) do
+ActiveRecord::Schema.define(:version => 20140308102723) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "feedback_id"
@@ -42,8 +42,8 @@ ActiveRecord::Schema.define(:version => 20140222100555) do
     t.string   "firstname"
     t.string   "lastname"
     t.string   "telephone"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
     t.string   "name"
     t.string   "typeofbugs"
     t.string   "bugsystem"
@@ -56,6 +56,11 @@ ActiveRecord::Schema.define(:version => 20140222100555) do
     t.integer  "nboftester"
     t.integer  "avai_tester"
     t.string   "project_type"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
+    t.text     "attachment_description"
   end
 
   create_table "issues", :force => true do |t|

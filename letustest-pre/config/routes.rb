@@ -15,6 +15,7 @@ Letustest::Application.routes.draw do
   resources :testers do
     member do
       get 'projects'
+      get 'manage'
     end
   end
 
@@ -33,6 +34,7 @@ Letustest::Application.routes.draw do
       get 'promote'
       get 'contact'
       get 'search'
+      get 'files'
     end
 
     resources :issues

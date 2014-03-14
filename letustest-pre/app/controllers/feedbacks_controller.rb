@@ -398,6 +398,33 @@ class FeedbacksController < ApplicationController
     @feedback_issue = @feedback.issues.where('title LIKE ? OR description LIKE ?', "%#{@query}%", "%#{@query}%")
   end
 
+  def files
+
+
+    @feedback = Feedback.find(params[:id])
+    if current_tester
+      @tester = Tester.find(current_tester)
+      #@feedback.tester_id = @feedback.tester_id.to_i
+
+      #@project_score = Assignment.where("tester_id = ? AND feedback_id = ?", @tester.id, @feedback.id)
+
+    elsif current_user
+      @user = User.find(current_user)
+      #@project_tester = @feedback.testers.all
+
+
+    end
+
+
+
+
+
+
+
+  end
+
+
+
 
 end
 
