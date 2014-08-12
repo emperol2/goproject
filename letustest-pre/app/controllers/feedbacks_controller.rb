@@ -157,7 +157,8 @@ class FeedbacksController < ApplicationController
     if severity_type == 'High'
       @feedback = Feedback.find(params[:id])
       @high_priority = @feedback.issues.where(:priority => 'high').order("created_at DESC")
-      @issue = @high_priority
+      #@issue = @high_priority
+      @issue = @high_priority.paginate :per_page => 10, :page => params[:page], :order => 'created_at DESC'
       @open_issue_count = @feedback.issues.order("created_at DESC")
       @rejected_issues = @feedback.issues.where(:approvalstatus => 'Rejected').order("created_at DESC")
       @tab = 'High'
@@ -165,7 +166,8 @@ class FeedbacksController < ApplicationController
 
     elsif severity_type == 'Medium'
       @medium_priority = @feedback.issues.where(:priority => 'medium').order("created_at DESC")
-      @issue = @medium_priority
+      #@issue = @medium_priority
+      @issue = @medium_priority.paginate :per_page => 10, :page => params[:page], :order => 'created_at DESC'
       @open_issue_count = @feedback.issues.order("created_at DESC")
       @rejected_issues = @feedback.issues.where(:approvalstatus => 'Rejected').order("created_at DESC")
       @tab = 'Medium'
@@ -173,7 +175,8 @@ class FeedbacksController < ApplicationController
 
     elsif severity_type == 'Low'
       @low_priority = @feedback.issues.where(:priority => 'low').order("created_at DESC")
-      @issue = @low_priority
+      #@issue = @low_priority
+      @issue = @low_priority.paginate :per_page => 10, :page => params[:page], :order => 'created_at DESC'
       @open_issue_count = @feedback.issues.order("created_at DESC")
       @rejected_issues = @feedback.issues.where(:approvalstatus => 'Rejected').order("created_at DESC")
       @tab = 'Low'
